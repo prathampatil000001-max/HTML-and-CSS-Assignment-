@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel - Must See Places</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #14b8a6; /* green/teal background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f1ec;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 60px;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  .nav-center {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .text-block {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .text-block h1 {
+    font-size: 56px;
+    font-weight: 800;
+    color: #1a1a2e;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .text-block p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 320px;
+    margin-bottom: 30px;
+  }
+
+  .explore-btn {
+    background: linear-gradient(135deg, #ff5f6d, #ff3d5a);
+    color: #fff;
+    border: none;
+    padding: 14px 34px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 61, 90, 0.35);
+    transition: transform 0.2s ease;
+  }
+
+  .explore-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* CARD SLIDER */
+  .slider {
+    flex: 2;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    justify-content: center;
+    min-width: 320px;
+  }
+
+  .card {
+    position: relative;
+    width: 220px;
+    height: 320px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .card:nth-child(1) {
+    transform: rotate(-3deg);
+  }
+
+  .card:nth-child(2) {
+    width: 240px;
+    height: 420px;
+    z-index: 2;
+  }
+
+  .card:nth-child(3) {
+    transform: rotate(3deg);
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+    color: #fff;
+  }
+
+  .card .overlay h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .card .overlay span {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  /* FOOTER */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .social {
+    display: flex;
+    gap: 16px;
+  }
+
+  .social a {
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .footer-center {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .page-count {
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .arrows {
+    display: flex;
+    gap: 10px;
+  }
+
+  .arrows button {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .arrows button:hover {
+    background: #eee;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .content {
+      flex-direction: column;
+    }
+    .slider {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .page {
+      padding: 24px;
+    }
+    .text-block h1 {
+      font-size: 36px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="navbar">
+    <div class="logo">travel.</div>
+    <div class="nav-center">CARD SLIDER FOR WORDPRESS</div>
+    <div class="nav-right">
+      <span>ABOUT</span>
+      <span>CONTACT</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="text-block">
+      <h1>Must see<br>Places</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum metus eu enim rhoncus posuere.</p>
+      <button class="explore-btn">Explore</button>
+    </div>
+
+    <div class="slider">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=500&q=80" alt="Cappadocia, Turkey">
+        <div class="overlay">
+          <h3>Cappadocia</h3>
+          <span>📍 TURKEY</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=500&q=80" alt="Santorini, Greece">
+        <div class="overlay">
+          <h3>Santorini</h3>
+          <span>📍 GREECE</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80" alt="Bali, Indonesia">
+        <div class="overlay">
+          <h3>Bali</h3>
+          <span>📍 INDONESIA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="social">
+      <a href="#">f</a>
+      <a href="#">in</a>
+      <a href="#">ig</a>
+    </div>
+    <div class="footer-center">UNIQUE DESTINATIONS</div>
+    <div class="footer-right">
+      <span class="page-count">01 / 03</span>
+      <div class="arrows">
+        <button onclick="alert('Previous slide')">&#8592;</button>
+        <button onclick="alert('Next slide')">&#8594;</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

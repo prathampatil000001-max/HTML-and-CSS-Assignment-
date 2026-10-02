@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website - Wikipedia</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            color: #202122;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container Layout */
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        /* Left Sidebar: Table of Contents */
+        .sidebar-left {
+            width: 180px;
+            font-size: 14px;
+            padding-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-left h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sidebar-left ul {
+            list-style: none;
+        }
+
+        .sidebar-left li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-left a {
+            color: #36c;
+            text-decoration: none;
+        }
+
+        .sidebar-left a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Article Content */
+        .main-content {
+            flex: 1;
+            padding: 0 20px;
+            max-width: 800px;
+        }
+
+        .article-title {
+            font-family: 'Linux Libertine', 'Georgia', Times, serif;
+            font-size: 28px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            border-bottom: 1px solid #a2a9b1;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+        }
+
+        .tabs a {
+            color: #36c;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .disambiguation {
+            font-size: 13px;
+            font-style: italic;
+            color: #54595d;
+            margin-bottom: 15px;
+        }
+
+        /* Wikipedia Maintenance Box */
+        .notice-box {
+            background-color: #f8f9fa;
+            border: 1px solid #eaecf0;
+            border-left: 4px solid #f68a1e;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .notice-box img {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .notice-box a {
+            color: #36c;
+            text-decoration: none;
+        }
+
+        .article-body {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .article-body p {
+            margin-bottom: 12px;
+        }
+
+        /* Right Infobox / Image Container */
+        .infobox {
+            float: right;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 5px;
+            margin: 0 0 10px 15px;
+            width: 220px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+
+        /* Right Sidebar: Appearance Options */
+        .sidebar-right {
+            width: 150px;
+            font-size: 12px;
+            padding-left: 15px;
+            border-left: 1px solid #eaecf0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-right h4 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #54595d;
+        }
+
+        .sidebar-right label {
+            display: block;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Left Navigation -->
+    <nav class="sidebar-left">
+        <h3>Contents <span style="font-weight: normal; font-size: 11px; color: #36c; cursor: pointer;">hide</span></h3>
+        <ul>
+            <li><a href="#">(Top)</a></li>
+            <li><a href="#">Background</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Static website</a></li>
+            <li><a href="#">Dynamic website</a></li>
+            <li><a href="#">Multimedia and interactive content</a></li>
+            <li><a href="#">Types</a></li>
+            <li><a href="#">See also</a></li>
+            <li><a href="#">References</a></li>
+            <li><a href="#">External links</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="article-title">Website</h1>
+        
+        <div class="tabs">
+            <div>
+                <a href="#" style="color: #202122; font-weight: bold;">Article</a>
+                <a href="#">Talk</a>
+            </div>
+            <div>
+                <a href="#">Read</a>
+                <a href="#">View source</a>
+                <a href="#">View history</a>
+            </div>
+        </div>
+
+        <p class="disambiguation">
+            For the Internet domain, see .website. For the on-demand archiving service, see WebCite.
+        </p>
+
+        <!-- Maintenance Notice Banner -->
+        <div class="notice-box">
+            <div style="font-size: 24px; margin-right: 10px;">📙</div>
+            <div>
+                <strong>This article needs more citations.</strong> Please help <a href="#">improve this article</a> by adding citations to reliable sources. Unsourced material may be challenged and removed.<br>
+                <small style="color: #54595d;">Find sources: <a href="#">"Website"</a> – <a href="#">news</a> · <a href="#">newspapers</a> · <a href="#">books</a> · <a href="#">scholar</a> · <a href="#">JSTOR</a> (November 2025)</small>
+            </div>
+        </div>
+
+        <!-- Infobox Image -->
+        <div class="infobox">
+            <img src="https://via.placeholder.com/200x150" alt="Website preview screenshot">
+            <p style="margin-top: 5px; font-size: 11px; color: #54595d;">Example website layout</p>
+        </div>
+
+        <!-- Paragraphs -->
+        <div class="article-body">
+            <p>
+                A <strong>website</strong>, occasionally written as <strong>web site</strong>, and sometimes contextually shortened to just <strong>site</strong>, is the set of one or more web pages published under a common domain name, served from a web server. They are typically dedicated to a particular topic or purpose, such as news, education, commerce, entertainment, or social media, and are usually known and referred to by a common name, often that of their respective owning organisational brand or some portion of their domain name.
+            </p>
+        </div>
+    </main>
+
+    <!-- Right Sidebar (Appearance Settings) -->
+    <aside class="sidebar-right">
+        <h4>Appearance</h4>
+        
+        <h4>Text</h4>
+        <label><input type="radio" name="text-size"> Small</label>
+        <label><input type="radio" name="text-size" checked> Standard</label>
+        <label><input type="radio" name="text-size"> Large</label>
+
+        <h4>Width</h4>
+        <label><input type="radio" name="width" checked> Standard</label>
+        <label><input type="radio" name="width"> Wide</label>
+
+        <h4>Color</h4>
+        <label><input type="radio" name="color"> Automatic</label>
+        <label><input type="radio" name="color" checked> Light</label>
+        <label><input type="radio" name="color"> Dark</label>
+    </aside>
+
+</div>
+
+</body>
+</html>

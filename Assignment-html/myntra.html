@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myntra - Online Shopping for Women, Men, Kids Fashion & Lifestyle</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==================== RESET & THEME VARIABLES ==================== */
+    :root {
+      --primary: #ff3f6c;
+      --primary-hover: #e73360;
+      --text-dark: #282c3f;
+      --text-muted: #696e79;
+      --text-light: #94969f;
+      --border-color: #eaeaec;
+      --bg-light: #f5f5f6;
+      --shadow-dropdown: 0 8px 24px rgba(0, 0, 0, 0.12);
+      --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.08);
+      --font-family: 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: #ffffff;
+      color: var(--text-dark);
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==================== TOP ANNOUNCEMENT ==================== */
+    .top-banner-bar {
+      background: linear-gradient(90deg, #ff3f6c, #f26a10);
+      color: #ffffff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ==================== MAIN NAVBAR ==================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1380px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-box svg {
+      width: 46px;
+      height: 36px;
+    }
+
+    .logo-box span {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    /* Category Links */
+    .nav-categories {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin-left: 20px;
+    }
+
+    .nav-item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-link {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: var(--text-dark);
+      border-bottom: 4px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover .nav-link {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .badge-new {
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 800;
+      vertical-align: super;
+      margin-left: 2px;
+    }
+
+    /* ==================== MEGA DROPDOWN MENU ==================== */
+    .mega-dropdown {
+      position: absolute;
+      top: 80px;
+      left: -100px;
+      width: 900px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      box-shadow: var(--shadow-dropdown);
+      padding: 24px 30px;
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      z-index: 999;
+      cursor: default;
+    }
+
+    /* Open dropdown on hover */
+    .nav-item:hover .mega-dropdown {
+      display: grid;
+    }
+
+    .dropdown-column h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .dropdown-column ul li {
+      margin-bottom: 8px;
+    }
+
+    .dropdown-column ul li a {
+      font-size: 13.5px;
+      color: var(--text-dark);
+      display: block;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+
+    .dropdown-column ul li a:hover {
+      color: var(--primary);
+      font-weight: 700;
+      transform: translateX(4px);
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 14px 0;
+    }
+
+    /* ==================== SEARCH BAR ==================== */
+    .nav-search {
+      flex: 1;
+      max-width: 420px;
+      margin: 0 24px;
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-light);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 0 14px;
+      height: 42px;
+    }
+
+    .nav-search:focus-within {
+      background-color: #ffffff;
+      border-color: var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .nav-search i {
+      color: var(--text-muted);
+      margin-right: 12px;
+      font-size: 14px;
+    }
+
+    .nav-search input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13.5px;
+      font-family: inherit;
+    }
+
+    /* ==================== RIGHT ICONS & PROFILE DROPDOWN ==================== */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .action-btn i {
+      font-size: 18px;
+      color: var(--text-dark);
+    }
+
+    .action-btn span {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .action-btn:hover i,
+    .action-btn:hover span {
+      color: var(--primary);
+    }
+
+    .badge-num {
+      position: absolute;
+      top: -4px;
+      right: 0;
+      background-color: var(--primary);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Profile Hover Dropdown */
+    .profile-wrap {
+      position: relative;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-dropdown {
+      position: absolute;
+      top: 80px;
+      right: -20px;
+      width: 270px;
+      background: #ffffff;
+      box-shadow: var(--shadow-dropdown);
+      border: 1px solid var(--border-color);
+      display: none;
+      padding: 18px;
+      z-index: 1000;
+    }
+
+    .profile-wrap:hover .profile-dropdown {
+      display: block;
+    }
+
+    .profile-dropdown h5 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .profile-dropdown p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 4px 0 12px;
+    }
+
+    .btn-login {
+      display: block;
+      text-align: center;
+      padding: 8px 0;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      border-radius: 2px;
+    }
+
+    .btn-login:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .profile-links li {
+      margin-bottom: 10px;
+    }
+
+    .profile-links li a {
+      font-size: 13px;
+      color: var(--text-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-links li a:hover {
+      color: var(--primary);
+    }
+
+    /* ==================== HERO SALE BANNER ==================== */
+    .hero-banner {
+      max-width: 1380px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #fff0f3 0%, #ffe3ea 100%);
+      border-radius: 12px;
+      border: 1px solid #ffd1dc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-text {
+      padding: 44px;
+      flex: 1;
+    }
+
+    .sale-tag {
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 16px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 22px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 12px 28px;
+      border-radius: 4px;
+      box-shadow: 0 4px 14px rgba(255, 63, 108, 0.35);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      width: 440px;
+      height: 320px;
+      flex-shrink: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ==================== CATEGORIES SECTION ==================== */
+    .section-wrap {
+      max-width: 1380px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .categories-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 18px;
+      text-align: center;
+    }
+
+    .category-bubble {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .category-bubble:hover {
+      transform: translateY(-4px);
+    }
+
+    .bubble-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      overflow: hidden;
+      border: 3px solid transparent;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+    }
+
+    .category-bubble:hover .bubble-img {
+      border-color: var(--primary);
+    }
+
+    .bubble-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bubble-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .bubble-discount {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* ==================== PRODUCTS GRID ==================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      box-shadow: var(--shadow-dropdown);
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #f0f0f0;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-details {
+      padding: 12px 14px;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .product-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 2px 0 6px;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-final {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .price-mrp {
+      font-size: 12px;
+      color: var(--text-light);
+      text-decoration: line-through;
+    }
+
+    .price-discount {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ff905a;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .site-footer {
+      background: #fafbfc;
+      border-top: 1px solid var(--border-color);
+      padding: 40px 24px 20px;
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .footer-col h5 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      max-width: 1380px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+     
+      .mega-dropdown {
+        width: 100vw;
+        left: 0;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-card {
+        flex-direction: column;
+      }
+      .hero-image {
+        width: 100%;
+        height: 220px;
+      }
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    
+  </style>
+</head>
+<body>
+
+  
+  <div class="top-banner-bar">
+    🔥 FESTIVAL SPECIAL: Extra 15% OFF with code <strong>MYNTRA15</strong> + Free Shipping on 1st Order!
+  </div>
+
+ 
+  <header class="navbar">
+    <div class="nav-container">
+      
+     
+      <a href="#" class="logo-box">
+        <svg viewBox="0 0 109 82" fill="none">
+          <path d="M0.329 81.332C0.134 81.016 0.021 80.647 0 80.266L0.007 80.263L23.957 26.236C24.365 25.318 25.432 24.896 26.347 25.294C26.541 25.378 26.716 25.5 26.862 25.654L48.243 48.271L26.684 0.999C26.471 0.528 26.068 0.178 25.572 0.052C25.076 -0.075 24.549 0.04 24.153 0.362L0.329 81.332Z" fill="#FF3F6C"/>
+          <path d="M48.243 48.271L26.862 25.654C27.01 25.809 27.135 25.986 27.23 26.177L51.345 74.887C51.69 75.586 52.41 76.027 53.208 76.027C54.006 76.027 54.726 75.586 55.071 74.887L79.186 26.177C79.281 25.986 79.406 25.809 79.554 25.654L58.173 48.271L48.243 48.271Z" fill="#F26A10"/>
+          <path d="M58.173 48.271L79.554 25.654C79.7 25.5 79.875 25.378 80.069 25.294C80.984 24.896 82.051 25.318 82.459 26.236L106.409 80.263L106.416 80.266C106.395 80.647 106.282 81.016 106.087 81.332L82.263 0.362C81.867 0.04 81.34 -0.075 80.844 0.052C80.348 0.178 79.945 0.528 79.732 0.999L58.173 48.271Z" fill="#FF3F6C"/>
+        </svg>
+        <span>myntra</span>
+      </a>
+
+     
+      <nav class="nav-categories">
+        
+        
+        <div class="nav-item">
+          <a href="#men" class="nav-link">MEN</a>
+          <div class="mega-dropdown">
+            <div class="dropdown-column">
+              <h4>Topwear</h4>
+              <ul>
+                <li><a href="#">T-Shirts</a></li>
+                <li><a href="#">Casual Shirts</a></li>
+                <li><a href="#">Formal Shirts</a></li>
+                <li><a href="#">Jackets & Coats</a></li>
+                <li><a href="#">Blazers & Suits</a></li>
+              </ul>
+              <div class="dropdown-divider"></div>
+              <h4>Indian Wear</h4>
+              <ul>
+                <li><a href="#">Kurtas & Sets</a></li>
+                <li><a href="#">Sherwanis</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown-column">
+              <h4>Bottomwear</h4>
+              <ul>
+                <li><a href="#">Jeans</a></li>
+                <li><a href="#">Casual Trousers</a></li>
+                <li><a href="#">Formal Trousers</a></li>
+                <li><a href="#">Shorts & Cargos</a></li>
+                <li><a href="#">Track Pants</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown-column">
+              <h4>Footwear</h4>
+              <ul>
+                <li><a href="#">Casual Shoes</a></li>
+                <li><a href="#">Sports Shoes</a></li>
+                <li><a href="#">Sneakers</a></li>
+                <li><a href="#">Formal Shoes</a></li>
+                <li><a href="#">Sandals</a></li>
+              </ul>
+            </div>
+
+            <div class="dropdown-column">
+              <h4>Accessories</h4>
+              <ul>
+                <li><a href="#">Smart Watches</a></li>
+                <li><a href="#">Wallets & Belts</a></li>
+                <li><a href="#">Sunglasses</a></li>
+                <li><a href="#">Headphones</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- WOMEN (Mega Dropdown on hover) -->
+        <div class="nav-item">
+          <a href="#women" class="nav-link">WOMEN</a>
+          
+
+        <!-- KIDS -->
+        <div class="nav-item">
+          <a href="#kids" class="nav-link">KIDS</a>
+        </div>
+
+        <!-- HOME & LIVING -->
+        <div class="nav-item">
+          <a href="#home" class="nav-link">HOME & LIVING</a>
+        </div>
+
+        <!-- BEAUTY -->
+        <div class="nav-item">
+          <a href="#beauty" class="nav-link">BEAUTY</a>
+        </div>
+
+        <!-- STUDIO -->
+        <div class="nav-item">
+          <a href="#studio" class="nav-link">STUDIO <span class="badge-new">NEW</span></a>
+        </div>
+      </nav>
+
+      <!-- Search Input -->
+      <div class="nav-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search for products, brands and more">
+      </div>
+
+      <!-- Right Action Icons -->
+      <div class="nav-actions">
+        
+        <!-- Profile Dropdown on hover -->
+        <div class="profile-wrap">
+          <div class="action-btn">
+            <i class="fa-regular fa-user"></i>
+            <span>Profile</span>
+          </div>
+
+          <div class="profile-dropdown">
+            <h5>Welcome</h5>
+            <p>To access account and manage orders</p>
+            <a href="#" class="btn-login">LOGIN / SIGNUP</a>
+            <ul class="profile-links">
+              <li><a href="#"><i class="fa-solid fa-box-open"></i> Orders</a></li>
+              <li><a href="#"><i class="fa-regular fa-heart"></i> Wishlist</a></li>
+              <li><a href="#"><i class="fa-solid fa-gift"></i> Gift Cards</a></li>
+              <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Wishlist -->
+        <a href="#wishlist" class="action-btn">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-num">4</span>
+          <span>Wishlist</span>
+        </a>
+
+        <!-- Bag -->
+        <a href="#bag" class="action-btn">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-num">2</span>
+          <span>Bag</span>
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== HERO SALE BANNER ==================== -->
+  <section class="hero-banner">
+    <div class="hero-card">
+      <div class="hero-text">
+        <span class="sale-tag">GRAND FESTIVAL SALE</span>
+        <h1 class="hero-title">50 - 80% OFF</h1>
+        <p class="hero-subtitle">Top Brands • 100% Original Products • Free Shipping on 1st Order</p>
+        <a href="#shop" class="hero-btn">SHOP NOW</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80" alt="Festive Sale">
+      </div>
+    </div>
+  </section>
+
+  
+
+</body>
+</html>

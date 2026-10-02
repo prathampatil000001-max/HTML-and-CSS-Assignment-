@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Swaminarayan University | Student ID</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+</head>
+      <style> /* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #07152e;
+    --navy-light: #0c2346;
+
+    --gold: #d9b45b;
+    --gold-light: #f4d98b;
+
+    --white: #ffffff;
+    --muted: #aebbd0;
+
+    --border: rgba(255, 255, 255, 0.13);
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Inter", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(30, 70, 130, 0.4),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(217, 180, 91, 0.12),
+            transparent 30%
+        ),
+        #030814;
+
+    color: white;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+
+/* =========================================
+   ID CARD
+========================================= */
+
+.id-card {
+
+    width: 900px;
+    min-height: 560px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #07152e 0%,
+            #0b1e3d 45%,
+            #061329 100%
+        );
+
+    border: 1px solid rgba(217, 180, 91, 0.35);
+
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.7),
+        0 0 80px rgba(14, 45, 90, 0.4);
+
+    isolation: isolate;
+}
+
+
+/* =========================================
+   BACKGROUND GLOW
+========================================= */
+
+.glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    z-index: -1;
+}
+
+.glow-1 {
+    width: 350px;
+    height: 350px;
+
+    background: rgba(37, 99, 235, 0.13);
+
+    top: -180px;
+    right: -100px;
+}
+
+.glow-2 {
+    width: 300px;
+    height: 300px;
+
+    background: rgba(217, 180, 91, 0.08);
+
+    bottom: -180px;
+    left: -100px;
+}
+
+
+/* =========================================
+   PATTERN
+========================================= */
+
+.pattern {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.04;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 45%,
+            white 45%,
+            white 55%,
+            transparent 55%
+        );
+
+    background-size: 70px 70px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.card-header {
+
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 25px 38px;
+
+    position: relative;
+}
+
+
+/* LOGO */
+
+.university-logo {
+    margin-right: 18px;
+}
+
+.logo-circle {
+
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--gold);
+
+    color: var(--gold-light);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(217, 180, 91, 0.15),
+            transparent 70%
+        );
+
+    box-shadow:
+        inset 0 0 20px rgba(217, 180, 91, 0.08),
+        0 0 20px rgba(217, 180, 91, 0.08);
+}
+
+
+/* UNIVERSITY TEXT */
+
+.university-info h1 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+
+    letter-spacing: 4px;
+
+    color: white;
+}
+
+.university-info h2 {
+
+    font-size: 18px;
+
+    letter-spacing: 8px;
+
+    color: var(--gold-light);
+
+    margin-top: 2px;
+}
+
+.university-info p {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+    margin-top: 8px;
+}
+
+
+/* YEAR */
+
+.year {
+
+    margin-left: auto;
+
+    text-align: right;
+}
+
+.year span {
+
+    display: block;
+
+    color: var(--gold-light);
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.year small {
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.5;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   GOLD LINE
+========================================= */
+
+.gold-line {
+
+    height: 1px;
+
+    margin: 0 38px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.card-content {
+
+    min-height: 290px;
+
+    display: grid;
+
+    grid-template-columns: 230px 1fr;
+
+    gap: 45px;
+
+    padding: 35px 55px 25px;
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.photo-frame {
+
+    width: 190px;
+    height: 220px;
+
+    padding: 6px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #fff0ad,
+            #9d7928
+        );
+
+    clip-path: polygon(
+        10px 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0 calc(100% - 10px),
+        0 10px
+    );
+}
+
+.photo-frame img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    background: #15233a;
+}
+
+
+/* PHOTO CORNERS */
+
+.photo-corner {
+
+    width: 15px;
+    height: 15px;
+
+    position: absolute;
+
+    border-color: white;
+
+    opacity: 0.8;
+}
+
+.top-left {
+
+    top: 13px;
+    left: 13px;
+
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.top-right {
+
+    top: 13px;
+    right: 13px;
+
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.bottom-left {
+
+    bottom: 13px;
+    left: 13px;
+
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.bottom-right {
+
+    bottom: 13px;
+    right: 13px;
+
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+
+/* STUDENT LABEL */
+
+.student-label {
+
+    margin-top: 10px;
+
+    padding: 5px 22px;
+
+    border-radius: 20px;
+
+    color: var(--gold-light);
+
+    border: 1px solid rgba(217, 180, 91, 0.3);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    background: rgba(217, 180, 91, 0.05);
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.details {
+
+    padding-top: 8px;
+}
+
+.small-title {
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.details h3 {
+
+    font-size: 34px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    margin-bottom: 28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            white,
+            #cbd8ea
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* DETAIL GRID */
+
+.detail-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 23px 40px;
+}
+
+.detail {
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.detail span {
+
+    display: block;
+
+    color: #7889a3;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+}
+
+.detail strong {
+
+    color: #f2f5fa;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   STUDENT ID
+========================================= */
+
+.student-id {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 24px;
+
+    padding: 11px 15px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(217, 180, 91, 0.08),
+            transparent
+        );
+
+    border-left: 2px solid var(--gold);
+}
+
+.student-id span {
+
+    color: #7788a1;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+}
+
+.student-id strong {
+
+    color: var(--gold-light);
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   CARD BOTTOM
+========================================= */
+
+.card-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 18px 55px;
+
+    border-top: 1px solid var(--border);
+
+    background:
+        rgba(0, 0, 0, 0.12);
+}
+
+
+/* VALIDITY */
+
+.validity span {
+
+    display: block;
+
+    color: #71819a;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.validity strong {
+
+    color: white;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   QR
+========================================= */
+
+.qr {
+
+    width: 55px;
+    height: 55px;
+
+    padding: 5px;
+
+    background: white;
+
+    margin-left: auto;
+}
+
+.qr-grid {
+
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 2px;
+}
+
+.qr-grid i {
+
+    background: #07152e;
+}
+
+.qr-grid i:nth-child(2n) {
+    background: white;
+}
+
+.qr-grid i:nth-child(3n) {
+    background: #07152e;
+}
+
+
+/* =========================================
+   SIGNATURE
+========================================= */
+
+.signature {
+
+    width: 150px;
+
+    text-align: center;
+}
+
+.signature-line {
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #91a0b6,
+            transparent
+        );
+
+    margin-bottom: 5px;
+}
+
+.signature span {
+
+    color: #71819a;
+
+    font-size: 6px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    height: 34px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    background: rgba(0, 0, 0, 0.22);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    color: #64758e;
+
+    font-size: 6px;
+
+    letter-spacing: 1.5px;
+}
+
+.separator {
+    color: var(--gold);
+}
+
+
+/* =========================================
+   OUTSIDE LABEL
+========================================= */
+
+.print-note {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+    color: #59677e;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   HOVER EFFECT
+========================================= */
+
+.id-card {
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.id-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 50px 110px rgba(0, 0, 0, 0.8),
+        0 0 70px rgba(217, 180, 91, 0.08);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+
+    .id-card {
+        width: 95vw;
+    }
+
+    .card-content {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .card-bottom {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    body {
+        align-items: flex-start;
+    }
+
+    .page {
+        padding: 20px 10px;
+    }
+
+    .id-card {
+        width: 100%;
+
+        min-height: auto;
+
+        border-radius: 20px;
+    }
+
+    .card-header {
+        padding: 20px;
+
+        height: auto;
+    }
+
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+
+        font-size: 16px;
+    }
+
+    .university-info h1 {
+        font-size: 18px;
+
+        letter-spacing: 2px;
+    }
+
+    .university-info h2 {
+        font-size: 12px;
+
+        letter-spacing: 4px;
+    }
+
+    .university-info p {
+        font-size: 6px;
+    }
+
+    .year {
+        display: none;
+    }
+
+    .gold-line {
+        margin: 0 20px;
+    }
+
+    .card-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        padding: 25px 20px;
+    }
+
+    .photo-frame {
+        width: 160px;
+        height: 185px;
+    }
+
+    .details {
+        text-align: center;
+    }
+
+    .details h3 {
+        font-size: 25px;
+
+        margin-bottom: 22px;
+    }
+
+    .detail-grid {
+        gap: 15px;
+    }
+
+    .student-id {
+        justify-content: center;
+    }
+
+    .card-bottom {
+        padding: 18px 20px;
+
+        gap: 15px;
+    }
+
+    .signature {
+        display: none;
+    }
+
+    .qr {
+        margin-left: auto;
+    }
+
+    footer {
+        padding: 10px;
+
+        height: auto;
+
+        text-align: center;
+
+        line-height: 1.5;
+    }
+
+    .print-note {
+        text-align: center;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+}
+
+
+/* =========================================
+   PRINT
+========================================= */
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .page {
+        padding: 0;
+    }
+
+    .id-card {
+        box-shadow: none;
+
+        transform: none;
+
+        width: 900px;
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .print-note {
+        display: none;
+    }
+}
+</style>
+
+<body>
+
+    <div class="page">
+
+        <!-- ID CARD -->
+        <div class="id-card">
+
+            <!-- Decorative background -->
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="pattern"></div>
+
+            <!-- HEADER -->
+            <header class="card-header">
+
+                <div class="university-logo">
+                    <div class="logo-circle">
+                        SU
+                    </div>
+                </div>
+
+                <div class="university-info">
+                    <h1>SWAMINARAYAN</h1>
+                    <h2>UNIVERSITY</h2>
+                    <p>STUDENT IDENTITY CARD</p>
+                </div>
+
+                <div class="year">
+                    <span>2026</span>
+                    <small>ACADEMIC<br>YEAR</small>
+                </div>
+
+            </header>
+
+
+            <!-- GOLD LINE -->
+            <div class="gold-line"></div>
+
+
+            <!-- MAIN CONTENT -->
+            <main class="card-content">
+
+                <!-- PHOTO -->
+                <div class="photo-section">
+
+                    <div class="photo-frame">
+
+                        <img
+                            src="pratham.png"
+                            alt="Student Photo"
+                        >
+
+                        <div class="photo-corner top-left"></div>
+                        <div class="photo-corner top-right"></div>
+                        <div class="photo-corner bottom-left"></div>
+                        <div class="photo-corner bottom-right"></div>
+
+                    </div>
+
+                    <div class="student-label">
+                        STUDENT
+                    </div>
+
+                </div>
+
+
+                <!-- STUDENT DETAILS -->
+                <div class="details">
+
+                    <p class="small-title">
+                        STUDENT INFORMATION
+                    </p>
+
+                    <h3>
+                        PRATHM PATIL
+                    </h3>
+
+                    <div class="detail-grid">
+
+                        <div class="detail">
+                            <span>PROGRAM</span>
+                            <strong>B.Tech AI & ML</strong>
+                        </div>
+
+                        <div class="detail">
+                            <span>YEAR</span>
+                            <strong>FIRST YEAR</strong>
+                        </div>
+
+                        <div class="detail">
+                            <span>DATE OF BIRTH</span>
+                            <strong>20 / 08 / 2008</strong>
+                        </div>
+
+                        <div class="detail">
+                            <span>STUDENT TYPE</span>
+                            <strong>UNDERGRADUATE</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="student-id">
+
+                        <span>STUDENT ID</span>
+
+                        <strong>
+                            SU-BT-AIML-2026
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+
+            <!-- BOTTOM -->
+            <div class="card-bottom">
+
+                <div class="validity">
+
+                    <span>VALID THROUGH</span>
+
+                    <strong>
+                        2026 — 2030
+                    </strong>
+
+                </div>
+
+
+                <!-- QR STYLE DESIGN -->
+                <div class="qr">
+
+                    <div class="qr-grid">
+
+                        <i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i>
+
+                    </div>
+
+                </div>
+
+                <div class="signature">
+
+                    <div class="signature-line"></div>
+
+                    <span>AUTHORIZED SIGNATURE</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>PROPERTY OF SWAMINARAYAN UNIVERSITY</span>
+
+                <span class="separator">•</span>
+
+                <span>IF FOUND, PLEASE RETURN TO UNIVERSITY ADMINISTRATION</span>
+
+            </footer>
+
+        </div>
+
+
+        <!-- LABEL OUTSIDE CARD -->
+        <div class="print-note">
+            <span>SWAMINARAYAN UNIVERSITY</span>
+            <span>OFFICIAL STUDENT IDENTITY CARD</span>
+        </div>
+
+    </div>
+
+</body>
+</html>

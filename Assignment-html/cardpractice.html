@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Profile Cards</title>
+  <!-- Font Awesome for star icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  cursor: pointer;
+  background-color: #7b2cbf; /* Purple Background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 30px;
+}
+
+/* Headings */
+.heading {
+  color: #201111;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.bottom-heading {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+/* Card Container (Flexbox for responsiveness) */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Single Profile Card */
+.card {
+  background-color: #1c1b1b;
+  border-radius: 12px;
+  width: 300px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 9px 9px 7px;
+  
+}
+
+/* Profile Image */
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 3px solid #7b2cbf;
+  
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text & Rating */
+.card h3 {
+  font-size: 1.2rem;
+  color: #ba0fe0;
+  margin-bottom: 8px;
+}
+
+.stars {
+  color: #7b2cbf;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: #666666;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
+
+/* Buttons Group */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn {
+
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+}
+
+/* Read More Button (Outline) */
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #7b2cbf;
+  color: #4e0f85;
+}
+
+.btn-outline:hover {
+  background-color: #7b2cbf;
+  color: #ffffff;
+}
+
+/* Subscribe Button (Filled) */
+.btn-filled {
+  background-color: #9049bc;
+  border: 1px solid #651aa6;
+  color: #ffffff;
+}
+
+.btn-filled:hover {
+  background-color: #279a18;
+  border-color: #5a189a;
+} 
+.but{
+   display: flex;
+   justify-content: center;
+   align-items: center;}
+</style>
+<body>
+
+  <!-- Header Title -->
+  <h1 class="heading">RESPONSIVE PROFILE CARDS</h1>
+
+  <!-- Container for Profile Cards -->
+  <div class="card-container">
+
+    <!-- Card 1 -->
+    
+    <div class="card">
+      <div class="profile-img">
+        <img src="pratham.png" alt="David Chrish">
+      </div>
+      <h3>Pratham </h3>
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </div>
+      <p>Lorem ipsum dolor sitamet, stphen hawkin so adipiscing elit. Ratione disujo doloremque reiciendi nemo.</p>
+      <div class="btn-group">
+        <button class="btn btn-outline">Read More</button>
+        <button class="btn btn-filled">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="hero.jpg" alt="Kristina Bellis">
+      </div>
+      <h3>Akshay kumar</h3>
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </div>
+      <p>Lorem ipsum dolor sitamet, stphen hawkin so adipiscing elit. Ratione disujo doloremque reiciendi nemo.</p>
+      <div class="btn-group">
+        <button class="btn btn-outline">Read More</button>
+        <button class="btn btn-filled">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="profile-img">
+        <img src="flower.jpg" alt="Stephan Marlo">
+      </div>
+      <h3>Stephan Marlo</h3>
+      <div class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </div>
+      <p>Lorem ipsum dolor sitamet, stphen hawkin so adipiscing elit. Ratione disujo doloremque reiciendi nemo.</p>
+      <div class="btn-group">
+        <button class="btn btn-outline">Read More</button>
+        <button class="btn btn-filled">Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Title -->
+  <h1 class="heading bottom-heading">HTML AND CSS</h1>
+
+  <button class="but">HELLO<img src="images.jpg" alt="" width="30"></button>
+
+</body>
+</html>

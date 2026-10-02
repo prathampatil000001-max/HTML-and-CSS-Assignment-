@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paytm: Secure & Fast UPI Payments, Recharge, Mobile & DTH, Bill Payments</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>/* ==========================================================================
+   Paytm Front Page Stylesheet
+   Modern, Responsive, Brand-Accurate CSS
+   ========================================================================== */
+
+:root {
+  --primary-navy: #002970;
+  --primary-cyan: #00baf2;
+  --cyan-hover: #0099cc;
+  --dark-accent: #0f1e36;
+  --bg-light: #f5f7fa;
+  --bg-white: #ffffff;
+  --text-main: #101828;
+  --text-muted: #5b6575;
+  --text-light: #8a94a6;
+  --border-light: #e4e7ec;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --hover-shadow: 0 12px 30px rgba(0, 41, 112, 0.12);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max: 1240px;
+}
+
+/* Base Reset & Typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  background-color: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background: linear-gradient(90deg, #001a47, #002970);
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.announcement-bar .badge {
+  background-color: #ff9900;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.announcement-link {
+  color: var(--primary-cyan);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.announcement-link:hover {
+  color: #66d9ff;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--bg-white);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.paytm-logo-svg {
+  height: 34px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  font-family: inherit;
+}
+
+.nav-link:hover {
+  color: var(--primary-cyan);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background-color: var(--bg-white);
+  min-width: 230px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-light);
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-light);
+  color: var(--primary-cyan);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-signin {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--primary-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-signin:hover {
+  background-color: var(--cyan-hover);
+  box-shadow: 0 4px 14px rgba(0, 186, 242, 0.4);
+  transform: translateY(-1px);
+}
+
+.user-avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary-navy);
+  transition: var(--transition);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 64px 0 80px;
+  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #e6f7fc;
+  color: var(--primary-navy);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  border: 1px solid rgba(0, 186, 242, 0.2);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-cyan);
+  box-shadow: 0 0 0 0 rgba(0, 186, 242, 0.7);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 186, 242, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 186, 242, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 186, 242, 0); }
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--primary-navy);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .highlight {
+  color: var(--primary-cyan);
+  position: relative;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 560px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--primary-navy);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+  box-shadow: 0 6px 18px rgba(0, 41, 112, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: #001e54;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 41, 112, 0.35);
+}
+
+.app-store-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.store-badge:hover {
+  border-color: var(--primary-cyan);
+  color: var(--primary-navy);
+  transform: translateY(-2px);
+}
+
+.trust-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 28px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item strong {
+  font-size: 1.45rem;
+  color: var(--primary-navy);
+  font-weight: 800;
+}
+
+.stat-item span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background-color: var(--border-light);
+}
+
+/* Phone Mockup */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 320px;
+  height: 520px;
+  background-color: #1a2233;
+  border-radius: 40px;
+  padding: 12px;
+  box-shadow: 0 25px 60px rgba(0, 41, 112, 0.22);
+  border: 4px solid #334155;
+  position: relative;
+}
+
+.phone-screen {
+  background-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.phone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.phone-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-user .avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-navy));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.user-greeting {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.upi-id {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.phone-badge {
+  background-color: #e6faf2;
+  color: #0d8a57;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.wallet-balance-card {
+  background: linear-gradient(135deg, #002970, #004b99);
+  color: #ffffff;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 16px rgba(0, 41, 112, 0.2);
+}
+
+.balance-label {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.balance-amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 4px 0 10px;
+}
+
+.balance-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.balance-actions .tag {
+  background-color: rgba(255, 255, 255, 0.18);
+  font-size: 0.68rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.quick-transfer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.transfer-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f7ff;
+  color: var(--primary-navy);
+  transition: var(--transition);
+}
+
+.transfer-btn:hover .icon-circle {
+  background-color: var(--primary-cyan);
+  color: #ffffff;
+}
+
+.transfer-btn span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.recent-payment-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bg-light);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  margin-top: auto;
+}
+
+.recent-icon {
+  font-size: 1.2rem;
+  background-color: #fff2cc;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.recent-details {
+  flex-grow: 1;
+}
+
+.recent-name {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.recent-time {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.recent-price {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #d93838;
+}
+
+.floating-badge {
+  position: absolute;
+  background-color: #ffffff;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  border: 1px solid var(--border-light);
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.floating-badge.badge-top {
+  top: 40px;
+  left: -20px;
+}
+
+.floating-badge.badge-bottom {
+  bottom: 60px;
+  right: -25px;
+  animation-delay: 2s;
+}
+
+.badge-icon {
+  color: #00ba70;
+  font-size: 1rem;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+/* Services Grid */
+.services-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: var(--transition);
+  position: relative;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 186, 242, 0.4);
+  box-shadow: var(--hover-shadow);
+}
+
+.service-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: var(--transition);
+}
+
+.service-card:hover .service-icon-box {
+  transform: scale(1.08);
+}
+
+.bg-blue   { background-color: #e6f4ff; color: #0070f3; }
+.bg-purple { background-color: #f3e8ff; color: #9333ea; }
+.bg-amber  { background-color: #fff7ed; color: #ea580c; }
+.bg-teal   { background-color: #ccfbf1; color: #0d9488; }
+.bg-red    { background-color: #fee2e2; color: #dc2626; }
+.bg-indigo { background-color: #e0e7ff; color: #4f46e5; }
+.bg-green  { background-color: #dcfce7; color: #16a34a; }
+.bg-sky    { background-color: #e0f2fe; color: #0284c7; }
+
+.service-name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  line-height: 1.35;
+}
+
+.service-arrow {
+  margin-top: auto;
+  font-size: 1.25rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.service-card:hover .service-arrow {
+  transform: translateX(6px);
+}
+
+/* Travel Section */
+.travel-section {
+  padding: 80px 0;
+  background-color: var(--bg-light);
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.travel-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.travel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hover-shadow);
+}
+
+.travel-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background-color: #e6f7fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.travel-card h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 8px;
+}
+
+.travel-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-link {
+  margin-top: auto;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-link:hover {
+  color: var(--cyan-hover);
+  text-decoration: underline;
+}
+
+/* Payment Instruments & Loans */
+.instruments-section {
+  padding: 90px 0;
+  background-color: #ffffff;
+}
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+  margin-bottom: 96px;
+}
+
+.feature-row:last-child {
+  margin-bottom: 0;
+}
+
+.feature-row.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.feature-row.reverse .feature-text {
+  order: 1;
+}
+
+.feature-row.reverse .feature-graphic {
+  order: 2;
+}
+
+.pill-tag {
+  display: inline-block;
+  background-color: #e6f7fc;
+  color: var(--primary-cyan);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 18px;
+}
+
+.pill-tag.green {
+  background-color: #e6faf2;
+  color: #00ba70;
+}
+
+.feature-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.feature-desc {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #e6faf2;
+  color: #00ba70;
+  font-size: 0.75rem;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+.feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: var(--primary-navy);
+  border: 1px solid var(--border-light);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+}
+
+/* Wallet Card Visual */
+.wallet-preview {
+  width: 100%;
+  max-width: 420px;
+  height: 250px;
+  background: linear-gradient(135deg, #001f54 0%, #002970 40%, #0077b6 100%);
+  border-radius: 24px;
+  padding: 28px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 45px rgba(0, 41, 112, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-preview::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 186, 242, 0.3) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-text small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--primary-cyan);
+}
+
+.card-chip {
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffe066, #d4a373);
+  border-radius: 6px;
+  margin: 12px 0;
+}
+
+.card-number {
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  font-family: monospace;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.card-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.rupay-logo {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #ff9900;
+}
+
+/* Credit Score Widget */
+.credit-score-widget {
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--hover-shadow);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 460px;
+}
+
+.score-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 8px solid #00ba70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.score-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #00ba70;
+  line-height: 1;
+}
+
+.score-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.score-meta {
+  flex-grow: 1;
+}
+
+.score-meta h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 4px;
+}
+
+.score-meta p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.score-bar {
+  height: 8px;
+  width: 100%;
+  background-color: var(--border-light);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc00, #00ba70);
+  border-radius: var(--radius-pill);
+}
+
+.pre-approved-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0066cc;
+  background-color: #e6f4ff;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* Soundbox / Merchant Section */
+.merchant-section {
+  padding: 90px 0;
+  background: linear-gradient(135deg, #00173d 0%, #002970 100%);
+  color: #ffffff;
+}
+
+.merchant-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.merchant-pill {
+  display: inline-block;
+  background-color: rgba(0, 186, 242, 0.15);
+  color: var(--primary-cyan);
+  border: 1px solid rgba(0, 186, 242, 0.4);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.merchant-title {
+  font-size: 2.7rem;
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 18px;
+}
+
+.merchant-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 32px;
+}
+
+.merchant-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.m-feat strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+  margin-bottom: 4px;
+}
+
+.m-feat span {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  line-height: 1.4;
+  display: block;
+}
+
+.merchant-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-merchant {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-merchant:hover {
+  background-color: var(--cyan-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 186, 242, 0.4);
+}
+
+.btn-merchant-outline {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+
+.btn-merchant-outline:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.merchant-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.soundbox-graphic {
+  width: 280px;
+  background-color: #ffffff;
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  color: var(--text-main);
+  text-align: center;
+}
+
+.speaker-grill {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.speaker-grill span {
+  width: 6px;
+  height: 6px;
+  background-color: #d1d5db;
+  border-radius: 50%;
+}
+
+.soundbox-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.paytm-brand-tag {
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--primary-navy);
+}
+
+.audio-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+}
+
+.audio-wave .bar {
+  width: 5px;
+  background-color: var(--primary-cyan);
+  border-radius: 4px;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.audio-wave .bar-1 { height: 16px; animation-delay: 0.1s; }
+.audio-wave .bar-2 { height: 32px; animation-delay: 0.2s; }
+.audio-wave .bar-3 { height: 40px; animation-delay: 0.3s; }
+.audio-wave .bar-4 { height: 26px; animation-delay: 0.4s; }
+.audio-wave .bar-5 { height: 18px; animation-delay: 0.5s; }
+
+wave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+.soundbox-message {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  background-color: #e6f7fc;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+/* Security Banner */
+.security-banner {
+  padding: 48px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.security-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sec-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.security-item h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 4px;
+}
+
+.security-item p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* Footer */
+.footer {
+  background-color: #0c1626;
+  color: #ffffff;
+  padding: 80px 0 32px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.brand-col .logo {
+  margin-bottom: 20px;
+}
+
+.brand-text-footer {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 24px;
+  max-width: 320px;
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #94a3b8;
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  background-color: var(--primary-cyan);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.footer-col h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col a {
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.footer-col a:hover {
+  color: var(--primary-cyan);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1e293b;
+  padding-top: 32px;
+  font-size: 0.85rem;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-legal-links a {
+  color: #64748b;
+}
+
+.footer-legal-links a:hover {
+  color: #94a3b8;
+}
+
+/* Responsive Breakpoints */
+ (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .trust-stats {
+    justify-content: center;
+  }
+
+  .services-grid,
+  .travel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-row,
+  .feature-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .feature-row.reverse .feature-text {
+    order: 0;
+  }
+
+  .feature-row.reverse .feature-graphic {
+    order: 1;
+  }
+
+  .feature-graphic {
+    display: flex;
+    justify-content: center;
+  }
+
+  .merchant-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .merchant-actions {
+    justify-content: center;
+  }
+
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-col {
+    grid-column: span 2;
+  }
+}
+
+(max-width: 768px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding-left: 12px;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .security-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid,
+  .travel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-col {
+    grid-column: span 1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .merchant-features {
+    grid-template-columns: 1fr;
+  }
+}</style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" aria-label="Announcement">
+    <div class="container announcement-content">
+      <span class="badge">Special Offer</span>
+      <span>No Convenience Fee on Electricity & Water Bill Payments! Use Code: <strong>PAYBILL</strong></span>
+      <a href="#services" class="announcement-link">Explore Now &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo" aria-label="Paytm Home">
+        <svg class="paytm-logo-svg" viewBox="0 0 140 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="29" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#002970">pay</text>
+          <text x="56" y="29" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#00BAF2">tm</text>
+        </svg>
+      </a>
+
+      <nav class="nav-links" id="navMenu">
+        <div class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false">
+            Paytm for Consumer
+            <svg class="chevron" viewBox="0 0 12 12" width="10" height="10"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="#payments" class="dropdown-item">Payments & Money Transfer</a>
+            <a href="#services" class="dropdown-item">Bill Payments & Recharge</a>
+            <a href="#financial" class="dropdown-item">Financial Services</a>
+            <a href="#travel" class="dropdown-item">Travel & Entertainment</a>
+          </div>
+        </div>
+
+        <div class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false">
+            Paytm for Business
+            <svg class="chevron" viewBox="0 0 12 12" width="10" height="10"><path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="#business" class="dropdown-item">Online Payment Gateway</a>
+            <a href="#business" class="dropdown-item">Paytm Soundbox</a>
+            <a href="#business" class="dropdown-item">All-in-One POS Machine</a>
+            <a href="#business" class="dropdown-item">Business Loans</a>
+          </div>
+        </div>
+
+        <a href="#investor" class="nav-link">Investor Relations</a>
+        <a href="#company" class="nav-link">Company</a>
+        <a href="#career" class="nav-link">Careers</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#signin" class="btn-signin">
+          <span>Sign In</span>
+          <span class="user-avatar-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+        </a>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            India's Most-loved Payments App
+          </div>
+          <h1 class="hero-title">
+            Recharge, Pay Bills & Send Money <span class="highlight">Instantly</span>
+          </h1>
+          <p class="hero-description">
+            Experience lightning-fast UPI transfers, book flights, movies & train tickets, manage credit cards, and grow your investments — all in one secure app.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#" class="btn-primary">
+              <span>Download Paytm App</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <div class="app-store-badges">
+              <a href="#" class="store-badge" aria-label="Apple App Store">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-2 .6-2.65 1.35-.58.66-1.09 1.73-.95 2.76 1.01.08 2.05-.51 2.67-1.26z"/>
+                </svg>
+                <span>App Store</span>
+              </a>
+              <a href="#" class="store-badge" aria-label="Google Play Store">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M3.609 1.814L13.793 12 3.61 22.186a2.002 2.002 0 0 1-.61-1.443V3.257c0-.55.228-1.047.609-1.443zM15.207 13.414l2.586 2.586-10.74 6.137 8.154-8.723zm0-2.828L7.053 1.863l10.74 6.137-2.586 2.586zm1.414 1.414l3.535 2.02a1.6 1.6 0 0 0 0-2.768l-3.535-2.02v2.768z"/>
+                </svg>
+                <span>Google Play</span>
+              </a>
+            </div>
+          </div>
+          <div class="trust-stats">
+            <div class="stat-item">
+              <strong>450M+</strong>
+              <span>Registered Users</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <strong>30M+</strong>
+              <span>Merchants Across India</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <strong>100%</strong>
+              <span>Safe &amp; Secure</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Mockup Illustration -->
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <div class="phone-user">
+                  <div class="avatar">R</div>
+                  <div>
+                    <span class="user-greeting">Hi, Rahul</span>
+                    <span class="upi-id">rahul@paytm</span>
+                  </div>
+                </div>
+                <div class="phone-badge">UPI LIVE</div>
+              </div>
+
+              <div class="wallet-balance-card">
+                <div class="balance-label">Paytm Balance</div>
+                <div class="balance-amount">&#8377; 736363.00</div>
+                <div class="balance-actions">
+                  <span class="tag">Wallet &#8377; 7,850</span>
+                  <span class="tag">Canara Bank &#8377; 20,000</span>
+                </div>
+              </div>
+
+              <div class="quick-transfer-grid">
+                <div class="transfer-btn">
+                  <div class="icon-circle scan">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                      <line x1="7" y1="12" x2="17" y2="12"></line>
+                    </svg>
+                  </div>
+                  <span>Scan &amp; Pay</span>
+                </div>
+                <div class="transfer-btn">
+                  <div class="icon-circle send">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                  </div>
+                  <span>To Mobile</span>
+                </div>
+                <div class="transfer-btn">
+                  <div class="icon-circle bank">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 22 7 12 2"></polygon>
+                      <line x1="4" y1="7" x2="4" y2="17"></line>
+                      <line x1="10" y1="7" x2="10" y2="17"></line>
+                      <line x1="14" y1="7" x2="14" y2="17"></line>
+                      <line x1="20" y1="7" x2="20" y2="17"></line>
+                      <line x1="2" y1="17" x2="22" y2="17"></line>
+                    </svg>
+                  </div>
+                  <span>To Bank A/c</span>
+                </div>
+                <div class="transfer-btn">
+                  <div class="icon-circle check">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                  </div>
+                  <span>Balance</span>
+                </div>
+              </div>
+
+              <div class="recent-payment-card">
+                <div class="recent-icon">&#9889;</div>
+                <div class="recent-details">
+                  <span class="recent-name">Electricity Bill Paid</span>
+                  <span class="recent-time">Today, 5:45 PM &bull; Successful</span>
+                </div>
+                <div class="recent-price">-&#8377;1,420</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-badge badge-top">
+            <span class="badge-icon">&#10003;</span>
+            <span>Instant UPI 0% Charges</span>
+          </div>
+          <div class="floating-badge badge-bottom">
+            <span class="badge-icon">&#128274;</span>
+            <span>RBI Approved Security</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services: Recharge & Bill Payments -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Recharge &amp; Pay Bills on Paytm</h2>
+          <p class="section-subtitle">Instant bill payments with exciting cashbacks and discount scratch cards</p>
+        </div>
+
+        <div class="services-grid">
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-blue">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">Recharge Prepaid Mobile</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-purple">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-name">Pay Rent Payment</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-amber">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-name">Pay Electricity Bill</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-teal">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                <polyline points="17 2 12 7 7 2"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-name">Recharge DTH Connection</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-red">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 2c0 3-4 6-4 10a4 4 0 0 0 8 0c0-4-4-7-4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-name">Book Gas Cylinder</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-indigo">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+              </svg>
+            </div>
+            <h3 class="service-name">Broadband / Landline</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card">
+            <div class="service-icon-box bg-green">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <h3 class="service-name">Pay Education Fee</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+
+          <a href="#" class="service-card more-card">
+            <div class="service-icon-box bg-sky">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="2"></circle>
+                <circle cx="19" cy="12" r="2"></circle>
+                <circle cx="5" cy="12" r="2"></circle>
+              </svg>
+            </div>
+            <h3 class="service-name">All Payment Services</h3>
+            <span class="service-arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Travel & Tickets Section -->
+    <section class="travel-section" id="travel">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Book &amp; Buy on Paytm</h2>
+          <p class="section-subtitle">Lowest fares, zero cancellation fee options, and fast confirmation</p>
+        </div>
+
+        <div class="travel-grid">
+          <div class="travel-card">
+            <div class="travel-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#00BAF2" stroke-width="2">
+                <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2 .7l-.5.7 6.4 3.7-3.2 3.2L3.5 14.5l-.8.8 3.2 1.8 1.8 3.2.8-.8-.5-2.5 3.2-3.2 3.7 6.4.7-.5c.6-.4.9-1.2.7-2z"></path>
+              </svg>
+            </div>
+            <h4>Flight Tickets</h4>
+            <p>Flat 12% cashback on domestic flights with free cancel guarantee</p>
+            <a href="#" class="card-link">Book Flights &rarr;</a>
+          </div>
+
+          <div class="travel-card">
+            <div class="travel-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#00BAF2" stroke-width="2">
+                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <line x1="7" y1="15" x2="7.01" y2="15"></line>
+                <line x1="17" y1="15" x2="17.01" y2="15"></line>
+              </svg>
+            </div>
+            <h4>Bus Tickets</h4>
+            <p>Book Volvo, AC sleeper buses from 2500+ private operators &amp; RTCs</p>
+            <a href="#" class="card-link">Book Buses &rarr;</a>
+          </div>
+
+          <div class="travel-card">
+            <div class="travel-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#00BAF2" stroke-width="2">
+                <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                <path d="M4 11h16M12 3v8m-4 8l-2 3m12-3l2 3"></path>
+              </svg>
+            </div>
+            <h4>Train Tickets</h4>
+            <p>Authorised IRCTC partner. Check live PNR status &amp; zero payment gateway fee</p>
+            <a href="#" class="card-link">Book Trains &rarr;</a>
+          </div>
+
+          <div class="travel-card">
+            <div class="travel-icon-wrapper">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#00BAF2" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <line x1="2" y1="7" x2="7" y2="7"></line>
+                <line x1="2" y1="17" x2="7" y2="17"></line>
+                <line x1="17" y1="17" x2="22" y2="17"></line>
+                <line x1="17" y1="7" x2="22" y2="7"></line>
+              </svg>
+            </div>
+            <h4>Movie Tickets</h4>
+            <p>Catch the latest blockbusters in theatres near you with promo offers</p>
+            <a href="#" class="card-link">Book Movies &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Instruments Showcase (Paytm Wallet & UPI) -->
+    <section class="instruments-section" id="payments">
+      <div class="container">
+        <!-- Feature 1: Paytm Wallet & UPI -->
+        <div class="feature-row">
+          <div class="feature-text">
+            <div class="pill-tag">Paytm Payment Instruments</div>
+            <h2 class="feature-title">The Fastest Way to Pay In-store &amp; Online.</h2>
+            <p class="feature-desc">
+              Load money into your Paytm Wallet or link any bank account with Paytm UPI for effortless, one-tap payments with zero transaction charges.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <span class="check-icon">&#10003;</span>
+                Accepted at over 30 Million retail stores, local Kirana shops, and online websites.
+              </li>
+              <li>
+                <span class="check-icon">&#10003;</span>
+                Instant refunds credited right back to your wallet or bank in seconds.
+              </li>
+              <li>
+                <span class="check-icon">&#10003;</span>
+                Zero failure rate with intelligent multi-bank routing architecture.
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="#" class="btn-primary">Get Paytm UPI</a>
+              <a href="#" class="btn-secondary">Learn More</a>
+            </div>
+          </div>
+          <div class="feature-graphic">
+            <div class="graphic-card wallet-preview">
+              <div class="card-top">
+                <span class="brand-text">paytm <small>wallet</small></span>
+                <span class="chip-icon">&#9646;&#9646;&#9646;</span>
+              </div>
+              <div class="card-chip"></div>
+              <div class="card-number">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 9241</div>
+              <div class="card-bottom">
+                <div>
+                  <span class="card-label">CARD HOLDER</span>
+                  <span class="card-val">PRIYA SHARMA</span>
+                </div>
+                <div>
+                  <span class="card-label">EXPIRES</span>
+                  <span class="card-val">09/29</span>
+                </div>
+                <div class="rupay-logo">RuPay</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Financial Services / Postpaid -->
+        <div class="feature-row reverse" id="financial">
+          <div class="feature-text">
+            <div class="pill-tag green">Financial Services</div>
+            <h2 class="feature-title">Instant Personal Loans &amp; Paytm Postpaid</h2>
+            <p class="feature-desc">
+              Get pre-approved collateral-free personal loans up to &#8377;5,00,000 disbursed directly into your bank account in 2 minutes with transparent terms.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <span class="check-icon">&#10003;</span>
+                100% digital paperless verification through Aadhaar &amp; PAN.
+              </li>
+              <li>
+                <span class="check-icon">&#10003;</span>
+                Flexible repayment tenure from 3 to 60 months with low interest rates.
+              </li>
+              <li>
+                <span class="check-icon">&#10003;</span>
+                Check your credit score for free and get real-time score updates.
+              </li>
+            </ul>
+            <div class="feature-actions">
+              <a href="#" class="btn-primary">Apply Now</a>
+              <a href="#" class="btn-secondary">Check Credit Score</a>
+            </div>
+          </div>
+          <div class="feature-graphic">
+            <div class="credit-score-widget">
+              <div class="score-circle">
+                <div class="score-value">785</div>
+                <div class="score-status">Excellent</div>
+              </div>
+              <div class="score-meta">
+                <h4>Credit Health Report</h4>
+                <p>Updated 3 days ago &bull; Experian &amp; CRIF</p>
+                <div class="score-bar">
+                  <div class="score-fill" style="width: 82%;"></div>
+                </div>
+                <span class="pre-approved-badge">&#127881; Pre-approved Loan: &#8377;20,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merchant / Business Banner (Paytm Soundbox) -->
+    <section class="merchant-section" id="business">
+      <div class="container merchant-container">
+        <div class="merchant-content">
+          <span class="merchant-pill">Paytm for Business</span>
+          <h2 class="merchant-title">Accept Payments Everywhere with Paytm Soundbox</h2>
+          <p class="merchant-desc">
+            Equip your shop with India's iconic voice alert soundbox. Get crystal-clear voice confirmation for every QR payment in 11 regional languages.
+          </p>
+          <div class="merchant-features">
+            <div class="m-feat">
+              <strong>4G SIM Support</strong>
+              <span>Always connected across India</span>
+            </div>
+            <div class="m-feat">
+              <strong>Multi-Lingual</strong>
+              <span>Audio alerts in Hindi, Tamil, Telugu, etc.</span>
+            </div>
+            <div class="m-feat">
+              <strong>All UPI Accepted</strong>
+              <span>GPay, PhonePe, BHIM &amp; Paytm</span>
+            </div>
+          </div>
+          <div class="merchant-actions">
+            <a href="#" class="btn-merchant">Order Soundbox Now</a>
+            <a href="#" class="btn-merchant-outline">Explore POS Machines</a>
+          </div>
+        </div>
+        <div class="merchant-visual">
+          <div class="soundbox-graphic">
+            <div class="soundbox-top">
+              <div class="speaker-grill">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="soundbox-front">
+              <div class="paytm-brand-tag">paytm</div>
+              <div class="audio-wave">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+                <span class="bar bar-4"></span>
+                <span class="bar bar-5"></span>
+              </div>
+              <div class="soundbox-message">"Paytm par ₹100 prapt hue!"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Assurance Banner -->
+    <section class="security-banner">
+      <div class="container security-grid">
+        <div class="security-item">
+          <div class="sec-icon">&#128737;</div>
+          <div>
+            <h4>Bank-Grade Security</h4>
+            <p>256-bit encryption protecting every single rupee and password.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="sec-icon">&#9889;</div>
+          <div>
+            <h4>Instant 24x7 Settlement</h4>
+            <p>Send and receive payments at any hour, 365 days a year.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="sec-icon">&#128172;</div>
+          <div>
+            <h4>24x7 Customer Care</h4>
+            <p>Dedicated round-the-clock dispute resolution and helpline support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer" id="company">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-col brand-col">
+          <div class="logo">
+            <svg class="paytm-logo-svg" viewBox="0 0 140 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="29" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#ffffff">pay</text>
+              <text x="56" y="29" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#00BAF2">tm</text>
+            </svg>
+          </div>
+          <p class="brand-text-footer">
+            One97 Communications Ltd. is India’s leading digital payments and financial services company that offers full-stack payment solutions to consumers, offline merchants, and online platforms.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Twitter">X</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="LinkedIn">IN</a>
+            <a href="#" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">News &amp; Media</a></li>
+            <li><a href="#">Sustainability &amp; CSR</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Recharges &amp; Bills</h4>
+          <ul>
+            <li><a href="#">Mobile Recharge</a></li>
+            <li><a href="#">Electricity Bill Payment</a></li>
+            <li><a href="#">DTH Recharge</a></li>
+            <li><a href="#">Gas Bill Payment</a></li>
+            <li><a href="#">Fastag Recharge</a></li>
+            <li><a href="#">Water Bill Payment</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Financial Services</h4>
+          <ul>
+            <li><a href="#">Paytm Payments Bank</a></li>
+            <li><a href="#">Paytm Money</a></li>
+            <li><a href="#">Personal Loan</a></li>
+            <li><a href="#">Credit Cards</a></li>
+            <li><a href="#">Mutual Funds</a></li>
+            <li><a href="#">Insurance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>For Business</h4>
+          <ul>
+            <li><a href="#">Merchant Payment Gateway</a></li>
+            <li><a href="#">Paytm Soundbox</a></li>
+            <li><a href="#">All-in-One POS</a></li>
+            <li><a href="#">Paytm Payouts</a></li>
+            <li><a href="#">Business Software</a></li>
+            <li><a href="#">QR Code Stand</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 One97 Communications Limited. All Rights Reserved.</p>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Security Safeguards</a>
+          <a href="#">Grievance Redressal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Responsive mobile navigation toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (mobileToggle && navMenu) {
+      mobileToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileToggle.classList.toggle('active');
+      });
+    }
+  </script>
+</body>
+</html>

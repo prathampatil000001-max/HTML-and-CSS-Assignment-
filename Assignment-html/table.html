@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+      {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #181f14;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      background: linear-gradient(135deg, #1bb113 0%, #11b57e 100%);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      color: rgb(26, 13, 24);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+      .table-container {
+      max-height: 350px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Custom scrollbar styling */
+    .table-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      font-size: 14px;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      z-index: 1;
+    }
+    tbody tr {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    td {
+      opacity: 0.85;}
+
+    
+    </style>
+</head>
+<body> 
+    <div class="container">
+    <h1>Fixed Table Header</h1>
+    
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Company</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>Change %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AAC</td>
+            <td>AUSTRALIAN COMPANY</td>
+            <td>$1.38</td>
+            <td>+2.01</td>
+            <td>-0.36%</td>
+          </tr>
+          <tr>
+            <td>AAD</td>
+            <td>AUSENCO</td>
+            <td>$2.38</td>
+            <td>-0.01</td>
+            <td>-1.36%</td>
+          </tr>
+          <tr>
+            <td>AAX</td>
+            <td>ADELAIDE</td>
+            <td>$3.22</td>
+            <td>+0.01</td>
+            <td>+1.36%</td>
+          </tr>
+          <tr>
+            <td>XXD</td>
+            <td>ADITYA BIRLA</td>
+            <td>$1.02</td>
+            <td>-1.01</td>
+            <td>+2.36%</td>
+          </tr>
+          <tr>
+            <td>AAC</td>
+            <td>AUSTRALIAN COMPANY</td>
+            <td>$1.38</td>
+            <td>+2.01</td>
+            <td>-0.36%</td>
+          </tr>
+          <tr>
+            <td>AAD</td>
+            <td>AUSENCO</td>
+            <td>$2.38</td>
+            <td>-0.01</td>
+            <td>-1.36%</td>
+          </tr>
+          <tr>
+            <td>AAX</td>
+            <td>ADELAIDE</td>
+            <td>$3.22</td>
+            <td>+0.01</td>
+            <td>+1.36%</td>
+          </tr>
+          <tr>
+            <td>XXD</td>
+            <td>ADITYA BIRLA</td>
+            <td>$1.02</td>
+            <td>-1.01</td>
+            <td>+2.36%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

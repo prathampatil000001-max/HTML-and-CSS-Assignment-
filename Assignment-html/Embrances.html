@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Home Page</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, ;
+    background-color: white;
+}
+
+
+
+.navbar {
+    width: 76%;
+    height: 70px;
+
+    position: absolute;
+    top: 25px;
+    left: 12%;
+
+    background-color: white;
+
+    border: 2px solid #e9b82e;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    z-index: 10;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: black;
+}
+
+
+
+.logo {
+    font-size: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search {
+    font-size: 25px;
+    color: #555;
+    transform: rotate(-20deg);
+}
+
+.profile {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background-color: #f2b52b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+
+
+.hero {
+    width: 74%;
+    height: 500px;
+
+    margin: 95px auto 0;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+
+
+
+.hero-content {
+    width: 50%;
+
+    background-color: #dff5f5;
+
+    padding: 27px 45px;
+}
+
+.hero-content p {
+    font-size: 8px;
+    color: #333;
+
+    margin-bottom: 5px;
+}
+
+.hero-content h1 {
+    font-family: Georgia, serif;
+
+    font-size: 61px;
+    font-weight: 400;
+
+    line-height: 1.03;
+
+    color: #111;
+
+    margin-bottom: 25px;
+}
+
+
+
+
+.hero-content button {
+    background-color: #171717;
+    color: white;
+
+    border: none;
+    border-radius: 4px;
+
+    padding: 8px 13px;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.hero-content button:hover {
+    background-color: #333;
+}
+
+
+
+
+.hero-image {
+    width: 50%;
+    height: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+    </style>
+</head>
+<body>
+
+    
+    <nav class="navbar">
+
+        <div class="nav-left">
+            <a href="#">Home</a>
+            <a href="#">Collection</a>
+            <a href="#">Cart</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo">
+            <svg height="30px" width="30px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#000000;} </style> <g> <path class="st0" d="M497.448,131.092c-8.969-8.969-21.454-14.552-35.153-14.552h-56.151c-2.277-14.189-8.957-26.954-18.686-36.658 c-12.064-12.088-28.869-19.609-47.322-19.609h-60.214h-23.918h-84.144c-18.452,0-35.27,7.521-47.333,19.609 c-9.717,9.704-16.409,22.469-18.675,36.658H49.691c-13.699,0-26.194,5.582-35.14,14.552C5.582,140.039,0,152.535,0,166.233v231.632 h65.774v53.862h50.171v-53.862h140.061h23.918h100.914v53.862h50.183v-53.862H512v-15.216V166.233 C512,152.535,506.418,140.049,497.448,131.092z M129.258,127.215c0-11.795,4.752-22.388,12.472-30.13 c7.743-7.72,18.335-12.473,30.131-12.473h84.144h23.918h60.214c11.784,0,22.376,4.754,30.119,12.473 c7.72,7.742,12.473,18.335,12.484,30.13v141.392H279.923h-23.918H129.258V127.215z M487.661,373.528H256.005l-231.668,0.011v-0.011 V166.233c0-7.031,2.815-13.314,7.428-17.926c4.614-4.614,10.897-7.428,17.926-7.44h61.313v145.994h145.001h23.918h121.06V140.867 h61.312c7.042,0.012,13.314,2.826,17.938,7.44c4.602,4.612,7.428,10.896,7.428,17.926V373.528z"></path> </g> </g></svg>
+        </div>
+
+        <div class="nav-right">
+            <a href="#">Shops</a>
+            <a href="#">Account</a>
+            <span class="search">⌕</span>
+            <div class="profile">👨🏻</div>
+        </div>
+
+    </nav>
+
+                                       
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+            <p>Furniture Home</p>
+
+            <h1>
+                Embrace<br>
+                Peaceful<br>
+                Oasis
+            </h1>
+
+            <button>
+            Shop Now ↗
+            </button>
+        </div>
+
+        <div class="hero-image">
+            <img src="/WhatsApp Image 2026-09-11 at 8.21.32 PM.jpeg" alt="Furniture">
+        </div>
+
+    </section>
+
+</body>
+</html>
