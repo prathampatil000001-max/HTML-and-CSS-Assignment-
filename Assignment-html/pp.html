@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome CSS Animation</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #090c14;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .box {
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      border-radius: 25px;
+
+      background: linear-gradient(
+        135deg,
+        #d206e8,
+        #7b2ff7,
+        #0ec0cd
+      );
+
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+
+      box-shadow:
+        0 0 25px #7b2ff7,
+        0 0 60px #00dbde;
+
+      animation:
+        float 3s ease-in-out infinite,
+        glow 2s ease-in-out infinite alternate;
+      
+      transition: transform 4s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.15) rotate(50deg);
+      cursor: pointer;
+    }
+
+    h1 {
+      color: white;
+      margin-top: 45px;
+      font-size: 30px;
+      animation: fadeIn 6s ease-in-out;
+    }
+
+    p {
+      color: #aab2d5;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-45px) rotate(30deg);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow:
+          0 0 20px #d44c0d,
+          0 0 40px #30595a;
+      }
+
+      to {
+        box-shadow:
+          0 0 35px #ff00cc,
+          0 0 70px #894cec;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">GLOW</div>
+    <h1>CSS Animation</h1>
+    <p>Move your mouse over the box!</p>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="demo.css">
+
+    <style>
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+.matrix-example1 {
+  transform: matrix(1.2, 0, 0, 1.2, 50, 0); /* Scale 1.2x both axes, translate 50px right */
+  width: 100px;
+  height: 100px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+}
+.skew-example2 {
+  transform: skew(15deg);
+  width: 100px;
+  height: 100px;
+  background-color: #8d5524;
+  color: white;
+  padding: 10px;
+}
+.skew-example1 {
+  transform: skew(20deg, 10deg);
+  width: 100px;
+  height: 100px;
+  background-color: #16a085;
+  color: white;
+  padding: 10px;
+}.skewy-example2 {
+  transform: skewY(-15deg);
+  width: 100px;
+  height: 100px;
+  background-color: #151514;
+  color: white;
+  padding: 10px;
+}.skewx-example2 {
+  transform: skewX(-15deg);
+  width: 100px;
+  height: 100px;
+  background-color: #d35400;
+  color: white;
+  padding: 10px;
+}.perspective-example1 {
+  perspective: 500px; /* Strong 3D effect */
+}
+.perspective-example1 .inner {
+  transform: rotateY(405deg);
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+}.perspective-parent {
+  perspective: 500px;
+}
+.translate3d-example2 {
+  transform: translate3d(0, 0, -50px);
+  width: 100px;
+  height: 100px;
+  background-color: #f1c40f;
+  color: black;
+  padding: 10px;
+}.perspective-parent {
+  perspective: 500px;
+}
+.scale3d-example1 {
+  transform: scale3d(1.5, 1, 2);
+  width: 100px;
+  height: 100px;
+  background-color: #9b59b6;
+  color: white;
+  padding: 10px;
+}.perspective-parent {
+  perspective: 500px;
+}
+.rotatex-example1 {
+  transform: rotateX(45deg);
+  width: 100px;
+  height: 100px;
+  background-color: #e67e22;
+  color: white;
+  padding: 10px;
+  transform: skewX(-70deg);
+}.perspective-parent {
+  perspective: 500px;
+}
+.rotatex-example2 {
+  transform: rotateX(-45deg);
+  width: 100px;
+  height: 100px;
+  background-color: #34495e;
+  color: white;
+  padding: 10px;
+}.perspective-parent {
+  perspective: 500px;
+}
+.rotatez-example1 {
+  transform: rotateZ(45deg);
+  width: 100px;
+  height: 100px;
+  background-color: #27ae60;
+  color: white;
+  padding: 10px;
+}.perspective-parent {
+  perspective: 500px;
+}
+.rotatez-example2 {
+  transform: rotateZ(-45deg);
+  width: 100px;
+  height: 100px;
+  background-color: #d35400;
+  color: white;
+  padding: 10px;
+}.transition-example1 {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  transition: background-color 0.5s ease; /* Transition background-color over 0.5s */
+}
+.transition-example1:hover {
+  background-color: #e74c3c;
+}.transition-example2 {
+  width: 100px;
+  height: 100px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px;
+  opacity: 1;
+  transition: width 0.5s ease-in, opacity 0.3s linear; /* Transition width and opacity */
+}
+.transition-example2:hover {
+  width: 150px;
+  opacity: 0.5;
+}.transition-delay-example1 {
+  width: 100px;
+  height: 100px;
+  background-color: #9b59b6;
+  color: white;
+  padding: 10px;
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-delay: 0.2s; /* 0.2s delay before width transition */
+}
+.transition-delay-example1:hover {
+  width: 150px;
+}.transition-duration-example1 {
+  width: 100px;
+  height: 100px;
+  background-color: #e67e22;
+  color: white;
+  padding: 10px;
+  transition-property: width;
+  transition-duration: 1s; /* 1s duration for width transition */
+}
+.transition-duration-example1:hover {
+  width: 150px;
+}.transition-property-example2 {
+  width: 100px;
+  height: 100px;
+  background-color: #8e44ad;
+  color: white;
+  padding: 10px;
+  transition-property: width, background-color; /* Transition width and background-color */
+  transition-duration: 0.5s;
+}
+.transition-property-example2:hover {
+  width: 400px;
+  background-color: #4615ce;
+}.transition-timing-example1 {
+  width: 100px;
+  height: 100px;
+  background-color: #16a085;
+  color: rgb(206, 36, 36);
+  padding: 10px;
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in; /* Slow start, fast finish */
+}
+.transition-timing-example1:hover {
+  width: 150px;
+}</style>
+</head>
+
+
+<body>
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+<div class="matrix-example1">Translated 50px right, scaled 1.2x</div>
+<div class="skew-example2">Skewed 15deg on x-axis only</div>
+<div class="skew-example1">Skewed 20deg x, 10deg y</div>
+<div class="skewy-example2">Skewed -15 degrees on y-axis</div>
+<div class="skewx-example2">Skewed -15 degrees on x-axis</div>
+<div class="perspective-example1">
+  <div class="inner">Box with perspective 500px</div>
+</div>
+<div class="perspective-parent">
+  <div class="translate3d-example2">Translated 0px, 0px, -50px</div>
+</div>
+<div class="perspective-parent">
+  <div class="scale3d-example1">Scaled 1.5x x-axis, 1x y-axis, 2x z-axis</div>
+</div>
+<div class="perspective-parent">
+  <div class="rotatex-example1">Rotated 45 degrees around x-axis</div>
+</div>
+<div class="perspective-parent">
+  <div class="rotatex-example2">Rotated -45 degrees around x-axis</div>
+</div><div class="perspective-parent">
+  <div class="rotatez-example1">Rotated 45 degrees around z-axis</div>
+</div><div class="perspective-parent">
+  <div class="rotatez-example2">Rotated -45 degrees around z-axis</div>
+</div><div class="transition-example1">Hover to change background color</div>
+<div class="transition-example2">Hover to change width and opacity</div>
+<div class="transition-delay-example1">Hover to change width after delay</div>
+<div class="transition-duration-example1">Hover for slow width change</div>
+<div class="transition-property-example2">Hover to change width and color</div>
+<div class="transition-timing-example1">Hover for ease-in width change</div>
+
+
+</body></html>
+</body>
+</html>
+

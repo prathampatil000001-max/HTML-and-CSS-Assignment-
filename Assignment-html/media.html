@@ -3,77 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar</title>
-
+  <title>Document</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .skewy-example1 {
+   
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      padding: 60px;
+      color: black;
+      
+      transition: transform 50s ease-in-out;
+      
+   
     }
-
-    body {
-      font-family: Arial, sans-serif;
+    .skewy-example1:hover {
+      transform:rotate(800000000000000deg);
     }
-
-    .navbar {
-      background: #222;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .skewy-example2 {
+      width: 200px;
+      height: 100px;
+      background-color: lightgreen;
+      padding: 60px;
+      color: black;
+      
+      transition: transform 5s ease-in-out;
     }
-
-    .logo {
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    .nav-links a:hover {
-      color: #00bcd4;
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-      }
+    .skewy-example2:hover {
+      transform: skewY(2000000000000000000000000deg);
     }
   </style>
 </head>
-
 <body>
+<div class="skewy-example1">Skewed 20 degrees on y-axis</div>
+<div class="skewy-example2">Skewed 20 degrees on x-axis</div>
 
-  <nav class="navbar">
-    <a href="#" class="logo">MyWebsite</a>
-
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-
+<dialog open>
+  <p>This is a dialog box.</p>
+  <button class="example2">Close</button>
 </body>
 </html>
