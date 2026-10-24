@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Homepage Clone</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f0f0f;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+        .navbar {
+            height: 56px;
+            background: #0f0f0f;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            gap: 25px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            border-bottom: 1px solid #222;
+        }
+
+        .menu {
+            font-size: 21px;
+            cursor: pointer;
+            color: #ddd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 19px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .youtube-icon {
+            background: #ff0000;
+            color: white;
+            border-radius: 5px;
+            padding: 2px 5px;
+            font-size: 14px;
+        }
+
+        .search-area {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            width: 43%;
+            max-width: 600px;
+        }
+
+        .search-area input {
+            width: 100%;
+            height: 38px;
+            background: #121212;
+            color: white;
+            border: 1px solid #303030;
+            border-radius: 3px 0 0 3px;
+            padding: 0 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            height: 38px;
+            width: 65px;
+            background: #222;
+            border: 1px solid #303030;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 20px;
+        }
+
+        .profile {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 160px;
+            background: #0f0f0f;
+            position: fixed;
+            top: 56px;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 8px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #555 transparent;
+        }
+
+        .side-item {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 17px;
+            color: #eee;
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .side-item:hover {
+            background: #272727;
+            border-radius: 8px;
+        }
+
+        .side-item.active {
+            background: #303030;
+        }
+
+        .side-icon {
+            width: 15px;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        .side-divider {
+            height: 1px;
+            background: #333;
+            margin: 12px 0;
+        }
+
+        .side-heading {
+            color: #aaa;
+            padding: 8px 17px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .channel-icon {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .main {
+            margin-left: 160px;
+            padding-top: 56px;
+        }
+
+        .categories {
+            height: 55px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 0 14px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            background: #0f0f0f;
+            position: sticky;
+            top: 56px;
+            z-index: 5;
+            border-bottom: 1px solid #222;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            background: #272727;
+            color: #f1f1f1;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 11px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            background: #444;
+        }
+
+        .category.selected {
+            background: white;
+            color: black;
+        }
+
+        .video-container {
+            padding: 16px 14px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            column-gap: 12px;
+            row-gap: 26px;
+        }
+
+        .video-card {
+            min-width: 0;
+            cursor: pointer;
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            border-radius: 2px;
+            background: #272727;
+        }
+
+        .video-info {
+            display: flex;
+            gap: 9px;
+            padding-top: 9px;
+        }
+
+        .channel-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .video-details {
+            min-width: 0;
+        }
+
+        .video-title {
+            color: #f1f1f1;
+            font-size: 12px;
+            line-height: 17px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .channel-name,
+        .video-stats {
+            color: #aaa;
+            font-size: 11px;
+            line-height: 16px;
+        }
+
+        .video-card:hover .thumbnail {
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1100px) {
+            .video-container {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .side-item {
+                flex-direction: column;
+                justify-content: center;
+                gap: 4px;
+                padding: 5px 0;
+                height: 55px;
+                font-size: 9px;
+            }
+
+            .side-icon {
+                font-size: 19px;
+            }
+
+            .side-heading,
+            .side-divider,
+            .side-item .channel-icon {
+                display: none;
+            }
+
+            .main {
+                margin-left: 70px;
+            }
+
+            .video-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .search-area {
+                width: 45%;
+            }
+
+            .nav-icons {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .navbar {
+                gap: 12px;
+                padding: 0 10px;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .search-area {
+                width: auto;
+                flex: 1;
+            }
+
+            .search-area input {
+                min-width: 0;
+            }
+
+            .search-btn {
+                width: 38px;
+            }
+
+            .nav-icons {
+                gap: 8px;
+            }
+
+            .nav-icons .optional {
+                display: none;
+            }
+
+            .video-container {
+                grid-template-columns: 1fr;
+                padding: 12px;
+            }
+
+            .video-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="menu">&#9776;</div>
+
+        <div class="logo">
+            <span class="youtube-icon">&#9654;</span>
+            <span>YouTube</span>
+        </div>
+
+        <div class="search-area">
+            <input type="text" placeholder="Search">
+            <button class="search-btn">&#8981;</button>
+        </div>
+
+        <div class="nav-icons">
+            <span class="optional">&#128424;</span>
+            <span class="optional">&#9783;</span>
+            <span>&#128276;</span>
+            <img class="profile" src="https://i.pravatar.cc/60?img=12" alt="Profile">
+        </div>
+    </header>
+
+    <aside class="sidebar">
+
+        <div class="side-item active">
+            <span class="side-icon">&#8962;</span> Home
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9737;</span> Explores
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9835;</span> Shorts
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9654;</span> Subscriptions
+        </div>
+
+        <div class="side-divider"></div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9655;</span> Library
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#8635;</span> History
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#128249;</span> Your videos
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9201;</span> Watch later
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#9825;</span> Liked videos
+        </div>
+
+        <div class="side-item">
+            <span class="side-icon">&#8964;</span> Show more
+        </div>
+
+        <div class="side-divider"></div>
+
+        <div class="side-heading">SUBSCRIPTIONS</div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=11" alt="">
+            Nadir On The Go
+        </div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=47" alt="">
+            Coke Studio Bangla
+        </div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=13" alt="">
+            MKBHD
+        </div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=15" alt="">
+            Figma
+        </div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=16" alt="">
+            ATC Android ToTo C...
+        </div>
+
+        <div class="side-item">
+            <img class="channel-icon" src="https://i.pravatar.cc/50?img=20" alt="">
+            Alux.com
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <nav class="categories">
+            <button class="category selected">All</button>
+            <button class="category">Cook Studio</button>
+            <button class="category">UX</button>
+            <button class="category">Case Study</button>
+            <button class="category">Music</button>
+            <button class="category">Bnagla Lofi</button>
+            <button class="category">Tour</button>
+            <button class="category">Saintmartin</button>
+            <button class="category">Tech</button>
+            <button class="category">iPhone 13</button>
+            <button class="category">User Interface Design</button>
+            <button class="category">Computer</button>
+        </nav>
+
+
+        <section class="video-container">
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500&h=280&fit=crop"
+                    alt="Music performance">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=47" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Bulbul | Coke Studio Bangla | Season One
+                        </h3>
+                        <p class="channel-name">Coke Studio Bangla ✓</p>
+                        <p class="video-stats">1.5M views · 2 days ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=280&fit=crop"
+                    alt="Smartphone">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=12" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Infinix Note 12 : AMOLED Display Review
+                        </h3>
+                        <p class="channel-name">ATC Android ToTo Company ✓</p>
+                        <p class="video-stats">42K views · 2 days ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=500&h=280&fit=crop"
+                    alt="UX design">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=13" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            My First UX Design Case Study - This Got Me My First Job
+                        </h3>
+                        <p class="channel-name">Saptarshi Prakash ✓</p>
+                        <p class="video-stats">4.8K views · 1 year ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500&h=280&fit=crop"
+                    alt="Music mix">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=14" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">My Mix</h3>
+                        <p class="channel-name">Lopamudra Mitra, Anupam Roy</p>
+                        <p class="video-stats">Music · Recommended for you</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=280&fit=crop"
+                    alt="Technology">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=15" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            UX Design - What Is It? From AJ & Smart
+                        </h3>
+                        <p class="channel-name">AJ&Smart ✓</p>
+                        <p class="video-stats">150K views · 3 years ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=500&h=280&fit=crop"
+                    alt="Music video">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=16" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Mix - Monbatil | Mohon Sharif | Dhakaiya Dose
+                        </h3>
+                        <p class="channel-name">Mohon Sharif, Odd Signature</p>
+                        <p class="video-stats">Music · Recommended for you</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500&h=280&fit=crop"
+                    alt="Travel landscape">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=17" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">48 VISA-FREE Countries</h3>
+                        <p class="channel-name">Nadir On The Go</p>
+                        <p class="video-stats">1.7M views · 1 year ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=280&fit=crop"
+                    alt="Design interface">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=18" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            14 Advanced Tips to Design Faster in Figma
+                        </h3>
+                        <p class="channel-name">Mizko ✓</p>
+                        <p class="video-stats">396K views · 1 year ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=500&h=280&fit=crop"
+                    alt="Travel">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=19" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">Explore Beautiful Places</h3>
+                        <p class="channel-name">Travel Channel</p>
+                        <p class="video-stats">220K views · 3 months ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=280&fit=crop"
+                    alt="Computer technology">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=21" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">Tech Skills You Need to Learn</h3>
+                        <p class="channel-name">Technology Channel</p>
+                        <p class="video-stats">85K views · 6 months ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                    src="https://images.unsplash.com/photo-1523726491678-bf852e717f6a?w=500&h=280&fit=crop"
+                    alt="Web design">
+                <div class="video-info">
+                    <img class="channel-avatar" src="https://i.pravatar.cc/60?img=22" alt="">
+                    <div class="video-details">
+                        <h3 class="video-title">Google UI and Web Design Tips</h3>
+                        <p class="channel-name">Design Studio</p>
+                        <p class="video-stats">120K views · 5 months ago</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+</body>
+
+</html>
