@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rectangle Grid Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: rgb(11, 11, 11);
+    }
+
+    .layout {
+      display: grid;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      aspect-ratio: 423 / 290;
+      border-top: 2px solid black;
+      border-left: 2px solid black;
+
+      grid-template-columns: 85fr 88fr 87fr 163fr;
+      grid-template-rows: 49fr 33fr 53fr 60fr 95fr;
+      grid-template-areas:
+        "big big narrow thin1"
+        "big big narrow thin2"
+        "big big mid mid"
+        "vl vr mid mid"
+        "vl vr bottom bottom";
+    }
+
+    .layout div {
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+      background-color: rgb(144, 29, 29);
+    }
+
+    .big    { grid-area: big; }
+    .narrow { grid-area: narrow; }
+    .thin1  { grid-area: thin1; }
+    .thin2  { grid-area: thin2; }
+    .mid    { grid-area: mid; }
+    .vl     { grid-area: vl; }
+    .vr     { grid-area: vr; }
+    .bottom { grid-area: bottom; }
+
+    @media (max-width: 700px) {
+      .layout {
+        max-width: 300px;
+        aspect-ratio: 194 / 293;
+
+        grid-template-columns: 78fr 25fr 91fr;
+        grid-template-rows: 70fr 45fr 87fr 91fr;
+        grid-template-areas:
+          "big thin1 thin1"
+          "big thin2 thin2"
+          "mid mid mid"
+          "vl vl vr";
+      }
+
+      .narrow,
+      .bottom {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="big"></div>
+    <div class="narrow"></div>
+    <div class="thin1"></div>
+    <div class="thin2"></div>
+    <div class="mid"></div>
+    <div class="vl"></div>
+    <div class="vr"></div>
+    <div class="bottom"></div>
+  </div>
+</body>
+</html>
