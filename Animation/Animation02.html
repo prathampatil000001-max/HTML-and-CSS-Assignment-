@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Background Effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 110, 0.1));
+    filter: blur(60px);
+    animation: float 20s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 20%;
+    animation-delay: 7s;
+}
+
+.shape-3 {
+    width: 180px;
+    height: 180px;
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 14s;
+}
+
+.shape-4 {
+    width: 120px;
+    height: 120px;
+    top: 30%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.shape-5 {
+    width: 160px;
+    height: 160px;
+    bottom: 40%;
+    left: 20%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-30px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(-60px) rotate(240deg);
+    }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 80px 0 60px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #00f5ff, #ff006e, #ffbe0b);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.creator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-weight: 600;
+    color: #00f5ff;
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+.creator-icon {
+    font-size: 1.2rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 245, 255, 0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 245, 255, 0.4); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 80px;
+}
+
+/* Section Styles */
+.button-section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(45deg, #00f5ff, #ff006e);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.social-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* Base Button Styles */
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: #ffffff;
+    min-width: 160px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    outline: none;
+    font-family: inherit;
+}
+
+.btn:focus {
+    outline: 2px solid rgba(0, 245, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Neon Glow Buttons */
+.neon-btn {
+    background: transparent;
+    border: 2px solid;
+    text-shadow: 0 0 10px currentColor;
+    box-shadow: 
+        inset 0 0 20px rgba(255, 255, 255, 0.1),
+        0 0 20px currentColor;
+    transition: all 0.3s ease;
+}
+
+.neon-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        inset 0 0 20px rgba(255, 255, 255, 0.2),
+        0 0 40px currentColor,
+        0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.neon-cyan {
+    color: #00f5ff;
+    border-color: #00f5ff;
+}
+
+.neon-pink {
+    color: #ff006e;
+    border-color: #ff006e;
+}
+
+.neon-purple {
+    color: #8b5cf6;
+    border-color: #8b5cf6;
+}
+
+.neon-green {
+    color: #10b981;
+    border-color: #10b981;
+}
+
+.neon-orange {
+    color: #f59e0b;
+    border-color: #f59e0b;
+}
+
+.neon-blue {
+    color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+/* Glassmorphism Buttons */
+.glass-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-light {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.glass-dark {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.glass-gradient {
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 110, 0.2));
+    border: 1px solid rgba(0, 245, 255, 0.3);
+}
+
+.glass-border {
+    background: transparent;
+    border: 2px solid rgba(0, 245, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.glass-frosted {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-rainbow {
+    background: linear-gradient(45deg, 
+        rgba(255, 0, 110, 0.2), 
+        rgba(0, 245, 255, 0.2), 
+        rgba(255, 190, 11, 0.2),
+        rgba(139, 92, 246, 0.2));
+    background-size: 300% 300%;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+/* Gradient Buttons */
+.gradient-btn {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gradient-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.gradient-sunset {
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3);
+}
+
+.gradient-ocean {
+    background: linear-gradient(45deg, #0abde3, #006ba6, #3742fa);
+}
+
+.gradient-fire {
+    background: linear-gradient(45deg, #ff3838, #ff9500, #ffdd00);
+}
+
+.gradient-forest {
+    background: linear-gradient(45deg, #26de81, #20bf6b, #0fb9b1);
+}
+
+.gradient-cosmic {
+    background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+}
+
+.gradient-aurora {
+    background: linear-gradient(45deg, #00f260, #0575e6, #00d4ff);
+}
+
+/* 3D Effect Buttons */
+.btn-3d {
+    border: none;
+    border-radius: 8px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.2s ease;
+}
+
+.btn-3d:hover {
+    transform: translateY(-5px) rotateX(10deg);
+}
+
+.btn-3d:active {
+    transform: translateY(-2px) rotateX(5deg);
+}
+
+.btn-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    transform: translateZ(-8px);
+    filter: brightness(0.7);
+    z-index: -1;
+}
+
+.btn-3d-red {
+    background: linear-gradient(145deg, #ff6b6b, #e55a5a);
+    box-shadow: 0 8px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-3d-blue {
+    background: linear-gradient(145deg, #4dabf7, #339af0);
+    box-shadow: 0 8px 15px rgba(77, 171, 247, 0.3);
+}
+
+.btn-3d-green {
+    background: linear-gradient(145deg, #51cf66, #40c057);
+    box-shadow: 0 8px 15px rgba(81, 207, 102, 0.3);
+}
+
+.btn-3d-purple {
+    background: linear-gradient(145deg, #9775fa, #845ef7);
+    box-shadow: 0 8px 15px rgba(151, 117, 250, 0.3);
+}
+
+.btn-3d-orange {
+    background: linear-gradient(145deg, #ffa726, #ff9800);
+    box-shadow: 0 8px 15px rgba(255, 167, 38, 0.3);
+}
+
+.btn-3d-pink {
+    background: linear-gradient(145deg, #f06292, #e91e63);
+    box-shadow: 0 8px 15px rgba(240, 98, 146, 0.3);
+}
+
+/* Animated Buttons */
+.animated-btn {
+    background: linear-gradient(45deg, #00f5ff, #ff006e);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.slide-right:hover::before {
+    left: 100%;
+}
+
+.slide-up::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transition: height 0.3s ease;
+}
+
+.slide-up:hover::after {
+    height: 100%;
+}
+
+.scale-rotate:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.flip-horizontal:hover {
+    transform: rotateY(180deg);
+}
+
+.bounce-in:hover {
+    animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.wave-effect {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    position: relative;
+}
+
+.wave-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Outline Buttons */
+.outline-btn {
+    background: transparent;
+    border: 2px solid;
+    position: relative;
+    overflow: hidden;
+}
+
+.outline-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.outline-btn:hover::before {
+    left: 0;
+}
+
+.outline-btn:hover {
+    color: #000000;
+    transform: translateY(-3px);
+}
+
+.outline-cyan {
+    color: #00f5ff;
+    border-color: #00f5ff;
+}
+
+.outline-pink {
+    color: #ff006e;
+    border-color: #ff006e;
+}
+
+.outline-yellow {
+    color: #ffbe0b;
+    border-color: #ffbe0b;
+}
+
+.outline-green {
+    color: #10b981;
+    border-color: #10b981;
+}
+
+.outline-purple {
+    color: #8b5cf6;
+    border-color: #8b5cf6;
+}
+
+.outline-orange {
+    color: #f59e0b;
+    border-color: #f59e0b;
+}
+
+/* Loading Buttons */
+.loading-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    position: relative;
+}
+
+.loading-btn .btn-text {
+    transition: opacity 0.3s ease;
+}
+
+.loading-btn:hover .btn-text {
+    opacity: 0.7;
+}
+
+/* Spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+.loading-btn:hover .spinner {
+    display: block;
+}
+
+.loading-btn:hover .btn-text {
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Dots Loading */
+.dots {
+    display: none;
+}
+
+.dots span {
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+    animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.dots span:nth-child(1) { animation-delay: 0s; }
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+.loading-btn:hover .dots {
+    display: block;
+}
+
+@keyframes dotPulse {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.8);
+    width: 0;
+    transition: width 2s ease;
+}
+
+.loading-btn:hover .progress-bar {
+    width: 100%;
+}
+
+/* Pulse Ring */
+.pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 80px; height: 80px; opacity: 0; }
+}
+
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: rippleEffect 1.5s ease-out infinite;
+}
+
+@keyframes rippleEffect {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 120px; height: 120px; opacity: 0; }
+}
+
+/* Wave Loading */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8), 
+        transparent);
+    animation: waveMove 2s ease-in-out infinite;
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Special Effect Buttons */
+.special-btn {
+    background: linear-gradient(45deg, #ff006e, #00f5ff);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Particle Effect */
+.particle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8) 2px, transparent 2px);
+    background-size: 30px 30px, 50px 50px, 20px 20px;
+    animation: particleMove 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.particle-btn:hover::before {
+    opacity: 1;
+}
+
+@keyframes particleMove {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
+
+/* Lightning Effect */
+.lightning-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    position: relative;
+}
+
+.lightning-btn::after {
+    content: '⚡';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: lightning 0.1s ease-in-out infinite;
+}
+
+.lightning-btn:hover::after {
+    opacity: 1;
+}
+
+@keyframes lightning {
+    0%, 90%, 100% { opacity: 0; }
+    5%, 85% { opacity: 1; }
+}
+
+/* Morphing Button */
+.morphing-btn {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50px;
+    transition: all 0.5s ease;
+}
+
+.morphing-btn:hover {
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b);
+    transform: scale(1.1);
+}
+
+/* Glitch Effect */
+.glitch-btn {
+    background: linear-gradient(45deg, #ff0040, #00ff40);
+    position: relative;
+}
+
+.glitch-btn::before,
+.glitch-btn::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.glitch-btn::before {
+    animation: glitch1 0.3s ease-in-out infinite;
+    color: #ff0040;
+    z-index: 1;
+}
+
+.glitch-btn::after {
+    animation: glitch2 0.3s ease-in-out infinite;
+    color: #00ff40;
+    z-index: 2;
+}
+
+.glitch-btn:hover::before,
+.glitch-btn:hover::after {
+    opacity: 1;
+}
+
+@keyframes glitch1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(-2px, 2px); }
+}
+
+/* Liquid Effect */
+.liquid-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+}
+
+.liquid-btn:hover::before {
+    transform: scale(3);
+}
+
+/* Hologram Effect */
+.hologram-btn {
+    background: linear-gradient(45deg, 
+        rgba(0, 245, 255, 0.8), 
+        rgba(255, 0, 110, 0.8), 
+        rgba(255, 190, 11, 0.8));
+    background-size: 300% 300%;
+    animation: gradientShift 1s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.hologram-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00f5ff, #ff006e, #ffbe0b, #00f5ff);
+    background-size: 400% 400%;
+    animation: gradientShift 2s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hologram-btn:hover::before {
+    opacity: 1;
+}
+
+/* Social Media Buttons */
+.social-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.github-btn:hover {
+    background: rgba(36, 41, 46, 0.8);
+    border-color: #6e40c9;
+    box-shadow: 0 15px 30px rgba(110, 64, 201, 0.3);
+}
+
+.codepen-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: #ffdd00;
+    box-shadow: 0 15px 30px rgba(255, 221, 0, 0.3);
+}
+
+.twitter-btn:hover {
+    background: rgba(29, 161, 242, 0.8);
+    border-color: #1da1f2;
+    box-shadow: 0 15px 30px rgba(29, 161, 242, 0.3);
+}
+
+.linkedin-btn:hover {
+    background: rgba(0, 119, 181, 0.8);
+    border-color: #0077b5;
+    box-shadow: 0 15px 30px rgba(0, 119, 181, 0.3);
+}
+
+.instagram-btn:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-color: #e1306c;
+    box-shadow: 0 15px 30px rgba(225, 48, 108, 0.3);
+}
+
+.youtube-btn:hover {
+    background: rgba(255, 0, 0, 0.8);
+    border-color: #ff0000;
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
+}
+
+.social-icon {
+    font-size: 1.2rem;
+}
+
+/* Action Buttons */
+.action-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.download-btn:hover {
+    border-color: #10b981;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    color: #10b981;
+}
+
+.upload-btn:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+}
+
+.share-btn:hover {
+    border-color: #8b5cf6;
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+    color: #8b5cf6;
+}
+
+.save-btn:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+}
+
+.edit-btn:hover {
+    border-color: #06b6d4;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+    color: #06b6d4;
+}
+
+.delete-btn:hover {
+    border-color: #ef4444;
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.action-icon {
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 0 20px 0;
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.footer-info h3 {
+    color: #00f5ff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-info p {
+    color: #a0a0a0;
+    font-size: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: #00f5ff;
+    transform: translateX(10px);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .button-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+    
+    .btn {
+        min-width: 140px;
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+</style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Stunning Button Collection</h1>
+            <p class="subtitle">Beautiful CSS-only buttons with amazing animations and effects</p>
+            <div class="creator-badge">
+                <span class="creator-icon">👨‍💻</span>
+                <span>Created by Usama PRATHAM PATIL </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Neon Buttons Section -->
+            <section class="button-section">
+                <h2 class="section-title">Neon Glow Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn neon-btn neon-cyan">Cyan Glow</button>
+                    <button class="btn neon-btn neon-pink">Pink Glow</button>
+                    <button class="btn neon-btn neon-purple">Purple Glow</button>
+                    <button class="btn neon-btn neon-green">Green Glow</button>
+                    <button class="btn neon-btn neon-orange">Orange Glow</button>
+                    <button class="btn neon-btn neon-blue">Blue Glow</button>
+                </div>
+            </section>
+
+            <!-- Glassmorphism Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Glassmorphism Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn glass-btn glass-light">Light Glass</button>
+                    <button class="btn glass-btn glass-dark">Dark Glass</button>
+                    <button class="btn glass-btn glass-gradient">Gradient Glass</button>
+                    <button class="btn glass-btn glass-border">Border Glass</button>
+                    <button class="btn glass-btn glass-frosted">Frosted Glass</button>
+                    <button class="btn glass-btn glass-rainbow">Rainbow Glass</button>
+                </div>
+            </section>
+
+            <!-- Gradient Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Gradient Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn gradient-btn gradient-sunset">Sunset</button>
+                    <button class="btn gradient-btn gradient-ocean">Ocean</button>
+                    <button class="btn gradient-btn gradient-fire">Fire</button>
+                    <button class="btn gradient-btn gradient-forest">Forest</button>
+                    <button class="btn gradient-btn gradient-cosmic">Cosmic</button>
+                    <button class="btn gradient-btn gradient-aurora">Aurora</button>
+                </div>
+            </section>
+
+            <!-- 3D Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">3D Effect Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-3d btn-3d-red">3D Red</button>
+                    <button class="btn btn-3d btn-3d-blue">3D Blue</button>
+                    <button class="btn btn-3d btn-3d-green">3D Green</button>
+                    <button class="btn btn-3d btn-3d-purple">3D Purple</button>
+                    <button class="btn btn-3d btn-3d-orange">3D Orange</button>
+                    <button class="btn btn-3d btn-3d-pink">3D Pink</button>
+                </div>
+            </section>
+
+            <!-- Animated Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Animated Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn animated-btn slide-right">Slide Right</button>
+                    <button class="btn animated-btn slide-up">Slide Up</button>
+                    <button class="btn animated-btn scale-rotate">Scale & Rotate</button>
+                    <button class="btn animated-btn flip-horizontal">Flip Horizontal</button>
+                    <button class="btn animated-btn bounce-in">Bounce In</button>
+                    <button class="btn animated-btn wave-effect">Wave Effect</button>
+                </div>
+            </section>
+
+            <!-- Outline Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Outline Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn outline-btn outline-cyan">Cyan Outline</button>
+                    <button class="btn outline-btn outline-pink">Pink Outline</button>
+                    <button class="btn outline-btn outline-yellow">Yellow Outline</button>
+                    <button class="btn outline-btn outline-green">Green Outline</button>
+                    <button class="btn outline-btn outline-purple">Purple Outline</button>
+                    <button class="btn outline-btn outline-orange">Orange Outline</button>
+                </div>
+            </section>
+
+            <!-- Loading Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Loading Effect Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn loading-btn loading-spinner">
+                        <span class="btn-text">Loading</span>
+                        <span class="spinner"></span>
+                    </button>
+                    <button class="btn loading-btn loading-dots">
+                        <span class="btn-text">Processing</span>
+                        <span class="dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
+                    <button class="btn loading-btn loading-progress">
+                        <span class="btn-text">Uploading</span>
+                        <span class="progress-bar"></span>
+                    </button>
+                    <button class="btn loading-btn loading-pulse">
+                        <span class="btn-text">Connecting</span>
+                        <span class="pulse-ring"></span>
+                    </button>
+                    <button class="btn loading-btn loading-ripple">
+                        <span class="btn-text">Sending</span>
+                        <span class="ripple"></span>
+                    </button>
+                    <button class="btn loading-btn loading-wave">
+                        <span class="btn-text">Syncing</span>
+                        <span class="wave"></span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Special Effect Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Special Effect Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn special-btn particle-btn">Particle Effect</button>
+                    <button class="btn special-btn lightning-btn">Lightning Effect</button>
+                    <button class="btn special-btn morphing-btn">Morphing Button</button>
+                    <button class="btn special-btn glitch-btn" data-text="Glitch Effect">Glitch Effect</button>
+                    <button class="btn special-btn liquid-btn">Liquid Effect</button>
+                    <button class="btn special-btn hologram-btn">Hologram Effect</button>
+                </div>
+            </section>
+
+            <!-- Social Media Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Social Media Buttons</h2>
+                <div class="button-grid social-grid">
+                    <button class="btn social-btn github-btn">
+                        <span class="social-icon">🐙</span>
+                        <span>GitHub</span>
+                    </button>
+                    <button class="btn social-btn codepen-btn">
+                        <span class="social-icon">✨</span>
+                        <span>CodePen</span>
+                    </button>
+                    <button class="btn social-btn twitter-btn">
+                        <span class="social-icon">🐦</span>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="btn social-btn linkedin-btn">
+                        <span class="social-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="btn social-btn instagram-btn">
+                        <span class="social-icon">📸</span>
+                        <span>Instagram</span>
+                    </button>
+                    <button class="btn social-btn youtube-btn">
+                        <span class="social-icon">🎥</span>
+                        <span>YouTube</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="button-section">
+                <h2 class="section-title">Action Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn action-btn download-btn">
+                        <span class="action-icon">⬇️</span>
+                        <span>Download</span>
+                    </button>
+                    <button class="btn action-btn upload-btn">
+                        <span class="action-icon">⬆️</span>
+                        <span>Upload</span>
+                    </button>
+                    <button class="btn action-btn share-btn">
+                        <span class="action-icon">🔗</span>
+                        <span>Share</span>
+                    </button>
+                    <button class="btn action-btn save-btn">
+                        <span class="action-icon">💾</span>
+                        <span>Save</span>
+                    </button>
+                    <button class="btn action-btn edit-btn">
+                        <span class="action-icon">✏️</span>
+                        <span>Edit</span>
+                    </button>
+                    <button class="btn action-btn delete-btn">
+                        <span class="action-icon">🗑️</span>
+                        <span>Delete</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Pure CSS Button Collection</h3>
+                    <p>100+ Beautiful buttons created with HTML & CSS only</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/themrsami" class="footer-link">
+                        <span>🐙</span>
+                        <span>GitHub: @themrsami</span>
+                    </a>
+                    <a href="https://codepen.io/themrsami" class="footer-link">
+                        <span>✨</span>
+                        <span>CodePen: @themrsami</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Usama. Made with ❤️ and CSS magic</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+    </div>
+</body>
+</html>

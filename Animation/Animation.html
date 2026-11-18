@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.keyframes-example1 {
+  width: 100px;
+  height: 100px;
+  background-color: #b02607;
+  color: white;
+  padding: 10px;
+  animation: fadeIn 5s ease;
+}
+@keyframes slideIn {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(0); }
+}
+.keyframes-example2 {
+  width: 100px;
+  height: 100px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 60px;
+  animation: slideIn 0.5s ease;
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale {
+  from { transform: scale(0.5); }
+  to { transform: scale(1); }
+}
+.animation-name-example2 {
+  width: 100px;
+  height: 100px;
+  background-color: #f1c40f;
+  color: black;
+  padding: 10px;
+  animation-name: fade, scale;
+  animation-duration: 0.5s, 0.5s;
+  transform: matrix(30px)
+  animation-iteratio-count:infinite;
+}
+@keyframes slowSlide {
+  from { transform: translateX(1000px); }
+  to { transform: translateX(0); }
+}
+.animation-duration-example2 {
+  width: 100px;
+  height: 100px;
+  background-color: #1abc9c;
+  color: white;
+  padding: 10px;
+  animation-name: slowSlide;
+  animation-duration: 03s; 
+  animation-iteration-count: infinite;
+  box-shadow: black;
+ 
+}
+</style>
+</head>
+<body>
+    <div class="keyframes-example1">Fade in animation</div>
+    <div class="keyframes-example2">Slide in from left</div>
+    <div class="animation-name-example2">Fade and scale effect</div>
+    <div class="animation-duration-example2">Slow slide animation</div>
+</body>
+</html>

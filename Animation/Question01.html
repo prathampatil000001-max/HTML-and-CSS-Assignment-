@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <link rel="stylesheet" href="tri.css">
+ <style>/* Background Styles start */
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  background-color: gold;
+  border: 3px dashed black;
+  padding: 20px;
+  flex-wrap:wrap;
+  
+}
+
+div {
+  border: 3px solid #333;
+  background-color: #dfdfdf;
+  font-size: 20px;
+  
+}
+
+
+
+
+
+
+@media  (min-width: 576px) {
+.wrapper {
+display:flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+
+.a1, .a2, .a3, .a4 {
+flex-basis: 23%;
+
+gap: 30px;
+flex-direction: column;
+  margin-bottom: 1%;
+
+
+}
+
+.b1, .b2 {
+
+flex-basis: 48%;
+  margin-bottom: 1%;
+
+}
+
+.c1 {
+ flex-basis: 100%;
+   margin-bottom: 1%;
+
+}
+
+}
+
+@media  (min-width: 800) {
+.wrapper {
+display:flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+
+.a1, .a2, .a3, .a4 {
+flex-basis: 23%;
+
+gap: 30px;
+flex-direction: column;
+  margin-bottom: 1%;
+
+
+}
+
+.b1, .b2 {
+
+flex-basis: 48%;
+  margin-bottom: 1%;
+
+}
+
+.c1 {
+ flex-basis: 100%;
+   margin-bottom: 1%;
+
+}
+
+}</style>
+<body>
+    
+<div class="wrapper">
+
+  <div class="a1">A1</div>
+  <div class="a2">A2</div>
+  <div class="a3">A3</div>
+  <div class="a4">A4</div>
+
+  <div class="b1">B1</div>
+  <div class="b2">B2</div>
+
+  <div class="c1">C1</div>
+  
+</div>
+
+</body>
+</html>

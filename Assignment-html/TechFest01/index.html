@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuantSplit — Next-Gen Exact Bill & Expense Splitter</title>
+    <meta name="description" content="A futuristic, premium bill splitter with exact penny-perfect calculation, zero rounding discrepancy, custom names, and instant persistence." />
+    <meta property="og:title" content="QuantSplit — Next-Gen Exact Bill & Expense Splitter" />
+    <meta property="og:description" content="A futuristic, premium bill splitter with exact penny-perfect calculation, zero rounding discrepancy, custom names, and instant persistence." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Custom Cursor (Desktop Only) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-outline" id="cursorOutline" aria-hidden="true"></div>
+
+    <!-- Ambient Glowing Orbs & Cyber Grid Background -->
+    <div class="background-canvas" aria-hidden="true">
+      <div class="ambient-orb orb-purple"></div>
+      <div class="ambient-orb orb-blue"></div>
+      <div class="ambient-orb orb-cyan"></div>
+      <div class="cyber-grid"></div>
+      <!-- Smooth Floating Bubbles & Wind Simulation Canvas -->
+      <canvas id="bubbleWindCanvas" class="bubble-wind-canvas"></canvas>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#hero" class="nav-logo" aria-label="QuantSplit Home">
+          <span class="logo-mark">
+            <span class="logo-core"></span>
+          </span>
+          <span class="logo-text">Quant<span class="logo-accent">Split</span></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#hero" class="nav-link active">Home</a>
+          <a href="#calculator" class="nav-link">Bill Splitter</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#stats" class="nav-link">Metrics</a>
+          <a href="#how-it-works" class="nav-link">How It Works</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button type="button" class="btn btn-magic" id="magicColorBtn" title="Cycle Magic Bubble Colors & Sparkles">
+            <span class="magic-icon">✨</span>
+            <span id="magicStatusText">Magic: Cosmic</span>
+          </button>
+          <button type="button" class="btn btn-wind" id="windToggleBtn" title="Toggle Wind Current (Breeze / Gust / Vortex / Calm)">
+            <span class="wind-icon">🍃</span>
+            <span id="windStatusText">Wind: Breeze</span>
+          </button>
+          <!-- Light & Dark Theme Mode Button -->
+          <button type="button" class="btn btn-theme-toggle" id="themeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+            <span class="theme-icon sun-icon">☀️</span>
+            <span class="theme-icon moon-icon">🌙</span>
+            <span class="theme-label" id="themeStatusText">Dark</span>
+          </button>
+          <!-- Profile & Settings in Navbar -->
+          <button type="button" class="btn btn-profile" id="profileBtn" title="Open Profile & Settings" aria-label="Profile and Settings">
+            <span class="profile-avatar-pill" id="navAvatarPreview">Alex</span>
+            <span class="profile-gear-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-gear">
+                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/>
+                <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+              </svg>
+            </span>
+          </button>
+          <a href="#calculator" class="btn btn-nav">
+            <span>Launch</span>
+          </a>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="toggle-bar"></span>
+            <span class="toggle-bar"></span>
+            <span class="toggle-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-links">
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#calculator" class="mobile-link">Bill Splitter</a>
+        <a href="#features" class="mobile-link">Features</a>
+        <a href="#stats" class="mobile-link">Metrics</a>
+        <a href="#how-it-works" class="mobile-link">How It Works</a>
+      </div>
+      <div class="mobile-actions-row">
+        <button type="button" class="btn btn-theme-toggle mobile-theme-btn" id="mobileThemeToggleBtn">
+          <span class="theme-icon sun-icon">☀️</span>
+          <span class="theme-icon moon-icon">🌙</span>
+          <span id="mobileThemeStatusText">Dark Mode</span>
+        </button>
+        <button type="button" class="btn btn-profile mobile-profile-btn" id="mobileProfileBtn">
+          <span class="profile-avatar-pill" id="mobileNavAvatarPreview">Alex</span>
+          <span>Profile & Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section" id="hero">
+        <div class="container hero-container">
+          <div class="hero-badge reveal">
+            <span class="badge-dot"></span>
+            <span>Penny-Perfect Algorithmic Split Engine</span>
+          </div>
+
+          <h1 class="hero-title reveal">
+            Settle Any Group Bill With
+            <span class="gradient-text text-glow">Zero Discrepancy</span>
+          </h1>
+
+          <p class="hero-dynamic-lead reveal">
+            Intelligent mathematical distribution for
+            <span class="dynamic-wrapper">
+              <span class="dynamic-word" id="dynamicWord">Team Dinners</span>
+            </span>
+          </p>
+
+          <p class="hero-description reveal">
+            Never argue over missing cents or unbalanced receipts. QuantSplit distributes the total bill down to the exact penny, guarantees that all shares sum up 100% perfectly, and saves your breakdown across browser reloads.
+          </p>
+
+          <div class="hero-actions reveal">
+            <a href="#calculator" class="btn btn-primary btn-glow">
+              <span>Split a Bill Now</span>
+              <svg class="icon-sparkle" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-1.2A1 1 0 0118 5.75l-1.2 1.6 1.582 3.954A1 1 0 0117 12.324V17a1 1 0 01-1 1h-4.676l-3.954 1.582-1.6-1.2A1 1 0 014.25 17l1.2-1.6L3.868 11.446A1 1 0 015 10.324V3a1 1 0 011-1h4z"/>
+              </svg>
+            </a>
+            <button type="button" class="btn btn-magic-bubble" id="heroCastBubbleBtn" title="Spawn magical iridescent bubbles">
+              <span>🫧 Cast Magic Bubbles</span>
+            </button>
+            <a href="#features" class="btn btn-secondary">
+              <span>Explore Architecture</span>
+            </a>
+          </div>
+
+          <!-- Hero Floating Stats Strip -->
+          <div class="hero-metrics-strip reveal">
+            <div class="strip-item">
+              <span class="strip-value">100.00%</span>
+              <span class="strip-label">Sum Balance Match</span>
+            </div>
+            <div class="strip-divider"></div>
+            <div class="strip-item">
+              <span class="strip-value">&plusmn; 0.00&cent;</span>
+              <span class="strip-label">Zero Rounding Error</span>
+            </div>
+            <div class="strip-divider"></div>
+            <div class="strip-item">
+              <span class="strip-value">Instant</span>
+              <span class="strip-label">Local Persistence</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Core Bill Splitter Section -->
+      <section class="calculator-section" id="calculator">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Interactive Terminal</span>
+            <h2 class="section-title">The Exact Bill Splitter</h2>
+            <p class="section-subtitle">
+              Enter your occasion, total bill amount, and participants. Our balanced division algorithm computes every individual share without a single lost cent.
+            </p>
+          </div>
+
+          <!-- Interactive 3D Page Flip View Controls -->
+          <div class="calculator-view-controls reveal">
+            <div class="view-mode-tabs" role="tablist">
+              <button type="button" class="view-tab active" id="tabFlipView" role="tab" aria-selected="true" title="Turn pages with 3D perspective">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                <span>📖 3D Page Flip</span>
+              </button>
+              <button type="button" class="view-tab" id="tabDualView" role="tab" aria-selected="false" title="View all cards side-by-side">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                  <rect x="2" y="3" width="9" height="18" rx="2"/>
+                  <rect x="13" y="3" width="9" height="18" rx="2"/>
+                </svg>
+                <span>Side-by-Side</span>
+              </button>
+            </div>
+
+            <!-- Page Flip Navigation Toolbar -->
+            <div class="page-flip-nav" id="pageFlipNav">
+              <button type="button" class="btn-flip-nav" id="prevPageBtn" title="Go to Previous Page">
+                <span>◀ Prev</span>
+              </button>
+              <div class="page-indicator-pills">
+                <button type="button" class="page-dot active" id="pageTab1" data-target-page="1" title="Page 1: Configuration">
+                  <span class="dot-num">1</span>
+                  <span class="dot-text">Setup</span>
+                </button>
+                <button type="button" class="page-dot" id="pageTab2" data-target-page="2" title="Page 2: Exact Shares">
+                  <span class="dot-num">2</span>
+                  <span class="dot-text">Shares</span>
+                </button>
+                <button type="button" class="page-dot" id="pageTab3" data-target-page="3" title="Page 3: Settlement Ledger">
+                  <span class="dot-num">3</span>
+                  <span class="dot-text">Ledger</span>
+                </button>
+              </div>
+              <button type="button" class="btn-flip-nav" id="nextPageBtn" title="Go to Next Page">
+                <span>Next ▶</span>
+              </button>
+              <button type="button" class="btn btn-flip" id="pageFlipBtn" title="Flip page immediately">
+                <span class="flip-icon">🔄</span>
+                <span id="flipBtnText">Flip Page</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- The Interactive Multi-Page Stage -->
+          <div class="calculator-layout flip-mode" id="calculatorLayout">
+            
+            <!-- ==========================================
+                 PAGE 1: Configuration Form Card
+                 ========================================== -->
+            <div class="card glass-card page-card form-card active-page" id="formCard" data-page="1">
+              <div class="card-glow-edge"></div>
+              
+              <!-- 3D Page Curl Corner for tactile flipping -->
+              <button type="button" class="page-corner-curl" id="cornerCurl1" title="Click corner to flip to Page 2 ➔">
+                <span class="curl-fold"></span>
+                <span class="curl-label">Turn ➔</span>
+              </button>
+
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="4" width="20" height="16" rx="3"/>
+                      <path d="M6 10h12M6 14h6"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="page-tag">Page 1 of 3</span>
+                    <h3 class="card-title">Expense Configuration</h3>
+                  </div>
+                </div>
+                <div class="card-header-actions">
+                  <button type="button" class="btn-text btn-page-flip" id="quickFlipToReceipt" title="Turn page to Shares">
+                    <span>📖 Shares (Page 2) &rarr;</span>
+                  </button>
+                  <button type="button" class="btn-text" id="resetBtn" title="Reset all fields to defaults">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm">
+                      <path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/>
+                    </svg>
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+
+              <form id="splitterForm" novalidate>
+                <!-- 1. Occasion Name -->
+                <div class="form-group">
+                  <label for="occasionInput" class="form-label">
+                    <span class="step-num">1</span>
+                    <span>Occasion Name</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      id="occasionInput"
+                      name="occasion"
+                      class="form-input"
+                      placeholder="e.g., Cyberpunk Rooftop Sushi, Tahoe Cabin Trip"
+                      autocomplete="off"
+                    />
+                  </div>
+                  <!-- Quick Preset Chips -->
+                  <div class="preset-chips">
+                    <span class="preset-label">Quick:</span>
+                    <button type="button" class="chip" data-preset="Rooftop Dinner & Drinks">🍕 Dinner</button>
+                    <button type="button" class="chip" data-preset="Weekend Cabin Getaway">✈️ Trip</button>
+                    <button type="button" class="chip" data-preset="Loft Rent & Utilities">🏠 Rent</button>
+                    <button type="button" class="chip" data-preset="Birthday Celebration">🎉 Party</button>
+                    <button type="button" class="chip" data-preset="Sunday Brunch Feast">☕ Brunch</button>
+                  </div>
+                </div>
+
+                <!-- 2. Bill Amount & Currency -->
+                <div class="form-group">
+                  <div class="label-row">
+                    <label for="billInput" class="form-label">
+                      <span class="step-num">2</span>
+                      <span>Total Bill Amount</span>
+                    </label>
+                    <div class="currency-picker">
+                      <select id="currencySelect" aria-label="Select Currency">
+                        <option value="$" selected>$ USD ($)</option>
+                        <option value="€">€ EUR (€)</option>
+                        <option value="£">£ GBP (£)</option>
+                        <option value="¥">¥ JPY (¥)</option>
+                        <option value="₹">₹ INR (₹)</option>
+                        <option value="CA$">CA$ CAD ($)</option>
+                        <option value="AU$">AU$ AUD ($)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="input-wrapper has-prefix">
+                    <span class="input-prefix" id="currencyPrefix">$</span>
+                    <input
+                      type="number"
+                      id="billInput"
+                      name="bill"
+                      step="any"
+                      min="0"
+                      class="form-input text-lg font-bold"
+                      placeholder="0.00"
+                      autocomplete="off"
+                    />
+                  </div>
+                  <span class="field-hint">Enter the total receipt or expense amount</span>
+                </div>
+
+                <!-- Optional Tip / Gratuity Module -->
+                <div class="tip-module">
+                  <div class="tip-header">
+                    <span class="tip-title">Optional Tip / Gratuity</span>
+                    <span class="tip-calculated" id="tipAmountDisplay">+ $0.00</span>
+                  </div>
+                  <div class="tip-buttons" id="tipButtons">
+                    <button type="button" class="tip-btn active" data-tip="0">None</button>
+                    <button type="button" class="tip-btn" data-tip="10">10%</button>
+                    <button type="button" class="tip-btn" data-tip="15">15%</button>
+                    <button type="button" class="tip-btn" data-tip="18">18%</button>
+                    <button type="button" class="tip-btn" data-tip="20">20%</button>
+                  </div>
+                </div>
+
+                <!-- 3. Number of People -->
+                <div class="form-group">
+                  <label for="peopleInput" class="form-label">
+                    <span class="step-num">3</span>
+                    <span>Number of People</span>
+                  </label>
+                  <div class="stepper-wrapper">
+                    <button type="button" class="stepper-btn" id="decrementPeople" aria-label="Decrease people count">−</button>
+                    <div class="input-wrapper has-icon flex-1">
+                      <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      <input
+                        type="number"
+                        id="peopleInput"
+                        name="people"
+                        min="1"
+                        step="1"
+                        class="form-input text-center font-bold"
+                        placeholder="1"
+                        autocomplete="off"
+                      />
+                    </div>
+                    <button type="button" class="stepper-btn" id="incrementPeople" aria-label="Increase people count">+</button>
+                  </div>
+
+                  <!-- Quick People Buttons -->
+                  <div class="people-presets">
+                    <span class="preset-label">Preset:</span>
+                    <button type="button" class="pill-btn" data-people="2">2</button>
+                    <button type="button" class="pill-btn" data-people="3">3</button>
+                    <button type="button" class="pill-btn" data-people="4">4</button>
+                    <button type="button" class="pill-btn" data-people="5">5</button>
+                    <button type="button" class="pill-btn" data-people="6">6</button>
+                    <button type="button" class="pill-btn" data-people="8">8</button>
+                  </div>
+                </div>
+
+                <!-- Requirement #4: Validation Error Banner -->
+                <div class="error-banner hidden" id="errorBanner" role="alert">
+                  <div class="error-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="8" x2="12" y2="12"/>
+                      <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                  </div>
+                  <div class="error-content">
+                    <h4 class="error-heading">Cannot Split Bill</h4>
+                    <p class="error-message" id="errorMessageText">Please verify your inputs.</p>
+                  </div>
+                </div>
+
+                <!-- Requirement #2: Calculation Trigger Button -->
+                <button type="submit" class="btn btn-primary btn-block btn-calculate" id="calculateBtn">
+                  <span class="btn-ripple"></span>
+                  <span class="btn-content">
+                    <svg class="icon-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="4" y="2" width="16" height="20" rx="2"/>
+                      <line x1="8" y1="6" x2="16" y2="6"/>
+                      <line x1="16" y1="14" x2="16" y2="18"/>
+                      <path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/>
+                    </svg>
+                    <span>Show What Each Person Pays & Turn Page</span>
+                    <svg class="icon-chevron" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                  </span>
+                </button>
+              </form>
+
+              <!-- Page 1 Bottom Navigation Bar -->
+              <div class="page-footer-nav">
+                <span class="footer-hint">💡 Fill details and click calculate to flip page</span>
+                <button type="button" class="btn-text btn-page-flip" id="page1ToLedger" title="Jump to settlement ledger">
+                  <span>Go to Ledger (Page 3) &rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 PAGE 2: Exact Split Shares Breakdown Card
+                 ========================================== -->
+            <div class="card glass-card page-card results-card" id="resultsCard" data-page="2">
+              <div class="card-glow-edge"></div>
+
+              <!-- 3D Page Curl Corner for tactile flipping -->
+              <button type="button" class="page-corner-curl" id="cornerCurl2" title="Click corner to flip to Page 3 ➔">
+                <span class="curl-fold"></span>
+                <span class="curl-label">Ledger ➔</span>
+              </button>
+
+              <!-- Placeholder State: Displayed when no calculation performed or error exists -->
+              <div class="empty-state" id="emptyState">
+                <div class="empty-icon-wrap">
+                  <div class="empty-glow"></div>
+                  <div class="empty-shape">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M16 2v4M8 2v4M3 10h18"/>
+                      <rect x="3" y="4" width="18" height="18" rx="3"/>
+                      <circle cx="8.5" cy="14.5" r="1.5"/>
+                      <circle cx="15.5" cy="14.5" r="1.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="empty-title">Awaiting Split Calculation</h3>
+                <p class="empty-desc">
+                  Input the occasion name, bill total, and number of people on Page 1, then click <strong class="text-white">Show What Each Person Pays</strong> to reveal the balanced mathematical breakdown.
+                </p>
+
+                <div class="feature-pills-row">
+                  <div class="empty-pill">
+                    <span class="pill-dot emerald"></span>
+                    <span>Penny Precision</span>
+                  </div>
+                  <div class="empty-pill">
+                    <span class="pill-dot cyan"></span>
+                    <span>Saved on Reload</span>
+                  </div>
+                  <div class="empty-pill">
+                    <span class="pill-dot purple"></span>
+                    <span>WhatsApp Export</span>
+                  </div>
+                </div>
+
+                <div class="empty-flip-hint">
+                  <button type="button" class="btn btn-secondary btn-sm" id="emptyFlipToForm" title="Flip page back to configuration form">
+                    <span>&larr; 📝 Return to Setup Page</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Active Results View: Shown only on valid calculation -->
+              <div class="results-view hidden" id="resultsView">
+                <div class="results-header">
+                  <div class="results-meta">
+                    <div class="meta-top-row">
+                      <span class="page-tag">Page 2 of 3</span>
+                      <span class="results-badge">Exact Distribution</span>
+                      <button type="button" class="btn-text btn-page-flip" id="quickFlipToForm" title="Flip page back to configuration form">
+                        <span>&larr; 📝 Page 1</span>
+                      </button>
+                      <button type="button" class="btn-text btn-page-flip" id="quickFlipToLedger" title="Flip page forward to settlement ledger">
+                        <span>Page 3 &rarr;</span>
+                      </button>
+                    </div>
+                    <h3 class="results-occasion" id="displayOccasion">Friday Team Dinner</h3>
+                    <span class="results-participants" id="displayParticipants">4 Participants</span>
+                  </div>
+                  <div class="results-total-wrap">
+                    <span class="total-label">Total Amount</span>
+                    <span class="total-value" id="displayTotalAmount">$120.00</span>
+                    <span class="tip-subtext hidden" id="displayTipSubtext">Includes $0.00 tip</span>
+                  </div>
+                </div>
+
+                <!-- Exact Penny Sum Verification Callout (Requirement #3) -->
+                <div class="math-verification-callout">
+                  <div class="verification-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="icon-verified">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <span>100% Mathematically Balanced</span>
+                  </div>
+                  <p class="verification-explanation" id="verificationExplanation">
+                    All individual shares sum up exactly to the total bill down to the last cent ($0.00 variance).
+                  </p>
+                </div>
+
+                <!-- Visual Distribution Bar -->
+                <div class="distribution-visual">
+                  <div class="distribution-header">
+                    <span>Equal Share Distribution</span>
+                    <span id="paidProgressText">0 of 4 Paid</span>
+                  </div>
+                  <div class="progress-bar-track" id="distributionTrack">
+                    <!-- Slices dynamically rendered by JS -->
+                  </div>
+                </div>
+
+                <!-- Shares Table / Cards -->
+                <div class="shares-list-container">
+                  <div class="shares-list-header">
+                    <span>Participant (Click name to edit)</span>
+                    <div class="header-right">
+                      <span>Paid?</span>
+                      <span class="text-right">Share</span>
+                    </div>
+                  </div>
+                  <div class="shares-list" id="sharesList">
+                    <!-- Populated by JavaScript -->
+                  </div>
+                </div>
+
+                <!-- Results Action Toolbar -->
+                <div class="results-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" id="copySummaryBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span id="copyBtnLabel">Copy Message</span>
+                  </button>
+
+                  <button type="button" class="btn btn-secondary btn-sm" id="shareLinkBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm">
+                      <circle cx="18" cy="5" r="3"/>
+                      <circle cx="6" cy="12" r="3"/>
+                      <circle cx="18" cy="19" r="3"/>
+                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    <span id="shareBtnLabel">Share Link</span>
+                  </button>
+
+                  <span class="autosave-notice">
+                    <span class="pulsing-green-dot"></span>
+                    <span>Saved locally</span>
+                  </span>
+                </div>
+
+                <!-- Page 2 Bottom Navigation -->
+                <div class="page-footer-nav">
+                  <button type="button" class="btn-text btn-page-flip" id="page2BackToForm">
+                    <span>&larr; 📝 Back to Setup</span>
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm" id="page2ToLedger">
+                    <span>View Settlement Ledger &rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 PAGE 3: Settlement Ledger & Balance Audit
+                 ========================================== -->
+            <div class="card glass-card page-card ledger-card" id="ledgerCard" data-page="3">
+              <div class="card-glow-edge"></div>
+
+              <!-- 3D Page Curl Corner for tactile flipping -->
+              <button type="button" class="page-corner-curl" id="cornerCurl3" title="Click corner to flip to Page 1 ⮌">
+                <span class="curl-fold"></span>
+                <span class="curl-label">Setup ⮌</span>
+              </button>
+
+              <div class="card-header">
+                <div class="card-title-group">
+                  <span class="card-icon emerald-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <span class="page-tag">Page 3 of 3</span>
+                    <h3 class="card-title">Settlement & Collection Ledger</h3>
+                  </div>
+                </div>
+                <div class="card-header-actions">
+                  <button type="button" class="btn-text btn-page-flip" id="ledgerBackToShares">
+                    <span>&larr; 🧾 Shares (Page 2)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Ledger Metrics Dashboard -->
+              <div class="ledger-dashboard">
+                <div class="ledger-stat-card stat-paid">
+                  <span class="stat-meta">Total Collected</span>
+                  <span class="stat-number text-emerald" id="ledgerCollectedAmount">$0.00</span>
+                  <span class="stat-sub" id="ledgerPaidCountText">0 of 0 paid</span>
+                </div>
+                <div class="ledger-stat-card stat-pending">
+                  <span class="stat-meta">Remaining Unpaid</span>
+                  <span class="stat-number text-amber" id="ledgerPendingAmount">$0.00</span>
+                  <span class="stat-sub" id="ledgerUnpaidCountText">0 members pending</span>
+                </div>
+              </div>
+
+              <!-- Settlement Progress Bar -->
+              <div class="ledger-progress-wrap">
+                <div class="progress-labels">
+                  <span>Settlement Progress</span>
+                  <span id="ledgerProgressPercent" class="font-bold text-emerald">0% Settled</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="ledgerProgressBar" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <!-- Unpaid Members Action Section -->
+              <div class="ledger-unpaid-section">
+                <div class="section-sub-header">
+                  <span>Pending Payment Checklist</span>
+                  <button type="button" class="btn-text btn-sm" id="ledgerMarkAllPaidBtn">
+                    <span>✓ Mark All Paid</span>
+                  </button>
+                </div>
+                <div class="ledger-members-list" id="ledgerMembersList">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Quick Group Reminders -->
+              <div class="ledger-actions-box">
+                <button type="button" class="btn btn-primary btn-block" id="copyUnpaidReminderBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-sm">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                  </svg>
+                  <span>Copy WhatsApp Reminder for Unpaid Members</span>
+                </button>
+              </div>
+
+              <!-- Page 3 Bottom Navigation -->
+              <div class="page-footer-nav">
+                <button type="button" class="btn-text btn-page-flip" id="ledgerToShares">
+                  <span>&larr; 🧾 Shares (Page 2)</span>
+                </button>
+                <button type="button" class="btn-text btn-page-flip" id="ledgerToSetup">
+                  <span>📝 Return to Setup (Page 1) ⮌</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features-section" id="features">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Superior Architecture</span>
+            <h2 class="section-title">Engineered for Total Fairness</h2>
+            <p class="section-subtitle">
+              Traditional bill calculators round arbitrarily, leaving stray pennies unaccounted for. QuantSplit solves the math problem with pure logic.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card tilt-card reveal">
+              <div class="card-glow-overlay"></div>
+              <div class="feature-icon-box cyan-gradient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Exact Penny Balancing</h3>
+              <p class="feature-desc">
+                When dividing $100 across 3 people, our modulo distribution allocates 33.34 to one and 33.33 to two, ensuring 100% exact total balance.
+              </p>
+            </div>
+
+            <div class="feature-card tilt-card reveal">
+              <div class="card-glow-overlay"></div>
+              <div class="feature-icon-box purple-gradient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                  <polyline points="17 21 17 13 7 13 7 21"/>
+                  <polyline points="7 3 7 8 15 8"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Reload Persistence</h3>
+              <p class="feature-desc">
+                Accidental page refresh or browser close? All occasion details, members, amounts, and calculation states are instantly restored via localStorage.
+              </p>
+            </div>
+
+            <div class="feature-card tilt-card reveal">
+              <div class="card-glow-overlay"></div>
+              <div class="feature-icon-box blue-gradient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">Custom Member Names</h3>
+              <p class="feature-desc">
+                Personalize every slot from generic &ldquo;Person 1&rdquo; to real names like Alex, Jordan, or Maya with live real-time sync.
+              </p>
+            </div>
+
+            <div class="feature-card tilt-card reveal">
+              <div class="card-glow-overlay"></div>
+              <div class="feature-icon-box emerald-gradient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                  <polyline points="16 6 12 2 8 6"/>
+                  <line x1="12" y1="2" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <h3 class="feature-title">1-Click Group Export</h3>
+              <p class="feature-desc">
+                Generate clean, formatted text breakdowns ready for WhatsApp, iMessage, Slack, or Venmo with zero manual copy-pasting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statistics Section with Animated Counters -->
+      <section class="stats-section" id="stats">
+        <div class="container">
+          <div class="stats-glass-panel reveal">
+            <div class="stat-block">
+              <div class="stat-number-wrap">
+                <span class="stat-prefix">$</span>
+                <span class="stat-value" data-target="4.8">0</span>
+                <span class="stat-suffix">M+</span>
+              </div>
+              <span class="stat-label">Total Bills Settled</span>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-block">
+              <div class="stat-number-wrap">
+                <span class="stat-value" data-target="100">0</span>
+                <span class="stat-suffix">%</span>
+              </div>
+              <span class="stat-label">Penny Precision Accuracy</span>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-block">
+              <div class="stat-number-wrap">
+                <span class="stat-value" data-target="185">0</span>
+                <span class="stat-suffix">K+</span>
+              </div>
+              <span class="stat-label">Active Groups Served</span>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-block">
+              <div class="stat-number-wrap">
+                <span class="stat-prefix">&plusmn;</span>
+                <span class="stat-value" data-target="0">0</span>
+                <span class="stat-suffix">&cent;</span>
+              </div>
+              <span class="stat-label">Discrepancy Guarantee</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="how-section" id="how-it-works">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Frictionless Workflow</span>
+            <h2 class="section-title">How QuantSplit Operates</h2>
+            <p class="section-subtitle">
+              A 3-step algorithmic approach to eliminating group payment awkwardness.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card reveal">
+              <div class="step-badge">Step 01</div>
+              <h3 class="step-title">Specify Occasion & Total</h3>
+              <p class="step-desc">
+                Name your event and input the receipt total with your preferred currency and optional tip percentage.
+              </p>
+            </div>
+
+            <div class="step-card reveal">
+              <div class="step-badge">Step 02</div>
+              <h3 class="step-title">Configure Participants</h3>
+              <p class="step-desc">
+                Adjust group size using fast steppers or preset counts, and give everyone personalized labels if desired.
+              </p>
+            </div>
+
+            <div class="step-card reveal">
+              <div class="step-badge">Step 03</div>
+              <h3 class="step-title">Settle with Exact Balance</h3>
+              <p class="step-desc">
+                Execute calculation to receive the exact shares, track live payment status, and dispatch formatted group summaries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">
+            <span class="logo-mark"><span class="logo-core"></span></span>
+            <span class="logo-text">Quant<span class="logo-accent">Split</span></span>
+          </a>
+          <p class="footer-tagline">
+            High-precision algorithmic group bill splitting. Zero images, pure CSS & vanilla JavaScript engine.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-group">
+            <span class="footer-heading">Navigation</span>
+            <a href="#hero">Home</a>
+            <a href="#calculator">Bill Splitter</a>
+            <a href="#features">Features</a>
+            <a href="#stats">Metrics</a>
+          </div>
+          <div class="footer-group">
+            <span class="footer-heading">System</span>
+            <span class="footer-status">
+              <span class="status-indicator"></span>
+              <span>All Systems 100% Operational</span>
+            </span>
+            <span class="footer-note">Client-Side Zero-Telemetry Engine</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span>&copy; 2026 QuantSplit Engine. All rights reserved.</span>
+          <span>Designed with mathematical elegance.</span>
+        </div>
+      </div>
+    <!-- Profile & Settings Modal -->
+    <div class="modal-overlay hidden" id="profileModalOverlay" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="card glass-card modal-card" id="profileModalCard">
+        <div class="card-glow-edge"></div>
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <div class="profile-header-avatar" id="modalAvatarBadge">A</div>
+            <div>
+              <h3 class="modal-title" id="profileModalTitle">Profile & Settings</h3>
+              <span class="modal-subtitle">Personalize your identity, payment tag & preferences</span>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="closeProfileModal" aria-label="Close modal">✕</button>
+        </div>
+
+        <form id="profileSettingsForm">
+          <!-- Section 1: User Identity -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">Personal Profile</h4>
+            <div class="modal-grid-2">
+              <div class="form-group mb-0">
+                <label for="profileNameInput" class="form-label">Your Name</label>
+                <input type="text" id="profileNameInput" class="form-input" placeholder="e.g. Alex Hunter" autocomplete="name" />
+              </div>
+              <div class="form-group mb-0">
+                <label for="profileHandleInput" class="form-label">Payment Handle</label>
+                <div class="input-wrapper has-prefix">
+                  <span class="input-prefix">@</span>
+                  <input type="text" id="profileHandleInput" class="form-input" placeholder="username (Venmo/UPI/CashApp)" autocomplete="off" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Avatar Theme Picker -->
+            <div class="form-group mt-3">
+              <label class="form-label">Avatar Color Palette</label>
+              <div class="avatar-palette-picker" id="avatarPalettePicker">
+                <!-- 8 gradient circles generated by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Splitter Defaults -->
+          <div class="modal-section">
+            <h4 class="modal-section-title">Splitter Preferences</h4>
+            <div class="modal-grid-2">
+              <div class="form-group mb-0">
+                <label for="defaultCurrencySelect" class="form-label">Default Currency</label>
+                <select id="defaultCurrencySelect" class="form-input">
+                  <option value="$">$ USD ($)</option>
+                  <option value="€">€ EUR (€)</option>
+                  <option value="£">£ GBP (£)</option>
+                  <option value="¥">¥ JPY (¥)</option>
+                  <option value="₹">₹ INR (₹)</option>
+                  <option value="CA$">CA$ CAD ($)</option>
+                  <option value="AU$">AU$ AUD ($)</option>
+                </select>
+              </div>
+              <div class="form-group mb-0">
+                <label for="defaultTipSelect" class="form-label">Default Tip</label>
+                <select id="defaultTipSelect" class="form-input">
+                  <option value="0">0% (None)</option>
+                  <option value="10">10%</option>
+                  <option value="15">15%</option>
+                  <option value="18">18%</option>
+                  <option value="20">20%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="toggle-setting-row mt-3">
+              <div class="toggle-setting-info">
+                <span class="toggle-setting-label">Auto-Flip Page on Calculate</span>
+                <span class="toggle-setting-desc">Turns 3D page to Exact Shares automatically upon calculation</span>
+              </div>
+              <label class="switch-toggle">
+                <input type="checkbox" id="autoFlipSetting" checked />
+                <span class="slider-round"></span>
+              </label>
+            </div>
+
+            <div class="toggle-setting-row mt-2">
+              <div class="toggle-setting-info">
+                <span class="toggle-setting-label">Celebration Magic & Sparkles</span>
+                <span class="toggle-setting-desc">Flurry of iridescent bubbles & star bursts on payment completion</span>
+              </div>
+              <label class="switch-toggle">
+                <input type="checkbox" id="celebrationSparklesSetting" checked />
+                <span class="slider-round"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Modal Footer Actions -->
+          <div class="modal-footer">
+            <button type="button" class="btn-text text-danger" id="resetUserDataBtn">
+              Reset All App Data
+            </button>
+            <div class="modal-footer-right">
+              <button type="button" class="btn btn-secondary btn-sm" id="cancelProfileBtn">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm" id="saveProfileBtn">Save Profile</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div class="toast-notification hidden" id="toastNotification" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toast-icon">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span id="toastMessage">Summary copied to clipboard!</span>
+    </div>
+
+    <!-- Main JavaScript Application -->
+    <script src="script.js"></script>
+  </body>
+</html>

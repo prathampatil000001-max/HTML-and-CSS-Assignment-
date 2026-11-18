@@ -1,0 +1,271 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+button, li {
+    cursor: pointer;
+}
+
+.main-title {
+    position: fixed;
+    top: 0px;
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/Title-Image.png?raw=true");
+    width: 100vw;
+    height: 810px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header {
+    margin-bottom: 300px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.581), transparent);
+}
+
+.header-logo {
+    width: 25%;
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/NetflixLogoSvg.png?raw=true");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.header-navlist {
+    width: 20%;
+}
+
+.header-navlist > ul {
+    list-style-type: none;
+    display: flex;
+    height: 100%;
+    gap: 15%;
+    align-items: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#selected {
+    font-weight: 500;
+}
+
+.header-left-container {
+    height: 100%;
+    display: flex;
+    width: 35%;
+    gap: 10%;
+}
+
+.header-right-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-self: right;
+    align-items: center;
+    justify-content: right;
+}
+
+.header-right-container > div {
+    width: 15%;
+    height: 40%;
+    margin-left: 5%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#header-search {
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/Search.png?raw=true");
+}
+
+#header-gift {
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/GiftBox.png?raw=true");
+}
+
+#header-notification {
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/NotificationBell.png?raw=true");
+}
+
+#header-profile {
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/ProfileIMG.png?raw=true");
+}
+
+#header-more {
+    background-image: url("https://github.com/codinggita/CGxSU_Semester_1/blob/main/Semester_1/html_css_js(sem_01)/CSS/00.assignment/02.level_2/11.netflix-clone/assets/DownArrow.png?raw=true");
+}
+
+.main-title-details {
+    padding-left: 10%;
+    padding-right: 4.5%;
+}
+
+.main-title-type {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    letter-spacing: 5px;
+}
+
+.main-title-type > img {
+    width: 20px;
+}
+
+.main-title-name {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 8rem;
+    font-weight: 700;
+}
+
+.main-title-controls {
+    display: flex;
+    gap: 25px;
+}
+
+#main-title-play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: large;
+}
+
+#main-title-info-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: large;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.325);
+    border-radius: 5px;
+}
+
+#main-title-play-button > img {
+    width: 20px;
+    height: 20px;
+}
+
+.main-title-add-button {
+    justify-self: right;
+}
+
+.main-suggestions {
+    position: absolute;
+    top: 700px;
+    height: 1480px;
+    padding-left: 10%;
+    background-color: #141414;
+    background: linear-gradient(to bottom, transparent 60px, #141414 110px);
+}
+
+.main-suggestion-title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: large;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.main-suggestion-title > img {
+    height: 20px;
+    width: 20px;
+}
+
+.video-suggestion-list {
+    margin-bottom: 60px;
+    display: flex;
+    gap: 10px;
+}
+
+.ranked-video-suggestion-list {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 60px;
+    margin-left: -4%;
+    height: 185px;
+    overflow-y: scroll;
+    /* scrollbar-width: none; */
+}
+
+.ranked-suggestion-video-container {
+    display: flex;
+}
+
+.footer {
+    margin-left: 250px;
+    width: 60vw;
+    height: 370px;
+}
+
+.footer-links {
+    gap: 20px;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.footer-links > img {
+    opacity: 50%;
+}
+
+.footer-links-list-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links-list-container > ul {
+    list-style: none;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    opacity: 40%;
+}
+
+.footer-links-list-container > ul > li {
+    padding-bottom: 30px;
+}
+
+.footer-button > button {
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    opacity: 40%;
+    padding: 15px;
+    font-size: large;
+    margin-bottom: 30px;
+}
+
+.footer-copyright-details {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    opacity: 40%;
+}

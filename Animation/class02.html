@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* Is tarah ka keyframes block hata dein */
+/* Background Styles start */
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  background-color: gold;
+  border: 3px dashed black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow: hidden;
+}
+
+div {
+  border: 3px solid #333;
+  background-color: #dfdfdf;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Age piche hone wala best animation (Alternate sliding effect) */
+.a1, .a2, .a3, .a4, .b1, .b2, .c1 {
+  animation: moveBackAndForth 4s ease-in-out infinite alternate;
+}
+
+/* Alag-alag delay taaki sab ek saath na move karein, wave jaisa lage */
+.a2 { animation-delay: 0.2s; }
+.a3 { animation-delay: 0.4s; }
+.a4 { animation-delay: 0.6s; }
+.b1 { animation-delay: 0.8s; }
+.b2 { animation-delay: 1.0s; }
+.c1 { animation-delay: 1.2s; }
+
+/* Animation Keyframes: Ye aage aur piche move karega */
+@keyframes moveBackAndForth {
+  0% {
+    transform: translateX(0px);
+    background-color: #eeee09;
+  }
+  100% {
+    transform: translateX(40px);
+    background-color: #ffeb3b;
+  }
+}
+
+/* Jab mouse le kar jaoge toh animation wahi ruk jayegi */
+.wrapper:hover div {
+  animation-play-state: paused;
+}
+
+@media (min-width: 400px) {
+  .wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .wrapper > div {
+    flex: 1 1 calc(50% - 15px);
+  }
+}
+
+@media (min-width: 600px) {
+  .wrapper > div {
+    flex: 1 1 calc(25% - 15px);
+  }
+}
+/* Is tarah ka keyframes block hata dein */
+@keyframes colorChange {
+  0% { background-color: rgb(236, 244, 10); }
+  50% { background-color: yellow; }
+  100% { background-color: rgb(200, 239, 6); }
+}</style>
+</head>
+<body>
+    <div class="wrapper">
+
+  <div class="a1">A1</div>
+  <div class="a2">A2</div>
+  <div class="a3">A3</div>
+  <div class="a4">A4</div>
+
+  <div class="b1">B1</div>
+  <div class="b2">B2</div>
+
+  <div class="c1">C1</div>
+  
+</div>
+</body>
+</html>
