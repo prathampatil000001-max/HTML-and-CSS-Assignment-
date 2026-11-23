@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 30px;
+  background: #222;
+  color: white;
+  gap: 25px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 25px;
+  white-space: nowrap;
+}
+
+.nav-links li {
+  display: block;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 18px;
+  cursor: pointer;
+}
+
+
+ * {
+  box-sizing: border-box;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: flex-start;
+  gap: 20px;
+
+  width: 900px;
+  height: 500px;
+}
+
+.product {
+  /* Three cards fit in each row:
+     (900 - 2 * 20) / 3 = 286.67px */
+  flex: 0 0 calc((100% - 40px) / 3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  min-width: 0;
+  height: 300px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+.product img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.product h3 {
+  margin: 10px 0;
+}
+
+.product p {
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+
+.product strong {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.product button {
+  margin-top: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+* {
+  box-sizing: border-box;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 15px;
+
+  width: 100%;
+  max-width: 1000px;
+  height: 400px;
+}
+
+.sidebar {
+  /* Preferred width: 200px */
+  flex: 0 0 200px;
+  min-width: 0;
+  background: #ddd;
+}
+
+.main-content {
+  /* Starts at 200px, grows into available space,
+     and can shrink when the container gets narrower. */
+  flex: 1 1 200px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  background: #e8f0ff;
+}
+
+.activity-panel {
+  /* Preferred width: 250px */
+  flex: 0 0 250px;
+  min-width: 0;
+  align-self: flex-start;
+  background: #eee;
+}
+
+.dashboard > * {
+  padding: 15px;
+}
+* {
+  box-sizing: border-box;
+}
+
+.team {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.member {
+  /* Cards can grow, but cannot shrink below 280px. */
+  flex: 1 0 280px;
+  min-width: 280px;
+  padding: 20px;
+  border: 1px solid #999;
+  background: #f5f5f5;
+}
+
+/* Team leader first */
+.member:nth-child(3) {
+  order: 1;
+}
+
+/* Rahul second */
+.member:nth-child(1) {
+  order: 2;
+}
+
+/* Priya third */
+.member:nth-child(2) {
+  order: 3;
+}
+
+/* Neha fourth */
+.member:nth-child(4) {
+  order: 4;
+}
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header: logo left, navigation right */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  padding: 20px;
+  background: #222;
+  color: white;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Main area: sidebar and content side by side */
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1 0 auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  /* Preferred width: 250px */
+  flex: 0 0 250px;
+  padding: 15px;
+  background: #eee;
+}
+
+.content {
+  /* Flexible content uses all remaining space. */
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 15px;
+  background: #f5f5f5;
+}
+
+/* Footer stays at the bottom when content is short. */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #222;
+  color: white;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+</style>
+</head>
+<body>
+    <header class="navbar">
+  <div class="logo">CodeAcademy</div>
+
+  <ul class="nav-links">
+    <li>Home</li>
+    <li>Courses</li>
+    <li>Projects</li>
+    <li>Contact</li>
+  </ul>
+
+  <div class="auth-buttons">
+    <button>Login</button>
+    <button>Signup</button>
+  </div>
+</header>
+
+<section class="products">
+  <article class="product">
+    <img src="" alt="Running shoe">
+    <h3>Running Shoes</h3>
+    <p>Comfortable shoes for everyday running.</p>
+    <strong>₹1,999</strong>
+    <button>Buy Now</button>
+  </article>
+
+  <article class="product">
+    <img src="watch.jpg" alt="Watch">
+    <h3>Smart Watch</h3>
+    <p>Track your daily activity and health goals.</p>
+    <strong>₹2,499</strong>
+    <button>Buy Now</button>
+  </article>
+
+  <article class="product">
+    <img src="bag.jpg" alt="Backpack">
+    <h3>Travel Backpack</h3>
+    <p>A spacious backpack for your next trip.</p>
+    <strong>₹1,499</strong>
+    <button>Buy Now</button>
+  </article>
+
+  <article class="product">
+    <img src="headphones.jpg" alt="Headphones">
+    <h3>Headphones</h3>
+    <p>Enjoy music with clear sound quality.</p>
+    <strong>₹999</strong>
+    <button>Buy Now</button>
+  </article>
+
+  <article class="product">
+    <img src="keyboard.jpg" alt="Keyboard">
+    <h3>Mechanical Keyboard</h3>
+    <p>A responsive keyboard for work and gaming.</p>
+    <strong>₹3,499</strong>
+    <button>Buy Now</button>
+  </article>
+
+  <article class="product">
+    <img src="mouse.jpg" alt="Mouse">
+    <h3>Wireless Mouse</h3>
+    <p>A compact mouse with wireless connectivity.</p>
+    <strong>₹799</strong>
+    <button>Buy Now</button>
+  </article>
+</section>
+<div class="dashboard">
+  <aside class="sidebar">
+    <h3>Sidebar</h3>
+    <p>Dashboard</p>
+    <p>Analytics</p>
+    <p>Settings</p>
+  </aside>
+
+  <main class="main-content">
+    <h2>Dashboard Overview</h2>
+    <p>This is the main content area.</p>
+    <p>
+      Add more content here to test how the layout
+      responds when the available space changes.
+    </p>
+  </main>
+
+  <aside class="activity-panel">
+    <h3>Recent Activity</h3>
+    <p>New user registered</p>
+    <p>Order completed</p>
+  </aside>
+</div>
+<section class="team">
+  <article class="member">
+    <h3>Rahul</h3>
+    <p>Frontend Developer</p>
+  </article>
+
+  <article class="member">
+    <h3>Priya</h3>
+    <p>Backend Developer</p>
+  </article>
+
+  <article class="member">
+    <h3>Aman</h3>
+    <p>Team Leader</p>
+  </article>
+
+  <article class="member">
+    <h3>Neha</h3>
+    <p>UI/UX Designer</p>
+  </article>
+</section>
+<div class="app">
+  <header class="header">
+    <h2>MyApp</h2>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <p>Web Development</p>
+      <p>Design</p>
+      <p>Programming</p>
+    </aside>
+
+    <section class="content">
+      <h1>Welcome to MyApp</h1>
+      <p>Learn and build amazing projects.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 MyApp</p>
+  </footer>
+</div>
+
+</body>
+</html>
