@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Clip-Path Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0b1020;color:#eef2ff;
+  font-family:Inter,sans-serif;
+}
+header{
+  padding:22px 8%;display:flex;
+  justify-content:space-between;align-items:center;
+  border-bottom:1px solid #ffffff12;
+}
+.logo{font-size:22px;font-weight:800}
+.logo span{color:#8b78ff}
+nav a{color:#aaa;text-decoration:none;margin-left:25px;font-size:14px}
+.hero{text-align:center;padding:75px 20px 45px}
+.tag{color:#a99aff;font-size:13px;letter-spacing:2px}
+.hero h1{font-size:clamp(36px,6vw,65px);margin:18px 0}
+.hero h1 span{color:#9b87ff}
+.hero p{color:#9da6bb;line-height:1.8;max-width:650px;margin:auto}
+.container{max-width:1150px;margin:25px auto;padding:20px}
+.panel{
+ background:#151c30;border:1px solid #ffffff12;
+ border-radius:18px;padding:25px;margin-bottom:25px;
+}
+.panel h2{font-size:20px;margin-bottom:20px}
+.editor{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:25px;align-items:center;
+}
+.preview{
+ background:#0c1325;border-radius:15px;
+ min-height:310px;display:grid;place-items:center;
+ overflow:hidden;
+}
+.preview img{
+ width:230px;height:230px;object-fit:cover;
+ transition:clip-path .3s;
+}
+.controls label{display:block;color:#aab3c8;margin:20px 0 10px}
+input[type=range]{width:100%;accent-color:#9b87ff}
+select{
+ width:100%;padding:12px;background:#222c44;
+ color:white;border:1px solid #414d6b;border-radius:8px;
+}
+.code{
+ background:#080d19;padding:20px;border-radius:10px;
+ color:#b7aaff;font-family:'Space Mono',monospace;
+ font-size:13px;line-height:2;overflow-wrap:anywhere;
+}
+button{
+ background:#8b78ff;color:white;border:0;
+ border-radius:8px;padding:11px 18px;
+ cursor:pointer;font-weight:600;margin-top:15px;
+}
+button:hover{background:#7059e9}
+.shapes{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.shape-card{
+ background:#1c2540;padding:18px;border-radius:13px;
+ text-align:center;cursor:pointer;border:1px solid transparent;
+}
+.shape-card:hover{border-color:#8b78ff;transform:translateY(-3px)}
+.shape-card img{width:100%;height:120px;object-fit:cover;margin-bottom:12px}
+.shape-card p{color:#b8c0d4;font-size:14px}
+footer{text-align:center;padding:35px;color:#77829b}
+@media(max-width:700px){
+ nav{display:none}
+ .editor{grid-template-columns:1fr}
+ .shapes{grid-template-columns:repeat(2,1fr)}
+ .container{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">Clip<span>Path.</span></div>
+ <nav>
+  <a href="#guide">Guide</a>
+  <a href="#studio">Studio</a>
+  <a href="#shapes">Shapes</a>
+ </nav>
+</header>
+
+<section class="hero">
+ <div class="tag">CSS DESIGN PLAYGROUND</div>
+ <h1>Shape Your <span>Images.</span></h1>
+ <p>Explore CSS clip-path and create amazing image shapes.
+ Learn circles, ellipses, polygons and custom clipping with live previews.</p>
+</section>
+
+<div class="container">
+
+<section class="panel" id="studio">
+ <h2>✦ Live Clip-Path Studio</h2>
+ <div class="editor">
+  <div class="preview">
+   <img id="preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600" alt="Preview">
+  </div>
+  <div class="controls">
+   <label>Select Shape</label>
+   <select id="shape">
+    <option value="circle">Circle</option>
+    <option value="ellipse">Ellipse</option>
+    <option value="triangle">Triangle</option>
+    <option value="hexagon">Hexagon</option>
+    <option value="diamond">Diamond</option>
+    <option value="inset">Inset</option>
+   </select>
+
+   <label>Shape Size: <span id="sizeValue">50</span>%</label>
+   <input type="range" id="size" min="10" max="100" value="50">
+
+   <label>Image Position</label>
+   <select id="position">
+    <option value="center">Center</option>
+    <option value="left">Left</option>
+    <option value="right">Right</option>
+   </select>
+  </div>
+ </div>
+ <h2 style="margin-top:25px">Generated CSS</h2>
+ <div class="code" id="code">clip-path: circle(50%);</div>
+ <button onclick="copyCode()">Copy CSS</button>
+</section>
+
+<section class="panel" id="shapes">
+ <h2>Explore Basic Shapes</h2>
+ <div class="shapes">
+  <div class="shape-card" onclick="setShape('circle')">
+   <img style="clip-path:circle(50%)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Circle</h3><p>Perfect round clipping</p>
+  </div>
+  <div class="shape-card" onclick="setShape('ellipse')">
+   <img style="clip-path:ellipse(50% 35%)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Ellipse</h3><p>Oval image shape</p>
+  </div>
+  <div class="shape-card" onclick="setShape('triangle')">
+   <img style="clip-path:polygon(50% 0,100% 100%,0 100%)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Triangle</h3><p>Three-point polygon</p>
+  </div>
+  <div class="shape-card" onclick="setShape('hexagon')">
+   <img style="clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Hexagon</h3><p>Six-sided shape</p>
+  </div>
+  <div class="shape-card" onclick="setShape('diamond')">
+   <img style="clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Diamond</h3><p>Creative diamond shape</p>
+  </div>
+  <div class="shape-card" onclick="setShape('inset')">
+   <img style="clip-path:inset(15% round 20px)" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300">
+   <h3>Inset</h3><p>Rounded rectangle</p>
+  </div>
+ </div>
+</section>
+
+<section class="panel" id="guide">
+ <h2>📚 CSS Clip-Path Guide</h2>
+ <h3>1. Circle()</h3>
+ <p style="color:#aab3c8;margin:12px 0">Creates a circular clipping area.</p>
+ <div class="code">clip-path: circle(50%);</div>
+
+ <h3 style="margin-top:25px">2. Ellipse()</h3>
+ <p style="color:#aab3c8;margin:12px 0">Creates an oval clipping area.</p>
+ <div class="code">clip-path: ellipse(50% 35%);</div>
+
+ <h3 style="margin-top:25px">3. Polygon()</h3>
+ <p style="color:#aab3c8;margin:12px 0">Creates custom shapes using coordinates.</p>
+ <div class="code">clip-path: polygon(50% 0%, 100% 100%, 0% 100%);</div>
+
+ <h3 style="margin-top:25px">4. Shape Outside</h3>
+ <p style="color:#aab3c8;margin:12px 0">Allows text to wrap around floated elements.</p>
+ <div class="code">
+float: left;<br>
+clip-path: circle(40%);<br>
+shape-outside: circle(45%);
+ </div>
+</section>
+
+</div>
+
+<footer>Made with ❤️ for CSS Developers · ClipPath Studio</footer>
+
+<script>
+const shape=document.getElementById('shape');
+const size=document.getElementById('size');
+const preview=document.getElementById('preview');
+const position=document.getElementById('position');
+const code=document.getElementById('code');
+
+function update(){
+ let s=Number(size.value);
+ let p=position.value;
+ let css='';
+
+ switch(shape.value){
+  case 'circle':
+   css=`circle(${s}% at ${p})`;break;
+  case 'ellipse':
+   css=`ellipse(${s}% ${Math.round(s*.7)}% at ${p})`;break;
+  case 'triangle':
+   css=`polygon(50% 0%, 100% 100%, 0% 100%)`;break;
+  case 'hexagon':
+   css=`polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)`;break;
+  case 'diamond':
+   css=`polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)`;break;
+  case 'inset':
+   css=`inset(${Math.round((100-s)/2)}% round 20px)`;break;
+ }
+ preview.style.clipPath=css;
+ code.textContent=`clip-path: ${css};`;
+ document.getElementById('sizeValue').textContent=s;
+}
+function setShape(value){
+ shape.value=value;
+ update();
+ document.getElementById('studio').scrollIntoView({behavior:'smooth'});
+}
+function copyCode(){
+ navigator.clipboard.writeText(code.textContent);
+ const btn=document.querySelector('#studio button');
+ btn.textContent='Copied ✓';
+ setTimeout(()=>btn.textContent='Copy CSS',1500);
+}
+shape.addEventListener('change',update);
+size.addEventListener('input',update);
+position.addEventListener('change',update);
+update();
+</script>
+</body>
+</html>

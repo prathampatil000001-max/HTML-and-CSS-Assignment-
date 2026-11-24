@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Multiple Columns</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #151616;
+            border-radius: 8px;
+        }
+
+        /* 1. Column Count */
+        .count {
+            column-count: 7;
+        }
+
+        /* 2. Column Gap */
+        .gap {
+            column-count: 1;
+            column-gap: 40px;
+        }
+
+        /* 3. Column Rule Style */
+        .rule-style {
+            column-count: 3;
+            column-rule: dotted red;
+        }
+
+        /* 4. Column Rule Width */
+        .rule-width {
+            column-count: 2;
+            column-rule-style: solid;
+            column-rule-width: 3px;
+        }
+
+        /* 5. Column Rule Color */
+        .rule-color {
+            column-count: 2;
+            column-rule: 2px solid blue;
+        }
+
+        /* 6. Column Rule */
+        .rule {
+            column-count: 2;
+            column-rule: 3px dashed red;
+        }
+
+        /* 7. Column Span */
+        .span {
+            column-count: 3;
+        }
+
+        .span h2 {
+            column-span: all;
+            text-align: center;
+            color: red;
+        }
+
+        /* 8. Column Width */
+        .width {
+            column-width: 200px;
+        }
+
+        /* 9. Columns Shorthand */
+        .columns {
+            columns: 200px 3;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Multiple Columns</h1>
+
+    <div class="box">
+        <h2>1. Column Count</h2>
+        <div class="count">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>2. Column Gap</h2>
+        <div class="gap">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>3. Column Rule Style</h2>
+        <div class="rule-style">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut Lorem ipsum dolor sit amet, consectetur adipisicing elit.C Perspiciatis ex accusantium a vitae atque quibusdam perferendis, reprehenderit officia dolorum eveniet nesciunt? Harum!V</aliquip>
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>4. Column Rule Width</h2>
+        <div class="rule-width">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>5. Column Rule Color</h2>
+        <div class="rule-color">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>6. Column Rule</h2>
+        <div class="rule">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>7. Column Span</h2>
+        <div class="span">
+            <h2>Heading Spanning All Columns</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>8. Column Width</h2>
+        <div class="width">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>9. Columns Shorthand</h2>
+        <div class="columns">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
