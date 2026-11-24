@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePulse AI - Assistive HealthTech & Gentle Triage Suite</title>
+  <meta name="description" content="Ultra-accessible, eye-friendly health companion designed for sensitive eyes, visually impaired users, elderly patients, and caregivers.">
+
+  <!-- Google Fonts: Atkinson Hyperlegible (Ophthalmologist Designed) & Inter & Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Atkinson Hyperlegible', 'Inter', 'system-ui', 'sans-serif'],
+            dyslexic: ['Lexend', 'Atkinson Hyperlegible', 'sans-serif'],
+          },
+          colors: {
+            // Calm, Eye-Sensitive Mineral Sage Palette (No harsh glares)
+            sage: {
+              50: '#F4F7F5',
+              100: '#E6EEE9',
+              200: '#C9DCD2',
+              300: '#A7C6B6',
+              600: '#2E6F62',
+              700: '#24594E',
+              800: '#1D453C',
+              900: '#15332C',
+            },
+            // Soothing Warm Paper Slate
+            paper: {
+              50: '#FBF9F5',
+              100: '#F5F1E9',
+              200: '#E8E2D5',
+              700: '#4A443C',
+              800: '#342F29',
+              900: '#221E1A',
+            },
+            // Soft Non-blinding Emergency Rust/Crimson
+            softRed: {
+              50: '#FEF2F2',
+              100: '#FEE2E2',
+              600: '#DC2626',
+              700: '#B91C1C',
+              800: '#991B1B',
+            },
+            // Gentle Amber
+            softAmber: {
+              50: '#FFFBEB',
+              600: '#D97706',
+              700: '#B45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* -------------------------------------------------------------
+       EYE-SENSITIVE STYLING & ACCESSIBILITY ARCHITECTURE
+       Designed to prevent ocular fatigue, migraines & photophobia.
+       Uses matte tones, reduced glares, and soft organic contrast.
+       ------------------------------------------------------------- */
+    
+    /* High Visibility Gentle Focus Ring */
+    *:focus-visible {
+      outline: 3px solid #2E6F62 !important;
+      outline-offset: 3px !important;
+    }
+
+    /* Slow, non-stroboscopic breathing pulses (Prevents visual stress) */
+    @keyframes gentleBreathing {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.05); opacity: 0.45; }
+    }
+    .animate-gentle-pulse {
+      animation: gentleBreathing 3.5s infinite ease-in-out;
+    }
+
+    @keyframes softSosGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.4); }
+      50% { box-shadow: 0 0 0 14px rgba(185, 28, 28, 0); }
+    }
+    .animate-soft-sos {
+      animation: softSosGlow 2.8s infinite ease-out;
+    }
+
+    /* Font Size Scaling Classes */
+    body.font-scale-sm { font-size: 15px; }
+    body.font-scale-md { font-size: 17px; }
+    body.font-scale-lg { font-size: 20px; }
+
+    /* ============================================================
+       THEME OVERRIDES (4 EYE-FRIENDLY CLINICAL MODES)
+       ============================================================ */
+    
+    /* 1. Calm Mineral Sage (Default) - In Tailwind Body */
+
+    /* 2. Warm Paper / Eye-Comfort Mode (Blue-Light Filter / Sepia) */
+    body.theme-eyecare {
+      background-color: #F8F4EB !important;
+      color: #2D2721 !important;
+    }
+    body.theme-eyecare .theme-card {
+      background-color: #FFFDF9 !important;
+      border-color: #E6DFCE !important;
+      color: #2D2721 !important;
+    }
+    body.theme-eyecare .theme-heading {
+      color: #1F1914 !important;
+    }
+    body.theme-eyecare .theme-btn-primary {
+      background-color: #385E4E !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-eyecare .theme-border {
+      border-color: #E2D9C6 !important;
+    }
+
+    /* 3. Matte High-Contrast (OLED Low-Vision, Zero Neon Glare) */
+    body.theme-high-contrast {
+      background-color: #121417 !important;
+      color: #F3F4F6 !important;
+    }
+    body.theme-high-contrast .theme-card {
+      background-color: #1A1D23 !important;
+      border: 2px solid #F59E0B !important;
+      color: #FFFFFF !important;
+    }
+    body.theme-high-contrast .theme-heading {
+      color: #FBBF24 !important;
+    }
+    body.theme-high-contrast .theme-btn-primary {
+      background-color: #F59E0B !important;
+      color: #111827 !important;
+      font-weight: 800 !important;
+      border: 2px solid #FFFFFF !important;
+    }
+    body.theme-high-contrast .theme-border {
+      border-color: #F59E0B !important;
+    }
+    body.theme-high-contrast select, body.theme-high-contrast input {
+      background-color: #1F242C !important;
+      color: #FFFFFF !important;
+      border-color: #F59E0B !important;
+    }
+
+    /* 4. Muted Midnight (Dark Mode with Soothing Low Luminance) */
+    body.theme-dark {
+      background-color: #0F141C !important;
+      color: #E2E8F0 !important;
+    }
+    body.theme-dark .theme-card {
+      background-color: #17202D !important;
+      border-color: #253346 !important;
+      color: #E2E8F0 !important;
+    }
+    body.theme-dark .theme-heading {
+      color: #F8FAFC !important;
+    }
+    body.theme-dark .theme-border {
+      border-color: #253346 !important;
+    }
+    body.theme-dark select, body.theme-dark input {
+      background-color: #1E2B3D !important;
+      color: #F8FAFC !important;
+      border-color: #33445C !important;
+    }
+
+    /* Audio visualizer bar animation */
+    .audio-bar {
+      transition: height 0.15s ease-out;
+    }
+  </style>
+</head>
+<body class="h-full bg-[#F4F7F5] text-slate-800 font-sans font-scale-md transition-colors duration-300 antialiased selection:bg-sage-200 selection:text-sage-900">
+
+  <!-- Screen Reader Live Region -->
+  <div id="sr-announcements" class="sr-only" aria-live="assertive" aria-atomic="true">CarePulse AI loaded with eye-sensitive color mode.</div>
+
+  <!-- Keyboard Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3 focus:bg-sage-700 focus:text-white focus:rounded-xl focus:shadow-lg focus:font-bold">
+    Skip to Content (Alt + S)
+  </a>
+
+  <!-- ============================================================ -->
+  <!-- TOP ACCESSIBILITY & EYE-COMFORT TOOLBAR                     -->
+  <!-- ============================================================ -->
+  <header role="banner" class="sticky top-0 z-40 bg-[#FFFFFF]/95 backdrop-blur-md border-b border-slate-200 shadow-sm theme-card theme-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand & Identity -->
+      <div class="flex items-center space-x-3">
+        <button onclick="navigateTo('dashboard')" aria-label="CarePulse Home" class="flex items-center space-x-2.5 text-left group">
+          <div class="w-10 h-10 rounded-xl bg-sage-700 text-white flex items-center justify-center shadow-sm group-hover:bg-sage-800 transition">
+            <svg class="w-5 h-5 text-emerald-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xl font-bold tracking-tight text-slate-900 theme-heading">CarePulse<span class="text-sage-700 font-extrabold">.ai</span></span>
+              <span class="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-sage-100 text-sage-800 border border-sage-200">Eye-Comfort</span>
+            </div>
+            <p class="text-xs text-slate-500 theme-subtext hidden sm:block">Gentle Assistive Health & Triage</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- Quick Accessibility Toolbar (Eye-Care, Text Scaler, Audio) -->
+      <div class="flex items-center flex-wrap gap-2 text-sm font-medium">
+        
+        <!-- Text Scaler Buttons -->
+        <div class="flex items-center bg-slate-100/90 rounded-lg p-1 border border-slate-200 theme-border" role="group" aria-label="Text size adjustments">
+          <button onclick="changeFontSize('sm')" class="px-2.5 py-1 rounded text-xs font-bold hover:bg-white text-slate-700 transition" title="Default Size">A</button>
+          <button onclick="changeFontSize('md')" class="px-2.5 py-1 rounded text-sm font-bold hover:bg-white text-slate-800 transition" title="Comfort Size">A+</button>
+          <button onclick="changeFontSize('lg')" class="px-2.5 py-1 rounded text-base font-black hover:bg-white text-slate-900 transition" title="Maximum Legibility Size">A++</button>
+        </div>
+
+        <!-- Eye-Friendly Theme Selector -->
+        <div class="relative">
+          <label for="theme-select" class="sr-only">Choose Visual Theme</label>
+          <select id="theme-select" onchange="applyTheme(this.value)" class="bg-slate-100/90 border border-slate-300 text-slate-800 text-xs sm:text-sm font-semibold rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-sage-600 theme-border">
+            <option value="calm">🌿 Calm Sage (Gentle)</option>
+            <option value="eyecare">📖 Warm Paper (Eye-Care)</option>
+            <option value="high-contrast">👁️ Matte High Contrast</option>
+            <option value="dark">🌙 Soft Dark Mode</option>
+          </select>
+        </div>
+
+        <!-- 1-Tap Eye-Care / Anti-Glare Warm Toggle Button -->
+        <button onclick="toggleWarmEyeCare()" id="btn-warm-eyecare" class="px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 transition flex items-center space-x-1.5 text-xs font-bold" title="Toggle Warm Anti-Glare Mode">
+          <span>🕯️ Eye-Care Mode</span>
+        </button>
+
+        <!-- Voice-Over Auto TTS Narrator -->
+        <button onclick="toggleVoiceOver()" id="btn-voiceover" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 transition flex items-center space-x-1 text-xs font-semibold" aria-pressed="false" title="Auto Screen Reader / Text to Speech">
+          <span id="voiceover-icon">🔇</span>
+          <span id="voiceover-text" class="hidden sm:inline">Voice-Over: Off</span>
+        </button>
+
+        <!-- Soft Sound Haptics -->
+        <button onclick="toggleSoundHaptics()" id="btn-sound" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-100 text-slate-700 transition text-xs font-semibold" title="Sound Feedback">
+          <span id="sound-icon">🔊 Audio ON</span>
+        </button>
+
+        <!-- User Authentication State Slot -->
+        <div id="auth-header-slot" class="ml-1"></div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR (Soft Matte Aesthetic) -->
+  <nav aria-label="Main Navigation" class="bg-white/80 border-b border-slate-200 theme-card theme-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex overflow-x-auto gap-2 py-2 text-sm font-semibold scrollbar-none">
+      <button onclick="navigateTo('dashboard')" id="nav-btn-dashboard" class="nav-tab px-4 py-2 rounded-xl flex items-center space-x-2 bg-sage-700 text-white shadow-sm transition">
+        <span>🏠 Dashboard</span>
+      </button>
+      <button onclick="navigateTo('vision')" id="nav-btn-vision" class="nav-tab px-4 py-2 rounded-xl flex items-center space-x-2 text-slate-600 hover:bg-slate-100 transition">
+        <span>📷 Medicine Vision (OCR)</span>
+      </button>
+      <button onclick="navigateTo('triage')" id="nav-btn-triage" class="nav-tab px-4 py-2 rounded-xl flex items-center space-x-2 text-slate-600 hover:bg-slate-100 transition">
+        <span>🩺 Gentle Triage</span>
+      </button>
+      <button onclick="navigateTo('medications')" id="nav-btn-medications" class="nav-tab px-4 py-2 rounded-xl flex items-center space-x-2 text-slate-600 hover:bg-slate-100 transition">
+        <span>💊 Daily Meds & Vitals</span>
+      </button>
+      <button onclick="navigateTo('sos-page')" id="nav-btn-sos-page" class="nav-tab px-4 py-2 rounded-xl flex items-center space-x-2 text-softRed-700 hover:bg-softRed-50 border border-softRed-200 transition font-bold">
+        <span>🚨 Emergency SOS</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- MAIN CONTENT CONTAINER                                       -->
+  <!-- ============================================================ -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 pb-28">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: AUTHENTICATION (LOGIN / SIGNUP)   -->
+    <!-- ========================================== -->
+    <section id="view-auth" class="hidden py-8">
+      <div class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 theme-card theme-border">
+        
+        <!-- Tab Switcher between Login & Signup -->
+        <div class="flex rounded-xl bg-slate-100 p-1 mb-6 theme-border">
+          <button onclick="switchAuthMode('login')" id="tab-login" class="flex-1 py-2 text-center font-bold text-sm rounded-lg bg-white shadow-sm text-slate-900 transition">
+            Sign In
+          </button>
+          <button onclick="switchAuthMode('signup')" id="tab-signup" class="flex-1 py-2 text-center font-bold text-sm rounded-lg text-slate-600 transition">
+            Create Account
+          </button>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <div class="w-14 h-14 bg-sage-100 text-sage-800 rounded-2xl flex items-center justify-center mx-auto mb-3 border border-sage-200">
+            <span class="text-2xl">🌿</span>
+          </div>
+          <h1 id="auth-title" class="text-2xl font-bold text-slate-900 theme-heading">Sign In to CarePulse</h1>
+          <p id="auth-subtitle" class="text-sm text-slate-500 mt-1">Gentle assistive health & caregiver portal</p>
+        </div>
+
+        <!-- Form -->
+        <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+          <div id="signup-extra-fields" class="space-y-4 hidden">
+            <div>
+              <label for="user-fullname" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Full Name</label>
+              <input type="text" id="user-fullname" placeholder="e.g. Rajesh Sharma" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sage-600 text-slate-900 font-medium bg-slate-50/50">
+            </div>
+            <div>
+              <label for="user-role" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">User Profile / Need</label>
+              <select id="user-role" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sage-600 text-slate-900 font-medium bg-slate-50/50">
+                <option value="patient_vision">Visually Impaired / Sensitive Eyes</option>
+                <option value="patient_elderly">Elderly Senior Citizen</option>
+                <option value="caregiver">Family Member / Caregiver</option>
+                <option value="doctor">Healthcare Professional</option>
+              </select>
+            </div>
+            <div>
+              <label for="emergency-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Emergency Contact Number</label>
+              <input type="tel" id="emergency-phone" placeholder="+91 9988776655" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sage-600 text-slate-900 font-medium bg-slate-50/50">
+            </div>
+          </div>
+
+          <div>
+            <label for="auth-email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Email or Phone</label>
+            <input type="text" id="auth-email" required placeholder="patient@carepulse.org" value="patient@carepulse.org" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sage-600 text-slate-900 font-medium bg-slate-50/50">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label for="auth-password" class="block text-xs font-bold uppercase tracking-wider text-slate-600">Password</label>
+              <span class="text-xs text-sage-700 font-semibold hover:underline cursor-pointer" onclick="alert('Demo Mode: Click Sign In directly!')">Forgot?</span>
+            </div>
+            <input type="password" id="auth-password" required placeholder="••••••••" value="demo1234" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sage-600 text-slate-900 font-medium bg-slate-50/50">
+          </div>
+
+          <!-- Gentle Voice Checkbox -->
+          <div class="flex items-center space-x-2 pt-1">
+            <input type="checkbox" id="auth-voice-pref" checked class="w-4 h-4 rounded border-slate-300 text-sage-700 focus:ring-sage-600">
+            <label for="auth-voice-pref" class="text-xs font-medium text-slate-700">Enable calm audio feedback</label>
+          </div>
+
+          <button type="submit" id="btn-auth-submit" class="w-full py-3.5 px-4 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-base shadow-sm transition theme-btn-primary">
+            Sign In to CarePulse
+          </button>
+        </form>
+
+        <!-- Quick 1-Click Demo Profiles -->
+        <div class="mt-6 pt-5 border-t border-slate-200">
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center mb-3">⚡ 1-Click Instant Demo Profiles</p>
+          <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+            <button onclick="loginQuick('Rajesh Sharma (Sensitive Vision)', 'patient_vision', '+91 9811223344')" class="p-2.5 border border-sage-200 bg-sage-50 hover:bg-sage-100 rounded-xl text-sage-900 flex items-center justify-center space-x-1.5 transition">
+              <span>👁️ Sensitive Vision</span>
+            </button>
+            <button onclick="loginQuick('Dr. Anita Sen (Caregiver)', 'caregiver', '+91 9988776655')" class="p-2.5 border border-slate-200 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-800 flex items-center justify-center space-x-1.5 transition">
+              <span>👩‍⚕️ Caregiver Mode</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: DASHBOARD (HOME)                  -->
+    <!-- ========================================== -->
+    <section id="view-dashboard" class="space-y-6">
+
+      <!-- GENTLE HERO & PATIENT STATUS BANNER -->
+      <div class="bg-gradient-to-r from-sage-800 via-sage-700 to-slate-800 rounded-3xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden theme-card">
+        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="space-y-2">
+            <div class="flex items-center space-x-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/15">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
+                Eye-Comfort System Active
+              </span>
+              <span id="user-role-badge" class="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white">Sensitive Vision Profile</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight theme-heading">
+              Namaste, <span id="dashboard-user-name">Rajesh Sharma</span> 👋
+            </h1>
+            <p class="text-sage-100 text-sm sm:text-base max-w-xl">
+              Colors optimized for low optical fatigue. Next scheduled medicine: <strong class="text-white font-bold">Metformin 500mg at 1:00 PM</strong>.
+            </p>
+          </div>
+
+          <!-- Subtle Health Streak -->
+          <div class="flex items-center gap-3">
+            <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3.5 text-center min-w-[105px]">
+              <span class="text-2xl font-bold text-amber-200">7 Days</span>
+              <p class="text-[11px] font-medium text-sage-100 mt-0.5">Adherence Streak</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-3.5 text-center min-w-[105px]">
+              <span class="text-2xl font-bold text-emerald-200">98%</span>
+              <p class="text-[11px] font-medium text-sage-100 mt-0.5">Normal Vitals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTRAL VOICE ASSISTANT BAR (GENTLE ACOUSTIC DESIGN) -->
+      <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 theme-card theme-border relative">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          <!-- Mic & Voice Status -->
+          <div class="flex items-center space-x-5 w-full md:w-auto">
+            <div class="relative">
+              <button onclick="toggleVoiceListening()" id="main-voice-mic-btn" aria-label="Toggle Voice Assistant Microphone" class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-sage-700 hover:bg-sage-800 text-white flex items-center justify-center shadow-sm transition theme-btn-primary group">
+                <svg id="mic-icon-svg" class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                </svg>
+              </button>
+              <div id="mic-radar" class="hidden absolute inset-0 rounded-full bg-sage-400 -z-10 animate-gentle-pulse"></div>
+            </div>
+
+            <div>
+              <div class="flex items-center space-x-2">
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900 theme-heading">Speak to CarePulse</h2>
+                <span id="voice-status-pill" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600">Click Mic to Speak</span>
+              </div>
+              <p id="voice-transcript-output" class="text-sm text-slate-600 font-medium mt-1">
+                "Listening for medicine queries, symptom checks, or vital reminders..."
+              </p>
+            </div>
+          </div>
+
+          <!-- Gentle Waveform Visualizer (Soft Muted Sage) -->
+          <div class="flex items-center space-x-1.5 h-10 px-4 bg-slate-50 rounded-xl border border-slate-200 theme-border">
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-2"></div>
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-4"></div>
+            <div class="w-1.5 bg-sage-700 rounded-full audio-bar h-6"></div>
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-3"></div>
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-5"></div>
+            <div class="w-1.5 bg-sage-700 rounded-full audio-bar h-6"></div>
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-3"></div>
+            <div class="w-1.5 bg-sage-600 rounded-full audio-bar h-2"></div>
+          </div>
+
+        </div>
+
+        <!-- Sample Voice Command Prompt Chips -->
+        <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">Try saying:</span>
+          <button onclick="simulateVoiceQuery('Did I take my afternoon medicine?')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-sage-50 hover:bg-sage-100 text-sage-900 border border-sage-200 transition">
+            🗣️ "Did I take my afternoon medicine?"
+          </button>
+          <button onclick="simulateVoiceQuery('I have severe chest pain and breathlessness')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-softRed-50 hover:bg-softRed-100 text-softRed-800 border border-softRed-200 transition">
+            🚨 "I have chest pain & breathlessness"
+          </button>
+          <button onclick="simulateVoiceQuery('Scan my Paracetamol medicine')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition">
+            📷 "Scan my Paracetamol medicine"
+          </button>
+          <button onclick="simulateVoiceQuery('Log my blood pressure 120 over 80')" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition">
+            ❤️ "Log BP 120 over 80"
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 EYE-RESTFUL ACTION MODULES -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Medicine Vision Scanner -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border flex flex-col justify-between hover:border-slate-300 transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-800 flex items-center justify-center text-xl mb-4 border border-sage-200">
+              📷
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 theme-heading">Medicine Vision Lens</h3>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Scan strip packaging or prescriptions. High-contrast typography extracts dosage, expiry, and plain audio instructions.
+            </p>
+          </div>
+          <button onclick="navigateTo('vision')" class="mt-6 w-full py-3 px-4 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-sm shadow-sm transition flex items-center justify-center space-x-2">
+            <span>Open Medicine Scanner</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Card 2: Gentle 60s Triage -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border flex flex-col justify-between hover:border-slate-300 transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-800 flex items-center justify-center text-xl mb-4 border border-amber-200">
+              🩺
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 theme-heading">Gentle 60s Triage</h3>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Feeling unwell? Answer 3 calm guided questions to classify symptoms into Home Care, Teleconsult, or Hospital Alert.
+            </p>
+          </div>
+          <button onclick="navigateTo('triage')" class="mt-6 w-full py-3 px-4 rounded-xl bg-slate-700 hover:bg-slate-800 text-white font-bold text-sm shadow-sm transition flex items-center justify-center space-x-2">
+            <span>Start Quick Triage</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Card 3: 1-Tap Emergency SOS (Muted Rust, Not Glaring) -->
+        <div class="bg-white rounded-3xl p-6 border border-softRed-200 shadow-sm theme-card theme-border flex flex-col justify-between hover:border-softRed-300 transition bg-gradient-to-b from-white to-softRed-50/20">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-softRed-100 text-softRed-800 flex items-center justify-center text-xl mb-4 border border-softRed-200">
+              🚨
+            </div>
+            <h3 class="text-xl font-bold text-softRed-800">1-Tap Emergency SOS</h3>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Dispatches live GPS coordinates, blood group, and medical profile to family and doctor with a 5s cancel safeguard.
+            </p>
+          </div>
+          <button onclick="triggerEmergencySOS()" class="mt-6 w-full py-3.5 px-4 rounded-xl bg-softRed-700 hover:bg-softRed-800 text-white font-bold text-base shadow-sm transition animate-soft-sos flex items-center justify-center space-x-2">
+            <span>🚨 TRIGGER SOS ALERT</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- MEDICATION SCHEDULE & VITALS SUMMARY -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Today's Medicine List -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-slate-900 theme-heading flex items-center space-x-2">
+              <span>💊</span>
+              <span>Today's Medicine Schedule</span>
+            </h3>
+            <button onclick="navigateTo('medications')" class="text-xs font-semibold text-sage-700 hover:underline">View All →</button>
+          </div>
+
+          <div class="space-y-3" id="dashboard-med-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Recent Vitals Snapshot -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-slate-900 theme-heading flex items-center space-x-2">
+              <span>📊</span>
+              <span>Recorded Vitals</span>
+            </h3>
+            <button onclick="navigateTo('medications')" class="text-xs font-semibold text-sage-700 hover:underline">Log Vitals →</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3" id="dashboard-vitals-snapshot">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: MEDICINE VISION (OCR & EXPLAINER) -->
+    <!-- ========================================== -->
+    <section id="view-vision" class="hidden space-y-6">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm theme-card theme-border">
+        
+        <div class="max-w-3xl">
+          <span class="text-xs font-bold uppercase tracking-wider text-sage-800 bg-sage-100 px-3 py-1 rounded-full border border-sage-200">
+            Assistive Computer Vision
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 theme-heading">
+            Medicine Strip & Prescription Reader
+          </h2>
+          <p class="text-slate-600 mt-1 leading-relaxed">
+            Eliminating optical confusion on blister packs. Take a photo, upload an image, or click a sample to hear plain language instructions.
+          </p>
+        </div>
+
+        <!-- Scanning Controls -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <!-- Camera Mode -->
+          <button onclick="triggerCameraCapture()" class="p-6 rounded-2xl border-2 border-dashed border-sage-300 bg-sage-50/40 hover:bg-sage-100/50 transition text-center flex flex-col items-center justify-center space-y-2 group">
+            <div class="w-12 h-12 rounded-2xl bg-sage-700 text-white flex items-center justify-center text-xl shadow-sm transition">
+              📸
+            </div>
+            <span class="font-bold text-slate-900 text-base">Capture with Camera</span>
+            <span class="text-xs text-slate-500">Auto-align blister strip</span>
+          </button>
+
+          <!-- Upload Mode -->
+          <label class="p-6 rounded-2xl border-2 border-dashed border-slate-300 hover:border-slate-400 bg-slate-50/50 hover:bg-slate-100/60 transition text-center flex flex-col items-center justify-center space-y-2 cursor-pointer group">
+            <input type="file" id="file-medicine-upload" accept="image/*" class="sr-only" onchange="handleMedicineUpload(event)">
+            <div class="w-12 h-12 rounded-2xl bg-slate-700 text-white flex items-center justify-center text-xl shadow-sm transition">
+              📁
+            </div>
+            <span class="font-bold text-slate-900 text-base">Upload Image File</span>
+            <span class="text-xs text-slate-500">PNG, JPG or PDF</span>
+          </label>
+
+          <!-- Instant Presets for Live Testing -->
+          <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between theme-card">
+            <div>
+              <span class="text-xs font-bold uppercase text-slate-400">⚡ Test Presets:</span>
+              <div class="mt-2 space-y-1.5">
+                <button onclick="loadSampleMedicine('paracetamol')" class="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 transition">
+                  💊 Paracetamol 650mg
+                </button>
+                <button onclick="loadSampleMedicine('metformin')" class="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 transition">
+                  💊 Metformin HCl 500mg
+                </button>
+                <button onclick="loadSampleMedicine('expired')" class="w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold bg-softRed-50 hover:bg-softRed-100 border border-softRed-200 text-softRed-900 transition">
+                  ⚠️ Expired Cough Syrup
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Scanning Loading Indicator -->
+        <div id="ocr-loading-state" class="hidden mt-8 p-6 rounded-2xl bg-sage-50 border border-sage-200 text-center">
+          <div class="w-10 h-10 border-3 border-sage-700 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+          <h4 class="text-sm font-bold text-sage-900">Running OCR & Clinical Safety Analysis...</h4>
+          <p class="text-xs text-sage-700">Verifying dosage strength and active expiry date</p>
+        </div>
+
+        <!-- OCR RESULT CARD -->
+        <div id="ocr-result-card" class="mt-8 bg-slate-50/70 rounded-2xl p-6 sm:p-8 border border-slate-200 theme-card theme-border">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+            <div>
+              <span id="ocr-badge-status" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                ✓ Verified Medicine Safe
+              </span>
+              <h3 id="ocr-med-name" class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 theme-heading">
+                Dolo-650 (Paracetamol Tablets IP)
+              </h3>
+              <p id="ocr-med-sub" class="text-sm font-medium text-slate-600">
+                Formula: Acetaminophen 650 mg | Strip ID: #BAT-99214
+              </p>
+            </div>
+
+            <!-- Read Aloud Primary Button -->
+            <button onclick="readMedicineAloud()" class="py-3 px-5 rounded-2xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-sm shadow-sm transition flex items-center space-x-2 theme-btn-primary">
+              <span class="text-lg">🔊</span>
+              <span>Read Aloud in Plain Words</span>
+            </button>
+          </div>
+
+          <!-- Analysis Detail Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            
+            <div class="bg-white p-4 rounded-xl border border-slate-200 theme-card">
+              <span class="text-xs font-bold uppercase text-slate-400">📅 Expiry Status</span>
+              <p id="ocr-expiry" class="text-lg font-bold text-emerald-700 mt-1">
+                Valid till Nov 2026
+              </p>
+              <span class="text-xs text-slate-500">Safe for consumption</span>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-slate-200 theme-card">
+              <span class="text-xs font-bold uppercase text-slate-400">🕒 Dosage Instruction</span>
+              <p id="ocr-dosage" class="text-lg font-bold text-slate-900 mt-1 theme-heading">
+                1 Tablet After Dinner
+              </p>
+              <span class="text-xs text-slate-500">Take with warm water</span>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-slate-200 theme-card">
+              <span class="text-xs font-bold uppercase text-slate-400">⚠️ Precaution Note</span>
+              <p id="ocr-warning" class="text-sm font-semibold text-amber-800 mt-1">
+                Do not exceed 3 tablets in 24 hours. Avoid alcohol.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Plain Hinglish/English Translation -->
+          <div class="mt-6 p-4 rounded-xl bg-sage-50/90 border border-sage-200 text-sage-950">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-sage-800 mb-1">🗣️ Spoken Summary:</h5>
+            <p id="ocr-simple-text" class="text-base font-medium leading-relaxed">
+              "Yeh Paracetamol tablet hai jo bukhar aur badan dard ke liye hai. Ise khana khane ke baad 1 goli paani ke saath lein. Agli khuraak 6 ghante baad hi lein."
+            </p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button onclick="addOcrToSchedule()" class="py-2.5 px-5 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-sm shadow-sm transition">
+              + Add to Today's Medicine List
+            </button>
+            <button onclick="shareViaWhatsApp('CarePulse Medicine Scan: Dolo 650mg verified safe.')" class="py-2.5 px-5 rounded-xl bg-slate-700 hover:bg-slate-800 text-white font-bold text-sm shadow-sm transition flex items-center space-x-1.5">
+              <span>💬 Share with Family via WhatsApp</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: GENTLE 60-SECOND TRIAGE WIZARD    -->
+    <!-- ========================================== -->
+    <section id="view-triage" class="hidden space-y-6">
+
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm theme-card theme-border">
+        
+        <div class="max-w-2xl mb-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+            Clinical Decision Support
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 theme-heading">
+            Gentle 60-Second Triage
+          </h2>
+          <p class="text-slate-600 mt-1 leading-relaxed">
+            Fast, non-judgmental symptom evaluation. Helps prevent unnecessary ER rush while swiftly alarming high-risk issues.
+          </p>
+        </div>
+
+        <div id="triage-steps-container" class="space-y-6">
+
+          <!-- Step 1: Symptoms -->
+          <div class="space-y-3">
+            <label class="block text-sm font-bold text-slate-800 uppercase tracking-wide">
+              Step 1: Select Noticeable Symptoms (Click all that apply)
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="triage-symptom-pills">
+              <button type="button" onclick="toggleTriagePill(this, 'High Fever (>101°F)', 2)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>🌡️ High Fever</span>
+                <span class="check-icon hidden text-sage-700 font-bold">✓</span>
+              </button>
+              <button type="button" onclick="toggleTriagePill(this, 'Severe Chest Pressure', 5)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-softRed-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>🫀 Chest Pain</span>
+                <span class="check-icon hidden text-softRed-700 font-bold">✓</span>
+              </button>
+              <button type="button" onclick="toggleTriagePill(this, 'Difficulty Breathing', 5)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-softRed-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>🫁 Short Breath</span>
+                <span class="check-icon hidden text-softRed-700 font-bold">✓</span>
+              </button>
+              <button type="button" onclick="toggleTriagePill(this, 'Dizziness or Fainting', 3)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>💫 Dizziness</span>
+                <span class="check-icon hidden text-sage-700 font-bold">✓</span>
+              </button>
+              <button type="button" onclick="toggleTriagePill(this, 'Mild Cough / Throat Ache', 1)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>🤧 Mild Cough</span>
+                <span class="check-icon hidden text-sage-700 font-bold">✓</span>
+              </button>
+              <button type="button" onclick="toggleTriagePill(this, 'Stomach Ache / Acidity', 1)" class="triage-pill p-3.5 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-left flex items-center justify-between transition">
+                <span>🤢 Stomach Ache</span>
+                <span class="check-icon hidden text-sage-700 font-bold">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Duration -->
+          <div class="space-y-3">
+            <label class="block text-sm font-bold text-slate-800 uppercase tracking-wide">
+              Step 2: How long have you felt this way?
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+              <button type="button" onclick="selectDuration(this, 1)" class="duration-pill p-3 rounded-xl border-2 border-sage-700 bg-sage-50 font-bold text-sm text-center text-sage-900 transition">
+                Under 2 Hours
+              </button>
+              <button type="button" onclick="selectDuration(this, 2)" class="duration-pill p-3 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-center text-slate-800 transition">
+                1 - 2 Days
+              </button>
+              <button type="button" onclick="selectDuration(this, 3)" class="duration-pill p-3 rounded-xl border border-slate-200 hover:border-sage-600 font-semibold text-sm text-center text-slate-800 transition">
+                More than 3 Days
+              </button>
+            </div>
+          </div>
+
+          <!-- Calculate Button -->
+          <button onclick="calculateTriageOutcome()" class="w-full py-4 rounded-2xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-base shadow-sm transition theme-btn-primary">
+            🔍 Calculate Triage Risk Level
+          </button>
+
+        </div>
+
+        <!-- Triage Result Card -->
+        <div id="triage-result-box" class="hidden mt-8 rounded-2xl p-6 sm:p-8 border transition">
+          <div class="flex items-center space-x-3 mb-4">
+            <span id="triage-icon" class="text-3xl">🟢</span>
+            <div>
+              <span id="triage-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase">Low Risk</span>
+              <h3 id="triage-title" class="text-2xl font-bold text-slate-900 theme-heading mt-1">Recommended: Home Monitoring</h3>
+            </div>
+          </div>
+
+          <p id="triage-explanation" class="text-base text-slate-700 leading-relaxed font-medium">
+            Your symptoms indicate a mild viral or fatigue condition. No urgent emergency visit is required.
+          </p>
+
+          <div class="mt-6 p-4 rounded-xl bg-white border border-slate-200 theme-card">
+            <h5 class="text-xs font-bold uppercase text-slate-400 mb-2">Recommended Next Steps:</h5>
+            <ul id="triage-action-list" class="space-y-1.5 text-sm font-medium text-slate-800">
+              <li>💧 Stay hydrated with warm fluids and electrolyte balance.</li>
+              <li>🛌 Rest in a comfortable, quiet room.</li>
+              <li>🌡️ Re-check symptoms after 6 hours.</li>
+            </ul>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button onclick="printTriageReport()" class="py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm shadow-sm transition flex items-center space-x-2">
+              <span>📄 Download / Print Summary</span>
+            </button>
+            <button onclick="shareTriageWhatsApp()" class="py-3 px-5 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-semibold text-sm shadow-sm transition flex items-center space-x-2">
+              <span>💬 Share with Doctor via WhatsApp</span>
+            </button>
+            <button onclick="resetTriage()" class="py-3 px-4 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-sm transition">
+              Reset Triage
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 5: DAILY MEDICATION & VITALS         -->
+    <!-- ========================================== -->
+    <section id="view-medications" class="hidden space-y-6">
+
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 theme-heading">Daily Medication & Vitals</h2>
+          <p class="text-sm text-slate-500">Gentle pill reminders with soft auditory and visual confirmations.</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="openAddMedModal()" class="py-2.5 px-4 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-semibold text-sm shadow-sm transition">
+            + Add New Medicine
+          </button>
+        </div>
+      </div>
+
+      <!-- Schedule Slots -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Morning Slot -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+            <span class="text-sm font-bold text-amber-800 flex items-center space-x-1.5">
+              <span>🌅</span>
+              <span>Morning (8:00 AM)</span>
+            </span>
+            <span class="text-xs font-medium text-slate-400">Breakfast</span>
+          </div>
+
+          <div class="space-y-3" id="med-slot-morning">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Afternoon Slot -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+            <span class="text-sm font-bold text-sage-800 flex items-center space-x-1.5">
+              <span>☀️</span>
+              <span>Afternoon (1:00 PM)</span>
+            </span>
+            <span class="text-xs font-medium text-slate-400">Lunch</span>
+          </div>
+
+          <div class="space-y-3" id="med-slot-afternoon">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Night Slot -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm theme-card theme-border">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+            <span class="text-sm font-bold text-slate-800 flex items-center space-x-1.5">
+              <span>🌙</span>
+              <span>Night (9:00 PM)</span>
+            </span>
+            <span class="text-xs font-medium text-slate-400">Dinner</span>
+          </div>
+
+          <div class="space-y-3" id="med-slot-night">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VITALS LOGGER (EYE-FRIENDLY MATTE GAUGES) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm theme-card theme-border">
+        
+        <div class="mb-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-sage-800 bg-sage-100 px-3 py-1 rounded-full border border-sage-200">
+            Biometric Telemetry
+          </span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-2 theme-heading">Log Today's Health Vitals</h3>
+          <p class="text-slate-600 text-sm mt-1">
+            Matte visual meters alert caregivers without startling alarms.
+          </p>
+        </div>
+
+        <form onsubmit="handleLogVitals(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Blood Pressure -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 theme-card">
+            <div class="flex items-center justify-between mb-2">
+              <label for="vital-bp-sys" class="text-xs font-bold uppercase text-slate-500">Blood Pressure</label>
+              <span class="text-xs font-medium px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Normal</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <input type="number" id="vital-bp-sys" value="120" min="60" max="220" class="w-1/2 p-2.5 rounded-lg border border-slate-300 font-bold text-center">
+              <span class="font-bold text-slate-400">/</span>
+              <input type="number" id="vital-bp-dia" value="80" min="40" max="140" class="w-1/2 p-2.5 rounded-lg border border-slate-300 font-bold text-center">
+            </div>
+            <span class="text-[11px] text-slate-400 block mt-1">SYS / DIA (mmHg)</span>
+          </div>
+
+          <!-- Blood Sugar -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 theme-card">
+            <div class="flex items-center justify-between mb-2">
+              <label for="vital-sugar" class="text-xs font-bold uppercase text-slate-500">Blood Sugar</label>
+              <span class="text-xs font-medium px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Fasting</span>
+            </div>
+            <input type="number" id="vital-sugar" value="98" min="40" max="400" class="w-full p-2.5 rounded-lg border border-slate-300 font-bold text-center">
+            <span class="text-[11px] text-slate-400 block mt-1">mg/dL (Normal: 70-110)</span>
+          </div>
+
+          <!-- SpO2 -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 theme-card">
+            <div class="flex items-center justify-between mb-2">
+              <label for="vital-spo2" class="text-xs font-bold uppercase text-slate-500">SpO2 Oxygen</label>
+              <span class="text-xs font-medium px-2 py-0.5 rounded bg-sage-100 text-sage-800">Optimal</span>
+            </div>
+            <input type="number" id="vital-spo2" value="99" min="70" max="100" class="w-full p-2.5 rounded-lg border border-slate-300 font-bold text-center">
+            <span class="text-[11px] text-slate-400 block mt-1">% Blood Oxygen</span>
+          </div>
+
+          <!-- Pulse -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 theme-card">
+            <div class="flex items-center justify-between mb-2">
+              <label for="vital-pulse" class="text-xs font-bold uppercase text-slate-500">Heart Rate</label>
+              <span class="text-xs font-medium px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Resting</span>
+            </div>
+            <input type="number" id="vital-pulse" value="72" min="40" max="180" class="w-full p-2.5 rounded-lg border border-slate-300 font-bold text-center">
+            <span class="text-[11px] text-slate-400 block mt-1">BPM (Beats Per Minute)</span>
+          </div>
+
+          <div class="sm:col-span-2 lg:col-span-4 mt-2">
+            <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-base shadow-sm transition">
+              💾 Save & Sync Vitals to Telehealth Profile
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 6: EMERGENCY SOS DEDICATED VIEW      -->
+    <!-- ========================================== -->
+    <section id="view-sos-page" class="hidden space-y-6">
+
+      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-softRed-200 shadow-sm text-center max-w-3xl mx-auto theme-card">
+        
+        <div class="w-20 h-20 rounded-full bg-softRed-100 text-softRed-800 flex items-center justify-center text-3xl mx-auto border border-softRed-300">
+          🚨
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-softRed-800 mt-4 tracking-tight">
+          1-Tap High-Priority SOS Dispatch
+        </h2>
+        <p class="text-slate-600 text-base max-w-lg mx-auto mt-2 font-medium">
+          Triggers an alert to family and doctor, acquiring live GPS coordinates with a 5-second cancel safeguard to avoid false alarms.
+        </p>
+
+        <!-- Giant Red SOS Button -->
+        <div class="my-8">
+          <button onclick="triggerEmergencySOS()" class="w-56 h-56 rounded-full bg-softRed-700 hover:bg-softRed-800 text-white text-xl font-bold shadow-md transition transform hover:scale-105 active:scale-95 animate-soft-sos border-4 border-softRed-200 inline-flex flex-col items-center justify-center space-y-2">
+            <span class="text-4xl">🆘</span>
+            <span>PRESS SOS</span>
+            <span class="text-xs opacity-90 uppercase tracking-widest font-normal">5-sec safeguard</span>
+          </button>
+        </div>
+
+        <!-- Emergency Contact Card -->
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-left max-w-md mx-auto shadow-sm theme-card">
+          <span class="text-xs font-bold uppercase text-slate-500">Configured Emergency Contact:</span>
+          <div class="flex items-center justify-between mt-2">
+            <div>
+              <p id="sos-contact-name" class="font-bold text-slate-900 text-base theme-heading">Dr. Anita Sen (Caregiver)</p>
+              <p id="sos-contact-phone" class="text-sm font-medium text-slate-600">+91 9988776655</p>
+            </div>
+            <a href="tel:+919988776655" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs rounded-xl shadow-sm transition">
+              📞 Direct Call
+            </a>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+            <span>Blood Group: <strong class="text-slate-800">O+ Positive</strong></span>
+            <span>Allergies: <strong class="text-softRed-700">Penicillin</strong></span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FLOATING QUICK EMERGENCY SOS TRIGGER       -->
+  <!-- ========================================== -->
+  <aside aria-label="Quick Emergency Bar" class="fixed bottom-4 right-4 z-40">
+    <button onclick="triggerEmergencySOS()" aria-label="Trigger Emergency SOS Alert" class="px-5 py-3 rounded-full bg-softRed-700 hover:bg-softRed-800 text-white font-bold text-sm shadow-md flex items-center space-x-2 border-2 border-white animate-soft-sos transition">
+      <span class="text-lg">🚨</span>
+      <span class="tracking-wide">QUICK SOS</span>
+    </button>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- EMERGENCY COUNTDOWN MODAL (5s SAFEGUARD)   -->
+  <!-- ========================================== -->
+  <div id="modal-sos-countdown" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="sos-modal-title">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center border-2 border-softRed-600 shadow-xl theme-card animate-scale-up">
+      <div class="w-16 h-16 rounded-full bg-softRed-100 text-softRed-800 flex items-center justify-center text-3xl mx-auto mb-3">
+        ⚠️
+      </div>
+      <h3 id="sos-modal-title" class="text-2xl font-bold text-softRed-800">EMERGENCY SOS ALERT</h3>
+      <p class="text-slate-600 mt-2 text-sm">
+        Notifying emergency contact & hospital telemetry in:
+      </p>
+
+      <div class="my-5">
+        <span id="sos-timer-number" class="text-6xl font-bold text-softRed-700 font-mono">5</span>
+        <span class="block text-xs font-medium uppercase text-slate-400 mt-1">Seconds to cancel</span>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button onclick="cancelEmergencySOS()" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-base shadow-sm transition">
+          ❌ CANCEL (FALSE ALARM)
+        </button>
+        <button onclick="dispatchEmergencyImmediately()" class="w-full py-2.5 rounded-xl bg-softRed-700 hover:bg-softRed-800 text-white font-semibold text-xs transition">
+          🚨 DISPATCH IMMEDIATELY (SKIP TIMER)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ADD MEDICINE MODAL                         -->
+  <!-- ========================================== -->
+  <div id="modal-add-med" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 shadow-xl theme-card">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold text-slate-900 theme-heading">Add Medicine Reminder</h3>
+        <button onclick="closeAddMedModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg">✕</button>
+      </div>
+
+      <form onsubmit="handleAddMedicineSubmit(event)" class="space-y-4">
+        <div>
+          <label for="new-med-name" class="block text-xs font-bold uppercase text-slate-500 mb-1">Medicine Name & Strength</label>
+          <input type="text" id="new-med-name" required placeholder="e.g. Atorvastatin 20mg" class="w-full p-3 rounded-xl border border-slate-300 font-medium text-slate-900">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="new-med-slot" class="block text-xs font-bold uppercase text-slate-500 mb-1">Time Slot</label>
+            <select id="new-med-slot" class="w-full p-3 rounded-xl border border-slate-300 font-medium text-slate-900">
+              <option value="morning">Morning (8 AM)</option>
+              <option value="afternoon">Afternoon (1 PM)</option>
+              <option value="night">Night (9 PM)</option>
+            </select>
+          </div>
+          <div>
+            <label for="new-med-dosage" class="block text-xs font-bold uppercase text-slate-500 mb-1">Dosage</label>
+            <input type="text" id="new-med-dosage" required placeholder="1 Tablet" value="1 Tablet" class="w-full p-3 rounded-xl border border-slate-300 font-medium text-slate-900">
+          </div>
+        </div>
+
+        <div>
+          <label for="new-med-notes" class="block text-xs font-bold uppercase text-slate-500 mb-1">Instructions</label>
+          <input type="text" id="new-med-notes" placeholder="After meal with water" value="After meal" class="w-full p-3 rounded-xl border border-slate-300 font-medium text-slate-900">
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-sage-700 hover:bg-sage-800 text-white font-bold text-base shadow-sm transition">
+          Save Medicine
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & ACCESSIBILITY CONTROLS -->
+  <script>
+    // ==========================================
+    // 1. STATE & STORAGE MANAGEMENT
+    // ==========================================
+    const AppState = {
+      currentUser: {
+        name: 'Rajesh Sharma',
+        role: 'patient_vision',
+        email: 'patient@carepulse.org',
+        phone: '+91 9811223344',
+        emergencyPhone: '+91 9988776655',
+        emergencyName: 'Dr. Anita Sen (Caregiver)',
+        isLoggedIn: true
+      },
+      currentTheme: 'calm',
+      fontSize: 'md',
+      voiceOverEnabled: false,
+      soundHapticsEnabled: true,
+      currentView: 'dashboard',
+      triageScore: 0,
+      triageDurationWeight: 1,
+      selectedSymptoms: [],
+      medications: [
+        { id: 'm1', name: 'Thyronorm 50mcg', slot: 'morning', dosage: '1 Tablet', notes: 'Empty stomach with water', taken: true },
+        { id: 'm2', name: 'Metformin 500mg', slot: 'afternoon', dosage: '1 Tablet', notes: 'Midway during lunch', taken: false },
+        { id: 'm3', name: 'Atorvastatin 10mg', slot: 'night', dosage: '1 Tablet', notes: 'After dinner at bed time', taken: false },
+        { id: 'm4', name: 'Vitamin D3 Drops', slot: 'morning', dosage: '4 Drops', notes: 'With breakfast', taken: true },
+      ],
+      vitalsHistory: {
+        bp: '120/80',
+        sugar: '98',
+        spo2: '99',
+        pulse: '72'
+      }
+    };
+
+    // Load persisted state if available
+    try {
+      const savedUser = localStorage.getItem('carepulse_user');
+      if (savedUser) AppState.currentUser = JSON.parse(savedUser);
+      const savedMeds = localStorage.getItem('carepulse_meds');
+      if (savedMeds) AppState.medications = JSON.parse(savedMeds);
+      const savedTheme = localStorage.getItem('carepulse_theme');
+      if (savedTheme) AppState.currentTheme = savedTheme;
+    } catch (e) {
+      console.warn('LocalStorage not available, using default demo state.');
+    }
+
+    // ==========================================
+    // 2. SYNTHETIC AUDIO & GENTLE SOUND HAPTICS
+    // ==========================================
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12) {
+      if (!AppState.soundHapticsEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (err) {
+        console.warn('Audio play error', err);
+      }
+    }
+
+    function playSuccessChime() {
+      playTone(440, 'sine', 0.1);
+      setTimeout(() => playTone(554.37, 'sine', 0.12), 100);
+      setTimeout(() => playTone(659.25, 'sine', 0.2), 200);
+    }
+
+    function playAlarmBeep() {
+      playTone(587.33, 'triangle', 0.25);
+      setTimeout(() => playTone(587.33, 'triangle', 0.25), 300);
+    }
+
+    function announceScreenReader(message) {
+      const srEl = document.getElementById('sr-announcements');
+      if (srEl) srEl.textContent = message;
+      if (AppState.voiceOverEnabled && 'speechSynthesis' in window) {
+        speakText(message);
+      }
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.95;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // ==========================================
+    // 3. EYE-CARE & ACCESSIBILITY CONTROLS
+    // ==========================================
+    function changeFontSize(size) {
+      playTone(520);
+      document.body.classList.remove('font-scale-sm', 'font-scale-md', 'font-scale-lg');
+      document.body.classList.add(`font-scale-${size}`);
+      AppState.fontSize = size;
+      announceScreenReader(`Font size changed to ${size === 'lg' ? 'Extra Large' : size === 'md' ? 'Comfort Large' : 'Normal'}`);
+    }
+
+    function applyTheme(themeName) {
+      playTone(480);
+      document.body.classList.remove('theme-high-contrast', 'theme-eyecare', 'theme-dark');
+      if (themeName === 'high-contrast') {
+        document.body.classList.add('theme-high-contrast');
+      } else if (themeName === 'eyecare') {
+        document.body.classList.add('theme-eyecare');
+      } else if (themeName === 'dark') {
+        document.body.classList.add('theme-dark');
+      }
+      AppState.currentTheme = themeName;
+      document.getElementById('theme-select').value = themeName;
+      try {
+        localStorage.setItem('carepulse_theme', themeName);
+      } catch (e) {}
+      announceScreenReader(`Theme switched to ${themeName}`);
+    }
+
+    function toggleWarmEyeCare() {
+      if (AppState.currentTheme === 'eyecare') {
+        applyTheme('calm');
+      } else {
+        applyTheme('eyecare');
+      }
+    }
+
+    function toggleVoiceOver() {
+      AppState.voiceOverEnabled = !AppState.voiceOverEnabled;
+      const btn = document.getElementById('btn-voiceover');
+      const icon = document.getElementById('voiceover-icon');
+      const text = document.getElementById('voiceover-text');
+      if (AppState.voiceOverEnabled) {
+        btn.classList.add('bg-sage-700', 'text-white', 'border-sage-800');
+        btn.classList.remove('bg-slate-100', 'text-slate-700');
+        btn.setAttribute('aria-pressed', 'true');
+        icon.textContent = '🔊';
+        text.textContent = 'Voice-Over: ON';
+        speakText('Voice Over activated. CarePulse will read information in gentle speech.');
+      } else {
+        btn.classList.remove('bg-sage-700', 'text-white', 'border-sage-800');
+        btn.classList.add('bg-slate-100', 'text-slate-700');
+        btn.setAttribute('aria-pressed', 'false');
+        icon.textContent = '🔇';
+        text.textContent = 'Voice-Over: Off';
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+      playTone(420);
+    }
+
+    function toggleSoundHaptics() {
+      AppState.soundHapticsEnabled = !AppState.soundHapticsEnabled;
+      const soundBtn = document.getElementById('btn-sound');
+      const soundIcon = document.getElementById('sound-icon');
+      if (AppState.soundHapticsEnabled) {
+        soundIcon.textContent = '🔊 Audio ON';
+        soundBtn.classList.add('bg-slate-100', 'text-slate-700');
+        soundBtn.classList.remove('bg-slate-50', 'text-slate-400');
+        playTone(500);
+      } else {
+        soundIcon.textContent = '🔇 Audio Muted';
+        soundBtn.classList.remove('bg-slate-100', 'text-slate-700');
+        soundBtn.classList.add('bg-slate-50', 'text-slate-400');
+      }
+    }
+
+    // ==========================================
+    // 4. NAVIGATION SYSTEM
+    // ==========================================
+    function navigateTo(viewId) {
+      playTone(460);
+      AppState.currentView = viewId;
+      
+      const views = ['view-auth', 'view-dashboard', 'view-vision', 'view-triage', 'view-medications', 'view-sos-page'];
+      views.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) el.classList.add('hidden');
+      });
+
+      const targetEl = document.getElementById(`view-${viewId}`);
+      if (targetEl) targetEl.classList.remove('hidden');
+
+      const navTabs = document.querySelectorAll('.nav-tab');
+      navTabs.forEach(tab => {
+        tab.classList.remove('bg-sage-700', 'text-white', 'shadow-sm');
+        tab.classList.add('text-slate-600');
+      });
+
+      const activeNavTab = document.getElementById(`nav-btn-${viewId}`);
+      if (activeNavTab) {
+        activeNavTab.classList.add('bg-sage-700', 'text-white', 'shadow-sm');
+        activeNavTab.classList.remove('text-slate-600');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      announceScreenReader(`Navigated to ${viewId.replace('-', ' ')} view.`);
+    }
+
+    // ==========================================
+    // 5. AUTHENTICATION & PROFILES
+    // ==========================================
+    function renderAuthHeader() {
+      const slot = document.getElementById('auth-header-slot');
+      if (!slot) return;
+
+      if (AppState.currentUser.isLoggedIn) {
+        slot.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <button onclick="navigateTo('dashboard')" class="hidden md:flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-sage-50 border border-sage-200 text-sage-900 text-xs font-semibold">
+              <span>👤 ${AppState.currentUser.name.split(' ')[0]}</span>
+            </button>
+            <button onclick="logout()" class="px-2.5 py-1.5 rounded-lg border border-softRed-200 bg-softRed-50 hover:bg-softRed-100 text-softRed-800 text-xs font-bold transition" title="Log Out">
+              🚪 Logout
+            </button>
+          </div>
+        `;
+      } else {
+        slot.innerHTML = `
+          <button onclick="navigateTo('auth')" class="px-3 py-1.5 rounded-lg bg-sage-700 hover:bg-sage-800 text-white text-xs font-semibold shadow-sm transition">
+            Sign In
+          </button>
+        `;
+      }
+
+      const nameEl = document.getElementById('dashboard-user-name');
+      if (nameEl) nameEl.textContent = AppState.currentUser.name;
+
+      const roleBadge = document.getElementById('user-role-badge');
+      if (roleBadge) {
+        const roleLabels = {
+          patient_vision: 'Sensitive Vision Profile',
+          patient_elderly: 'Senior Citizen Care',
+          caregiver: 'Family Caregiver',
+          doctor: 'Healthcare Professional'
+        };
+        roleBadge.textContent = roleLabels[AppState.currentUser.role] || 'Patient Mode';
+      }
+
+      const contactNameEl = document.getElementById('sos-contact-name');
+      if (contactNameEl) contactNameEl.textContent = AppState.currentUser.emergencyName;
+      const contactPhoneEl = document.getElementById('sos-contact-phone');
+      if (contactPhoneEl) contactPhoneEl.textContent = AppState.currentUser.emergencyPhone;
+    }
+
+    function switchAuthMode(mode) {
+      playTone(450);
+      const loginTab = document.getElementById('tab-login');
+      const signupTab = document.getElementById('tab-signup');
+      const extraFields = document.getElementById('signup-extra-fields');
+      const submitBtn = document.getElementById('btn-auth-submit');
+      const title = document.getElementById('auth-title');
+
+      if (mode === 'signup') {
+        signupTab.classList.add('bg-white', 'shadow-sm', 'text-slate-900');
+        signupTab.classList.remove('text-slate-600');
+        loginTab.classList.remove('bg-white', 'shadow-sm', 'text-slate-900');
+        loginTab.classList.add('text-slate-600');
+        extraFields.classList.remove('hidden');
+        submitBtn.textContent = 'Create CarePulse Account';
+        title.textContent = 'Register Patient Profile';
+      } else {
+        loginTab.classList.add('bg-white', 'shadow-sm', 'text-slate-900');
+        loginTab.classList.remove('text-slate-600');
+        signupTab.classList.remove('bg-white', 'shadow-sm', 'text-slate-900');
+        signupTab.classList.add('text-slate-600');
+        extraFields.classList.add('hidden');
+        submitBtn.textContent = 'Sign In to CarePulse';
+        title.textContent = 'Welcome Back to CarePulse';
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      playSuccessChime();
+      const email = document.getElementById('auth-email').value;
+      const name = document.getElementById('user-fullname').value || 'Rajesh Sharma';
+      const role = document.getElementById('user-role').value || 'patient_vision';
+      const emergPhone = document.getElementById('emergency-phone').value || '+91 9988776655';
+
+      AppState.currentUser = {
+        name: name,
+        role: role,
+        email: email,
+        phone: '+91 9811223344',
+        emergencyPhone: emergPhone,
+        emergencyName: 'Dr. Anita Sen (Caregiver)',
+        isLoggedIn: true
+      };
+
+      try {
+        localStorage.setItem('carepulse_user', JSON.stringify(AppState.currentUser));
+      } catch (err) {}
+
+      renderAuthHeader();
+      navigateTo('dashboard');
+      announceScreenReader(`Successfully logged in as ${name}.`);
+    }
+
+    function loginQuick(name, role, emergPhone) {
+      playSuccessChime();
+      AppState.currentUser = {
+        name: name,
+        role: role,
+        email: `${role}@carepulse.org`,
+        phone: '+91 9811223344',
+        emergencyPhone: emergPhone,
+        emergencyName: 'Dr. Anita Sen (Primary Physician)',
+        isLoggedIn: true
+      };
+      try {
+        localStorage.setItem('carepulse_user', JSON.stringify(AppState.currentUser));
+      } catch (err) {}
+
+      renderAuthHeader();
+      navigateTo('dashboard');
+      announceScreenReader(`Signed in as ${name}`);
+    }
+
+    function logout() {
+      playTone(380);
+      if (confirm('Are you sure you want to log out of CarePulse?')) {
+        AppState.currentUser.isLoggedIn = false;
+        try {
+          localStorage.removeItem('carepulse_user');
+        } catch (err) {}
+        renderAuthHeader();
+        navigateTo('auth');
+        announceScreenReader('You have been logged out.');
+      }
+    }
+
+    // ==========================================
+    // 6. CENTRAL VOICE ASSISTANT (WEB SPEECH API)
+    // ==========================================
+    let recognition = null;
+    let isListening = false;
+
+    function initSpeechRecognition() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRec) {
+        return null;
+      }
+      const rec = new SpeechRec();
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.lang = 'en-IN';
+
+      rec.onstart = () => {
+        isListening = true;
+        updateVoiceListeningUI(true);
+      };
+
+      rec.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        processVoiceCommand(transcript);
+      };
+
+      rec.onerror = (event) => {
+        console.warn('Speech recognition notice', event.error);
+        updateVoiceListeningUI(false);
+      };
+
+      rec.onend = () => {
+        isListening = false;
+        updateVoiceListeningUI(false);
+      };
+
+      return rec;
+    }
+
+    function toggleVoiceListening() {
+      playTone(550);
+      if (!recognition) recognition = initSpeechRecognition();
+
+      if (recognition) {
+        if (isListening) {
+          recognition.stop();
+        } else {
+          try {
+            recognition.start();
+          } catch (e) {
+            simulateVoiceQuery("Did I take my afternoon medicine?");
+          }
+        }
+      } else {
+        simulateVoiceQuery("Did I take my afternoon medicine?");
+      }
+    }
+
+    function updateVoiceListeningUI(active) {
+      const micBtn = document.getElementById('main-voice-mic-btn');
+      const radar = document.getElementById('mic-radar');
+      const pill = document.getElementById('voice-status-pill');
+      const transcriptEl = document.getElementById('voice-transcript-output');
+
+      if (active) {
+        micBtn.classList.add('bg-softRed-700', 'hover:bg-softRed-800');
+        micBtn.classList.remove('bg-sage-700', 'hover:bg-sage-800');
+        radar.classList.remove('hidden');
+        pill.textContent = 'Listening calmly...';
+        pill.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-full bg-softRed-100 text-softRed-800 animate-gentle-pulse';
+        transcriptEl.textContent = 'Listening to your voice now...';
+      } else {
+        micBtn.classList.remove('bg-softRed-700', 'hover:bg-softRed-800');
+        micBtn.classList.add('bg-sage-700', 'hover:bg-sage-800');
+        radar.classList.add('hidden');
+        pill.textContent = 'Click Mic to Speak';
+        pill.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600';
+      }
+    }
+
+    function simulateVoiceQuery(queryText) {
+      updateVoiceListeningUI(true);
+      const transcriptEl = document.getElementById('voice-transcript-output');
+      transcriptEl.textContent = `"${queryText}"`;
+
+      setTimeout(() => {
+        updateVoiceListeningUI(false);
+        processVoiceCommand(queryText);
+      }, 800);
+    }
+
+    function processVoiceCommand(command) {
+      const lower = command.toLowerCase();
+      const transcriptEl = document.getElementById('voice-transcript-output');
+      let responseSpeech = '';
+
+      if (lower.includes('chest pain') || lower.includes('breath') || lower.includes('emergency') || lower.includes('chhati me dard')) {
+        responseSpeech = 'Urgent notice: Severe symptoms indicated. Opening Emergency SOS and preparing caregiver alert.';
+        transcriptEl.innerHTML = `<span class="text-softRed-800 font-bold">🚨 ${responseSpeech}</span>`;
+        speakText(responseSpeech);
+        setTimeout(() => triggerEmergencySOS(), 1200);
+      } 
+      else if (lower.includes('medicine') || lower.includes('insulin') || lower.includes('afternoon') || lower.includes('metformin')) {
+        const afternoonMed = AppState.medications.find(m => m.slot === 'afternoon');
+        if (afternoonMed && !afternoonMed.taken) {
+          responseSpeech = `Afternoon dose pending: ${afternoonMed.name}, 1 tablet during lunch.`;
+        } else {
+          responseSpeech = `All morning medicines are logged as taken.`;
+        }
+        transcriptEl.innerHTML = `<span class="text-sage-800 font-semibold">💊 ${responseSpeech}</span>`;
+        speakText(responseSpeech);
+      }
+      else if (lower.includes('scan') || lower.includes('paracetamol') || lower.includes('read')) {
+        responseSpeech = 'Opening Medicine Vision Lens. Hold the blister pack in view.';
+        transcriptEl.innerHTML = `<span class="text-slate-800 font-semibold">📷 ${responseSpeech}</span>`;
+        speakText(responseSpeech);
+        navigateTo('vision');
+        setTimeout(() => loadSampleMedicine('paracetamol'), 1000);
+      }
+      else if (lower.includes('blood pressure') || lower.includes('bp') || lower.includes('sugar')) {
+        responseSpeech = 'Your blood pressure is logged at 120 over 80, which is normal and healthy.';
+        transcriptEl.innerHTML = `<span class="text-emerald-800 font-semibold">❤️ ${responseSpeech}</span>`;
+        speakText(responseSpeech);
+      }
+      else {
+        responseSpeech = `Understood: "${command}". Medical telemetry and reminders updated.`;
+        transcriptEl.innerHTML = `<span class="text-slate-800 font-semibold">🌿 ${responseSpeech}</span>`;
+        speakText(responseSpeech);
+      }
+    }
+
+    // ==========================================
+    // 7. MEDICINE VISION (OCR & EXPLAINER)
+    // ==========================================
+    const MedicineDatabase = {
+      paracetamol: {
+        name: 'Dolo-650 (Paracetamol Tablets IP)',
+        formula: 'Acetaminophen 650 mg | Strip ID: #BAT-99214',
+        expiry: 'Valid till Nov 2026',
+        isExpired: false,
+        dosage: '1 Tablet After Dinner',
+        warning: 'Do not exceed 3 tablets in 24 hours. Avoid alcohol.',
+        simpleText: 'Yeh Paracetamol tablet hai jo bukhar aur badan dard ke liye hai. Ise khana khane ke baad 1 goli paani ke saath lein. Agli khuraak 6 ghante baad hi lein.'
+      },
+      metformin: {
+        name: 'Glycomet 500 (Metformin Hydrochloride)',
+        formula: 'Metformin HCl 500 mg Extended Release',
+        expiry: 'Valid till Aug 2027',
+        isExpired: false,
+        dosage: '1 Tablet With Lunch',
+        warning: 'Take with food to prevent gastric discomfort. Do not crush.',
+        simpleText: 'Yeh sugar / diabetes ki goli hai. Ise dopahar ke khane ke bich me lein taaki pet me jalan na ho. Goli ko chabayein nahi.'
+      },
+      expired: {
+        name: 'Ascoril-D Cough Expectorant',
+        formula: 'Dextromethorphan + Chlorpheniramine',
+        expiry: 'EXPIRED: Ended July 2023',
+        isExpired: true,
+        dosage: 'DO NOT CONSUME',
+        warning: 'HIGH RISK: Medication is expired. Chemical breakdown may irritate digestive system.',
+        simpleText: 'DHYAN DEIN! Yeh dawai July 2023 me expire ho chuki hai. Iska sevan bilkul mat karein. Ise kripya dustbin me phenk dein.'
+      }
+    };
+
+    function triggerCameraCapture() {
+      playTone(500);
+      showOcrLoading(() => {
+        loadSampleMedicine('paracetamol');
+        announceScreenReader('Camera captured Paracetamol blister pack successfully.');
+      });
+    }
+
+    function handleMedicineUpload(event) {
+      if (event.target.files && event.target.files[0]) {
+        playTone(500);
+        showOcrLoading(() => {
+          loadSampleMedicine('metformin');
+          announceScreenReader('Uploaded file processed successfully.');
+        });
+      }
+    }
+
+    function showOcrLoading(callback) {
+      const loading = document.getElementById('ocr-loading-state');
+      const resultCard = document.getElementById('ocr-result-card');
+      loading.classList.remove('hidden');
+      resultCard.classList.add('opacity-40');
+
+      setTimeout(() => {
+        loading.classList.add('hidden');
+        resultCard.classList.remove('opacity-40');
+        if (callback) callback();
+      }, 700);
+    }
+
+    function loadSampleMedicine(key) {
+      playSuccessChime();
+      const med = MedicineDatabase[key];
+      if (!med) return;
+
+      const nameEl = document.getElementById('ocr-med-name');
+      const subEl = document.getElementById('ocr-med-sub');
+      const expiryEl = document.getElementById('ocr-expiry');
+      const dosageEl = document.getElementById('ocr-dosage');
+      const warningEl = document.getElementById('ocr-warning');
+      const simpleTextEl = document.getElementById('ocr-simple-text');
+      const badgeEl = document.getElementById('ocr-badge-status');
+
+      nameEl.textContent = med.name;
+      subEl.textContent = med.formula;
+      expiryEl.textContent = med.expiry;
+      dosageEl.textContent = med.dosage;
+      warningEl.textContent = med.warning;
+      simpleTextEl.textContent = `"${med.simpleText}"`;
+
+      if (med.isExpired) {
+        badgeEl.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-softRed-100 text-softRed-800 border border-softRed-300';
+        badgeEl.textContent = '⚠️ EXPIRED MEDICINE ALERT';
+        expiryEl.className = 'text-lg font-bold text-softRed-800 mt-1';
+        playAlarmBeep();
+      } else {
+        badgeEl.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+        badgeEl.textContent = '✓ Verified Medicine Safe';
+        expiryEl.className = 'text-lg font-bold text-emerald-700 mt-1';
+      }
+
+      readMedicineAloud();
+    }
+
+    function readMedicineAloud() {
+      const medName = document.getElementById('ocr-med-name').textContent;
+      const dosage = document.getElementById('ocr-dosage').textContent;
+      const simpleText = document.getElementById('ocr-simple-text').textContent;
+      
+      const fullNarration = `Medicine identified: ${medName}. Dosage: ${dosage}. ${simpleText}`;
+      speakText(fullNarration);
+    }
+
+    function addOcrToSchedule() {
+      playSuccessChime();
+      const medName = document.getElementById('ocr-med-name').textContent;
+      const newMed = {
+        id: 'm_' + Date.now(),
+        name: medName.split('(')[0].trim(),
+        slot: 'night',
+        dosage: '1 Tablet',
+        notes: 'Take after dinner with water',
+        taken: false
+      };
+      AppState.medications.push(newMed);
+      try {
+        localStorage.setItem('carepulse_meds', JSON.stringify(AppState.medications));
+      } catch (e) {}
+
+      renderMedications();
+      alert(`✓ ${newMed.name} added to tonight's schedule.`);
+      navigateTo('medications');
+    }
+
+    // ==========================================
+    // 8. GENTLE 60-SECOND TRIAGE WIZARD
+    // ==========================================
+    function toggleTriagePill(button, symptomName, weight) {
+      playTone(470);
+      const checkIcon = button.querySelector('.check-icon');
+      const idx = AppState.selectedSymptoms.findIndex(s => s.name === symptomName);
+
+      if (idx > -1) {
+        AppState.selectedSymptoms.splice(idx, 1);
+        button.classList.remove('border-sage-700', 'bg-sage-50', 'text-sage-900', 'border-softRed-600', 'bg-softRed-50');
+        if (checkIcon) checkIcon.classList.add('hidden');
+      } else {
+        AppState.selectedSymptoms.push({ name: symptomName, weight: weight });
+        button.classList.add('border-sage-700', 'bg-sage-50', 'text-sage-900');
+        if (checkIcon) checkIcon.classList.remove('hidden');
+      }
+    }
+
+    function selectDuration(button, weight) {
+      playTone(490);
+      AppState.triageDurationWeight = weight;
+      const pills = document.querySelectorAll('.duration-pill');
+      pills.forEach(p => {
+        p.classList.remove('border-2', 'border-sage-700', 'bg-sage-50', 'text-sage-900');
+        p.classList.add('border', 'border-slate-200', 'text-slate-800');
+      });
+      button.classList.add('border-2', 'border-sage-700', 'bg-sage-50', 'text-sage-900');
+      button.classList.remove('border-slate-200');
+    }
+
+    function calculateTriageOutcome() {
+      const totalSymptomWeight = AppState.selectedSymptoms.reduce((sum, s) => sum + s.weight, 0);
+      const finalScore = totalSymptomWeight * AppState.triageDurationWeight;
+
+      const resultBox = document.getElementById('triage-result-box');
+      const icon = document.getElementById('triage-icon');
+      const badge = document.getElementById('triage-badge');
+      const title = document.getElementById('triage-title');
+      const expl = document.getElementById('triage-explanation');
+      const actionList = document.getElementById('triage-action-list');
+
+      resultBox.classList.remove('hidden');
+
+      if (finalScore >= 8 || AppState.selectedSymptoms.some(s => s.weight === 5)) {
+        // High Risk / Emergency
+        playAlarmBeep();
+        resultBox.className = 'mt-8 rounded-2xl p-6 sm:p-8 border border-softRed-300 bg-softRed-50/70 text-softRed-950';
+        icon.textContent = '🔴';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-softRed-700 text-white';
+        badge.textContent = 'HIGH RISK: EMERGENCY ALERT';
+        title.textContent = 'IMMEDIATE MEDICAL DISPATCH RECOMMENDED';
+        expl.textContent = 'Noticeable red-flag signs detected (chest pressure or respiratory strain). Sit in a calm upright posture and alert emergency services or your caregiver.';
+        actionList.innerHTML = `
+          <li class="text-softRed-800 font-bold">🚨 Trigger the 1-Tap Emergency SOS to alert family & dispatch.</li>
+          <li>🪑 Rest sitting upright in an airy room. Loosen tight neckwear.</li>
+          <li>💊 If prescribed emergency cardiac medicines, keep them within reach.</li>
+        `;
+        speakText('High risk triage result. Immediate assistance is advised.');
+      } else if (finalScore >= 4) {
+        // Moderate / Teleconsult
+        playSuccessChime();
+        resultBox.className = 'mt-8 rounded-2xl p-6 sm:p-8 border border-amber-300 bg-amber-50/70 text-amber-950';
+        icon.textContent = '🟡';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-700 text-white';
+        badge.textContent = 'MODERATE: SCHEDULE TELECONSULT';
+        title.textContent = 'Virtual Physician Consultation Recommended';
+        expl.textContent = 'Your symptoms indicate a moderate health issue suitable for outpatient review. Avoid crowded emergency rooms unless symptoms worsen.';
+        actionList.innerHTML = `
+          <li>🩺 Schedule a 15-minute video call with your physician.</li>
+          <li>📝 Monitor temperature and fluid intake every 4 hours.</li>
+          <li>💊 Avoid self-medicating with antibiotics without medical guidance.</li>
+        `;
+        speakText('Moderate risk. A virtual physician consult is recommended.');
+      } else {
+        // Low Risk / Home Care
+        playSuccessChime();
+        resultBox.className = 'mt-8 rounded-2xl p-6 sm:p-8 border border-emerald-300 bg-emerald-50/70 text-emerald-950';
+        icon.textContent = '🟢';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-700 text-white';
+        badge.textContent = 'LOW RISK: HOME CARE & REST';
+        title.textContent = 'Rest, Hydration & Supportive Care';
+        expl.textContent = 'Your condition appears mild and manageable with rest. Adequate hydration and quiet sleep typically resolve these symptoms within 48 hours.';
+        actionList.innerHTML = `
+          <li>💧 Drink warm fluids, soups, or electrolyte solutions.</li>
+          <li>🛌 Get full rest for the next 24 hours.</li>
+          <li>🌡️ Log symptoms again tomorrow morning.</li>
+        `;
+        speakText('Low risk. Rest and supportive home care are advised.');
+      }
+
+      resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetTriage() {
+      playTone(420);
+      AppState.selectedSymptoms = [];
+      document.querySelectorAll('.triage-pill').forEach(btn => {
+        btn.classList.remove('border-sage-700', 'bg-sage-50', 'text-sage-900');
+        const icon = btn.querySelector('.check-icon');
+        if (icon) icon.classList.add('hidden');
+      });
+      document.getElementById('triage-result-box').classList.add('hidden');
+    }
+
+    function printTriageReport() {
+      playTone(500);
+      window.print();
+    }
+
+    function shareTriageWhatsApp() {
+      const summary = `*CarePulse AI Triage Summary for ${AppState.currentUser.name}*\n` +
+        `Symptoms: ${AppState.selectedSymptoms.map(s => s.name).join(', ') || 'Mild discomfort'}\n` +
+        `Caregiver Contact: ${AppState.currentUser.emergencyPhone}\n` +
+        `Timestamp: ${new Date().toLocaleTimeString()}`;
+      shareViaWhatsApp(summary);
+    }
+
+    function shareViaWhatsApp(text) {
+      playTone(500);
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    // ==========================================
+    // 9. MEDICATION & VITALS TRACKING
+    // ==========================================
+    function renderMedications() {
+      const morningBox = document.getElementById('med-slot-morning');
+      const afternoonBox = document.getElementById('med-slot-afternoon');
+      const nightBox = document.getElementById('med-slot-night');
+      const dashList = document.getElementById('dashboard-med-list');
+
+      if (!morningBox || !afternoonBox || !nightBox) return;
+
+      morningBox.innerHTML = '';
+      afternoonBox.innerHTML = '';
+      nightBox.innerHTML = '';
+      if (dashList) dashList.innerHTML = '';
+
+      AppState.medications.forEach(med => {
+        const cardHtml = `
+          <div class="p-3.5 rounded-2xl border ${med.taken ? 'border-emerald-200 bg-emerald-50/50' : 'border-slate-200 bg-slate-50/50'} transition flex items-center justify-between theme-card">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="text-sm font-bold ${med.taken ? 'line-through text-slate-400' : 'text-slate-900 theme-heading'}">${med.name}</span>
+                ${med.taken ? '<span class="text-[11px] px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-semibold">Done ✓</span>' : ''}
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">${med.dosage} • ${med.notes}</p>
+            </div>
+            <button onclick="toggleMedTaken('${med.id}')" aria-label="Mark ${med.name} as taken" class="px-3 py-1.5 rounded-xl ${med.taken ? 'bg-emerald-700 text-white' : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-300'} font-semibold text-xs transition">
+              ${med.taken ? '✓ Done' : 'Take Now'}
+            </button>
+          </div>
+        `;
+
+        if (med.slot === 'morning') morningBox.innerHTML += cardHtml;
+        else if (med.slot === 'afternoon') afternoonBox.innerHTML += cardHtml;
+        else if (med.slot === 'night') nightBox.innerHTML += cardHtml;
+
+        if (dashList) {
+          dashList.innerHTML += `
+            <div class="p-3 rounded-xl border border-slate-100 bg-slate-50/80 flex items-center justify-between text-xs font-medium theme-card">
+              <span class="${med.taken ? 'line-through text-slate-400' : 'text-slate-800'}">💊 ${med.name} (${med.slot.toUpperCase()})</span>
+              <span class="${med.taken ? 'text-emerald-700 font-bold' : 'text-amber-700 font-bold'}">${med.taken ? 'Completed' : 'Pending'}</span>
+            </div>
+          `;
+        }
+      });
+    }
+
+    function toggleMedTaken(medId) {
+      const med = AppState.medications.find(m => m.id === medId);
+      if (med) {
+        med.taken = !med.taken;
+        if (med.taken) {
+          playSuccessChime();
+          announceScreenReader(`Marked ${med.name} as taken.`);
+        } else {
+          playTone(380);
+        }
+        try {
+          localStorage.setItem('carepulse_meds', JSON.stringify(AppState.medications));
+        } catch (e) {}
+        renderMedications();
+      }
+    }
+
+    function openAddMedModal() {
+      playTone(500);
+      document.getElementById('modal-add-med').classList.remove('hidden');
+    }
+
+    function closeAddMedModal() {
+      playTone(400);
+      document.getElementById('modal-add-med').classList.add('hidden');
+    }
+
+    function handleAddMedicineSubmit(e) {
+      e.preventDefault();
+      playSuccessChime();
+      const name = document.getElementById('new-med-name').value;
+      const slot = document.getElementById('new-med-slot').value;
+      const dosage = document.getElementById('new-med-dosage').value;
+      const notes = document.getElementById('new-med-notes').value;
+
+      AppState.medications.push({
+        id: 'm_' + Date.now(),
+        name: name,
+        slot: slot,
+        dosage: dosage,
+        notes: notes,
+        taken: false
+      });
+
+      try {
+        localStorage.setItem('carepulse_meds', JSON.stringify(AppState.medications));
+      } catch (e) {}
+
+      closeAddMedModal();
+      renderMedications();
+      announceScreenReader(`Added ${name} to reminders.`);
+    }
+
+    function handleLogVitals(e) {
+      e.preventDefault();
+      playSuccessChime();
+      const sys = document.getElementById('vital-bp-sys').value;
+      const dia = document.getElementById('vital-bp-dia').value;
+      const sugar = document.getElementById('vital-sugar').value;
+      const spo2 = document.getElementById('vital-spo2').value;
+      const pulse = document.getElementById('vital-pulse').value;
+
+      AppState.vitalsHistory = {
+        bp: `${sys}/${dia}`,
+        sugar: sugar,
+        spo2: spo2,
+        pulse: pulse
+      };
+
+      renderVitalsSnapshot();
+      alert('✓ Vitals logged and synced successfully.');
+    }
+
+    function renderVitalsSnapshot() {
+      const snap = document.getElementById('dashboard-vitals-snapshot');
+      if (!snap) return;
+
+      snap.innerHTML = `
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 theme-card">
+          <span class="text-xs font-semibold text-slate-400 uppercase">Blood Pressure</span>
+          <p class="text-xl font-bold text-slate-900 mt-1 theme-heading">${AppState.vitalsHistory.bp} <span class="text-xs font-normal text-slate-500">mmHg</span></p>
+          <span class="text-[11px] font-semibold text-emerald-700">Healthy</span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 theme-card">
+          <span class="text-xs font-semibold text-slate-400 uppercase">Blood Sugar</span>
+          <p class="text-xl font-bold text-slate-900 mt-1 theme-heading">${AppState.vitalsHistory.sugar} <span class="text-xs font-normal text-slate-500">mg/dL</span></p>
+          <span class="text-[11px] font-semibold text-emerald-700">Fasting Normal</span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 theme-card">
+          <span class="text-xs font-semibold text-slate-400 uppercase">SpO2 Oxygen</span>
+          <p class="text-xl font-bold text-slate-900 mt-1 theme-heading">${AppState.vitalsHistory.spo2} <span class="text-xs font-normal text-slate-500">%</span></p>
+          <span class="text-[11px] font-semibold text-sage-800">Optimal</span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 theme-card">
+          <span class="text-xs font-semibold text-slate-400 uppercase">Heart Rate</span>
+          <p class="text-xl font-bold text-slate-900 mt-1 theme-heading">${AppState.vitalsHistory.pulse} <span class="text-xs font-normal text-slate-500">BPM</span></p>
+          <span class="text-[11px] font-semibold text-emerald-700">Resting Steady</span>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 10. 1-TAP EMERGENCY SOS SYSTEM
+    // ==========================================
+    let sosTimerInterval = null;
+    let sosSecondsRemaining = 5;
+
+    function triggerEmergencySOS() {
+      playAlarmBeep();
+      const modal = document.getElementById('modal-sos-countdown');
+      const timerEl = document.getElementById('sos-timer-number');
+      modal.classList.remove('hidden');
+
+      sosSecondsRemaining = 5;
+      timerEl.textContent = sosSecondsRemaining;
+
+      speakText('Emergency Alert triggered. 5 seconds to cancel.');
+
+      clearInterval(sosTimerInterval);
+      sosTimerInterval = setInterval(() => {
+        sosSecondsRemaining--;
+        timerEl.textContent = sosSecondsRemaining;
+        playAlarmBeep();
+
+        if (sosSecondsRemaining <= 0) {
+          clearInterval(sosTimerInterval);
+          dispatchEmergencyImmediately();
+        }
+      }, 1000);
+    }
+
+    function cancelEmergencySOS() {
+      clearInterval(sosTimerInterval);
+      playTone(400);
+      document.getElementById('modal-sos-countdown').classList.add('hidden');
+      speakText('Emergency alert cancelled.');
+      announceScreenReader('Emergency alert cancelled.');
+    }
+
+    function dispatchEmergencyImmediately() {
+      clearInterval(sosTimerInterval);
+      document.getElementById('modal-sos-countdown').classList.add('hidden');
+
+      let geoString = '28.6139, 77.2090 (New Delhi Central)';
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            geoString = `${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}`;
+            executeSosNotification(geoString);
+          },
+          (err) => {
+            executeSosNotification(geoString);
+          },
+          { timeout: 3000 }
+        );
+      } else {
+        executeSosNotification(geoString);
+      }
+    }
+
+    function executeSosNotification(geo) {
+      const sosMessage = `🚨 *CAREPULSE AI EMERGENCY NOTIFICATION*\n\n` +
+        `Patient: ${AppState.currentUser.name} (${AppState.currentUser.role})\n` +
+        `Caregiver Phone: ${AppState.currentUser.emergencyPhone}\n` +
+        `Medical Conditions: Hypertension, Type 2 Diabetes\n` +
+        `Blood Group: O+ | Known Allergies: Penicillin\n` +
+        `📍 Live Coordinates: https://maps.google.com/?q=${encodeURIComponent(geo)}\n` +
+        `Timestamp: ${new Date().toLocaleString()}\n\n` +
+        `_Immediate medical review requested._`;
+
+      speakText('Emergency notification dispatched.');
+      shareViaWhatsApp(sosMessage);
+    }
+
+    // ==========================================
+    // INITIALIZATION ON PAGE LOAD
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      // Restore theme
+      if (AppState.currentTheme) {
+        applyTheme(AppState.currentTheme);
+      }
+
+      renderAuthHeader();
+      renderMedications();
+      renderVitalsSnapshot();
+
+      // Keyboard Shortcut: Alt + E triggers Emergency SOS
+      window.addEventListener('keydown', (e) => {
+        if (e.altKey && (e.key === 'e' || e.key === 'E')) {
+          e.preventDefault();
+          triggerEmergencySOS();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
