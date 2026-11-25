@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Feast | Non-Veg Restaurant</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0b0b0b;
+  color: white;
+}
+
+:root {
+  --red: #c8102e;
+  --gold: #e5b454;
+  --black: #0b0b0b;
+}
+
+header {
+  background: #090909;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #292020;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  padding: 18px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+}
+
+.logo span, span {
+  color: var(--gold);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-btn, .main-btn {
+  background: var(--red);
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.nav-btn:hover, .main-btn:hover {
+  background: var(--gold);
+  color: black;
+  transform: translateY(-3px);
+}
+
+.menu-btn {
+  display: none;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  padding: 70px 10%;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.65), rgba(0,0,0,.2)),
+    url("https://images.unsplash.com/photo-1544025162-d76694265947?w=1600") center/cover;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.tagline {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 75px);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero-content > p:not(.tagline) {
+  color: #ddd;
+  line-height: 1.8;
+  max-width: 530px;
+  margin-bottom: 30px;
+}
+
+.section {
+  padding: 90px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-heading h2, .about-content h2 {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.section-heading > p:last-child {
+  color: #aaa;
+}
+
+.food-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.food-card {
+  background: #171414;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #302323;
+  transition: .35s;
+}
+
+.food-card:hover {
+  transform: translateY(-9px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px #000;
+}
+
+.food-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.food-info {
+  padding: 22px;
+}
+
+.food-info h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.food-info p {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 45px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.price-row strong {
+  color: var(--gold);
+  font-size: 22px;
+}
+
+.order-btn {
+  border: none;
+  background: var(--red);
+  color: white;
+  padding: 9px 22px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.order-btn:hover {
+  background: var(--gold);
+  color: black;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+  background: #131010;
+}
+
+.about-image, .about-content {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.about-content p:not(.tagline) {
+  color: #aaa;
+  line-height: 1.9;
+  margin: 18px 0;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  background: #191515;
+  border: 1px solid #3a2929;
+  color: white;
+  padding: 16px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--gold);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .main-btn {
+  align-self: flex-start;
+}
+
+footer {
+  background: #050505;
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid #302323;
+}
+
+footer p {
+  color: #999;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+footer .copyright {
+  margin-top: 25px;
+}
+
+@media (max-width: 850px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-btn {
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: #101010;
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+    border-top: 1px solid #302323;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 16px;
+    border-bottom: 1px solid #292020;
+  }
+
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about {
+    flex-direction: column;
+  }
+
+  .about-image, .about-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .hero {
+    min-height: 570px;
+    padding: 50px 7%;
+    background-position: center;
+  }
+
+  .section {
+    padding: 65px 6%;
+  }
+
+  .food-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2, .about-content h2 {
+    font-size: 29px;
+  }
+
+  .about-image img {
+    height: 280px;
+  }
+}</style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="#home" class="logo">ROYAL<span>FEAST.</span></a>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#menu" class="nav-btn">Order Now</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="tagline">WELCOME TO ROYAL FEAST</p>
+    <h1>THE TASTE OF<br><span>ROYAL NON-VEG</span></h1>
+    <p>Experience the royal taste of delicious chicken, mutton and seafood. Fresh ingredients, unforgettable flavours!</p>
+    <a href="#menu" class="main-btn">Explore Menu →</a>
+  </div>
+</section>
+
+<section class="menu section" id="menu">
+  <div class="section-heading">
+    <p class="tagline">OUR SPECIALITIES</p>
+    <h2>Our Delicious <span>Menu</span></h2>
+    <p>Made with love, served with royal taste.</p>
+  </div>
+
+  <div class="food-grid">
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=700" alt="Chicken Biryani">
+      <div class="food-info">
+        <h3>Chicken Biryani</h3>
+        <p>Delicious aromatic biryani with juicy chicken.</p>
+        <div class="price-row"><strong>₹249</strong><button class="order-btn" data-item="Chicken Biryani">Order</button></div>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=700" alt="Chicken Tikka">
+      <div class="food-info">
+        <h3>Chicken Tikka</h3>
+        <p>Smoky, spicy and perfectly grilled chicken.</p>
+        <div class="price-row"><strong>₹299</strong><button class="order-btn" data-item="Chicken Tikka">Order</button></div>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=700" alt="Butter Chicken">
+      <div class="food-info">
+        <h3>Butter Chicken</h3>
+        <p>Creamy tomato gravy with tender chicken.</p>
+        <div class="price-row"><strong>₹329</strong><button class="order-btn" data-item="Butter Chicken">Order</button></div>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700" alt="Grilled Chicken">
+      <div class="food-info">
+        <h3>Grilled Chicken</h3>
+        <p>Juicy grilled chicken with special spices.</p>
+        <div class="price-row"><strong>₹399</strong><button class="order-btn" data-item="Grilled Chicken">Order</button></div>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=700" alt="Chicken Kebab">
+      <div class="food-info">
+        <h3>Chicken Kebab</h3>
+        <p>Delicious kebabs with royal seasoning.</p>
+        <div class="price-row"><strong>₹279</strong><button class="order-btn" data-item="Chicken Kebab">Order</button></div>
+      </div>
+    </div>
+
+    <div class="food-card">
+      <img src="https://images.unsplash.com/photo-1515003197210-e0cd7184f8b5?w=700" alt="Seafood">
+      <div class="food-info">
+        <h3>Special Seafood</h3>
+        <p>Fresh seafood cooked with delicious spices.</p>
+        <div class="price-row"><strong>₹449</strong><button class="order-btn" data-item="Special Seafood">Order</button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="about section" id="about">
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=900" alt="Royal restaurant food">
+  </div>
+  <div class="about-content">
+    <p class="tagline">OUR STORY</p>
+    <h2>We Serve The <span>Royal Taste</span></h2>
+    <p>At Royal Feast, we believe great food creates unforgettable memories. Our chefs prepare every dish using fresh ingredients, authentic spices and special recipes.</p>
+    <p>Come and enjoy a delicious non-veg experience with your family and friends.</p>
+    <a href="#contact" class="main-btn">Visit Us</a>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="section-heading">
+    <p class="tagline">GET IN TOUCH</p>
+    <h2>Contact <span>Us</span></h2>
+    <p>Have a question or want to make an enquiry?</p>
+  </div>
+
+  <form id="contactForm" class="contact-form">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit" class="main-btn">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <a href="#home" class="logo">ROYAL<span>FEAST.</span></a>
+  <p>Delicious food. Royal experience.</p>
+  <p class="copyright">© 2026 Royal Feast. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js">const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+// Mobile menu
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuBtn.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+});
+
+// Close mobile menu after clicking a link
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    menuBtn.textContent = "☰";
+  });
+});
+
+// Order buttons
+document.querySelectorAll(".order-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const item = button.dataset.item;
+    alert("Thank you! You selected " + item + ". Please contact the restaurant to confirm your order.");
+  });
+});
+
+// Contact form demo
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  alert("Thank you " + name + "! Your message has been prepared.");
+  this.reset();
+});</script>
+</body>
+</html>
