@@ -1,31 +1,434 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="haldi">
 <head>
-    <title>Container Example</title>
-
-    <style>
-        .container {
-            width: 400px;
-            padding: 20px;
-            background-color: lightblue;
-            border: 2px solid blue;
-            border-radius: 10px;
-            margin: 50px auto;
-        }
-
-        p {
-            font-size: 20px;
-            color: black;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patil Restaurant | Gharcha Swaad</title>
+  <meta name="description" content="Patil Restaurant - authentic Maharashtrian food, made the way it is made at home.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loading">
 
-    <div class="container">
-        <p>Hello! This is a paragraph inside a container.</p>
+  <!-- ============ INTRO ANIMATION ============ -->
+  <div id="intro" aria-hidden="true">
+    <div class="half top"></div>
+    <div class="half bottom"></div>
+    <div class="stage">
+      <svg viewBox="0 0 200 200">
+        <circle class="ring" cx="100" cy="120" r="70"/>
+        <circle class="ring2" cx="100" cy="120" r="52"/>
+        <path class="steam" d="M78 62 C70 50, 86 44, 78 30"/>
+        <path class="steam s2" d="M100 58 C92 44, 108 38, 100 22"/>
+        <path class="steam s3" d="M122 62 C114 50, 130 44, 122 30"/>
+      </svg>
+      <div class="name" id="introName"></div>
+      <div class="tag">GHARCHA SWAAD</div>
     </div>
+    <div class="skip">Skip karne ke liye click karo</div>
+  </div>
 
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">Patil Restaurant<small>Gharcha swaad, pure Maharashtrian</small></a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="#dishes">Menu</a>
+        <a href="#about">About</a>
+        <a href="#book">Table book</a>
+      </nav>
+
+      <div class="themes" role="group" aria-label="Theme chuno">
+        <span class="label">Theme</span>
+        <button class="theme-btn" data-theme="haldi" aria-label="Haldi theme" title="Haldi" aria-pressed="true"></button>
+        <button class="theme-btn" data-theme="kokum" aria-label="Kokum theme" title="Kokum" aria-pressed="false"></button>
+        <button class="theme-btn" data-theme="patta" aria-label="Patta (green) theme" title="Patta" aria-pressed="false"></button>
+        <button class="theme-btn" data-theme="raat"  aria-label="Raat (night) theme" title="Raat" aria-pressed="false"></button>
+      </div>
+
+      <div class="auth" id="authArea"></div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Jevan jase <em>aaicha</em> hatcha.</h1>
+          <p class="lead">Misal, thali, sukka aur sol kadhi - roz taaza masale, roz taaza chav.</p>
+          <div class="actions">
+            <a class="btn big" href="#book">Table book karo</a>
+            <a class="btn ghost big" href="#dishes">Menu dekho</a>
+          </div>
+          <div class="facts">
+            <div><strong>Roz taaza</strong><span>Ghar jaise masale</span></div>
+            <div><strong>11 am - 11 pm</strong><span>Saatho din khule</span></div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="arch">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1000&q=80" alt="Garam Maharashtrian curry aur roti" loading="eager">
+          </div>
+          <div class="round">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=500&q=80" alt="Masaledar curry ka bowl" loading="eager">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DISHES ============ -->
+    <section class="dishes" id="dishes">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Hamari khaas thali</h2>
+          <p>Teen cheezein jo har mehmaan pehle order karta hai.</p>
+        </div>
+        <div class="dish-grid">
+          <article class="dish">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80" alt="Patil special veg thali" loading="lazy">
+            </div>
+            <h3>Patil Special Thali</h3>
+            <p>Bhakri, usal, bhaji, varan-bhaat aur meetha - ek hi plate mein.</p>
+            <div class="price">Rs. 249</div>
+          </article>
+          <article class="dish">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80" alt="Kolhapuri style tikha curry" loading="lazy">
+            </div>
+            <h3>Kolhapuri Tambda Rassa</h3>
+            <p>Tikha, laal aur ekdum garam. Pandhra rassa ke saath aur bhi maza.</p>
+            <div class="price">Rs. 299</div>
+          </article>
+          <article class="dish">
+            <div class="arch">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Misal pav jaisa masaledar nashta" loading="lazy">
+            </div>
+            <h3>Misal Pav</h3>
+            <p>Farsaan, kanda aur kat ke saath. Subah ka best nashta.</p>
+            <div class="price">Rs. 129</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about">
+      <div class="wrap">
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1100&q=80" alt="Patil Restaurant ka andar ka mahaul" loading="lazy">
+        </div>
+        <div>
+          <h2>Ek parivaar ki rasoi, ab aapke liye.</h2>
+          <p>Patil Restaurant mein masale roz haath se kute jaate hain aur bhakri tawe par hi banti hai. Humara maqsad simple hai: jo swaad ghar par milta hai, wahi aapko plate mein mile.</p>
+          <dl class="hours">
+            <dt>Somvar - Ravivar</dt><dd>11:00 am - 11:00 pm</dd>
+            <dt>Phone</dt><dd>+91 00000 00000</dd>
+            <dt>Pata</dt><dd>Apna address yahan likho</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOOKING ============ -->
+    <section class="book" id="book">
+      <div class="wrap">
+        <div>
+          <h2>Aapki table, aapka time.</h2>
+          <p>Login karke table book karo. Booking hote hi confirmation yahin dikhega.</p>
+        </div>
+        <div class="book-card">
+          <div class="gate" id="gate">Table book karne ke liye pehle login ya signup karo.</div>
+          <form id="bookForm" novalidate>
+            <div class="field">
+              <label for="bName">Naam</label>
+              <input id="bName" type="text" autocomplete="name" required>
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label for="bDate">Tareekh</label>
+                <input id="bDate" type="date" required>
+              </div>
+              <div class="field">
+                <label for="bTime">Time</label>
+                <select id="bTime" required>
+                  <option>12:00 pm</option><option>01:00 pm</option><option>02:00 pm</option>
+                  <option>07:00 pm</option><option>08:00 pm</option><option>09:00 pm</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="bGuests">Kitne log?</label>
+              <select id="bGuests">
+                <option>1</option><option>2</option><option selected>4</option>
+                <option>6</option><option>8</option><option>10+</option>
+              </select>
+            </div>
+            <p class="error" id="bookError" role="alert"></p>
+            <button class="btn block big" type="submit">Table book karo</button>
+          </form>
+          <div class="confirm" id="confirm" hidden></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; <span id="year"></span> Patil Restaurant</span>
+      <span>Banaya gaya pyaar se, masale ke saath.</span>
+    </div>
+  </footer>
+
+  <!-- ============ LOGIN / SIGNUP DIALOG ============ -->
+  <dialog class="auth-dialog" id="authDialog" aria-labelledby="authTitle">
+    <div class="dialog-body">
+      <div class="dialog-head">
+        <h2 id="authTitle">Swagat hai</h2>
+        <button class="close" id="closeAuth" aria-label="Band karo">&times;</button>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tabLogin" aria-selected="true" aria-controls="loginForm">Login</button>
+        <button class="tab" role="tab" id="tabSignup" aria-selected="false" aria-controls="signupForm">Signup</button>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="lEmail">Email</label>
+          <input id="lEmail" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="lPass">Password</label>
+          <input id="lPass" type="password" autocomplete="current-password" required>
+        </div>
+        <p class="error" id="loginError" role="alert"></p>
+        <button class="btn block" type="submit">Login karo</button>
+        <p class="switch">Naye ho? <button type="button" data-goto="signup">Signup karo</button></p>
+      </form>
+
+      <form id="signupForm" novalidate hidden>
+        <div class="field">
+          <label for="sName">Naam</label>
+          <input id="sName" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="sEmail">Email</label>
+          <input id="sEmail" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="sPass">Password (kam se kam 6 akshar)</label>
+          <input id="sPass" type="password" autocomplete="new-password" required>
+        </div>
+        <p class="error" id="signupError" role="alert"></p>
+        <button class="btn block" type="submit">Account banao</button>
+        <p class="switch">Pehle se account hai? <button type="button" data-goto="login">Login karo</button></p>
+      </form>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (function () {
+    "use strict";
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+    /* safe localStorage wrappers */
+    function load(key, fallback) {
+      try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+      catch (e) { return fallback; }
+    }
+    function save(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+    }
+
+    /* ---------- toast ---------- */
+    var toastEl = $("#toast"), toastTimer;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 3200);
+    }
+
+    /* ---------- INTRO ---------- */
+    var intro = $("#intro");
+    var nameBox = $("#introName");
+    "PATIL".split("").forEach(function (ch, i) {
+      var s = document.createElement("span");
+      s.textContent = ch;
+      s.style.animationDelay = (0.9 + i * 0.12) + "s";
+      nameBox.appendChild(s);
+    });
+    function endIntro() {
+      if (!intro || intro.classList.contains("open")) return;
+      intro.classList.add("open");
+      document.body.classList.remove("loading");
+      setTimeout(function () { if (intro.parentNode) intro.parentNode.removeChild(intro); }, 1100);
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.body.classList.remove("loading");
+      intro.parentNode.removeChild(intro);
+    } else {
+      setTimeout(endIntro, 3600);
+      intro.addEventListener("click", endIntro);
+    }
+
+    /* ---------- THEMES ---------- */
+    var themeBtns = $$(".theme-btn");
+    function setTheme(t) {
+      document.documentElement.setAttribute("data-theme", t);
+      themeBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.theme === t)); });
+      save("patil_theme", t);
+    }
+    themeBtns.forEach(function (b) { b.addEventListener("click", function () { setTheme(b.dataset.theme); }); });
+    setTheme(load("patil_theme", "haldi"));
+
+    /* ---------- AUTH (demo: browser ke localStorage mein) ---------- */
+    function hash(str) {
+      if (window.crypto && crypto.subtle && window.TextEncoder) {
+        return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+        });
+      }
+      var h = 5381; for (var i = 0; i < str.length; i++) { h = ((h << 5) + h) + str.charCodeAt(i); h |= 0; }
+      return Promise.resolve("f" + h);
+    }
+    function users() { return load("patil_users", {}); }
+    function currentUser() {
+      var email = load("patil_session", null);
+      if (!email) return null;
+      var u = users()[email];
+      return u ? { email: email, name: u.name } : null;
+    }
+
+    var authArea = $("#authArea");
+    var dialog = $("#authDialog");
+
+    function renderAuth() {
+      var user = currentUser();
+      authArea.textContent = "";
+      if (user) {
+        var hi = document.createElement("span");
+        hi.className = "hello";
+        hi.textContent = "Namaste, " + user.name.split(" ")[0];
+        var out = document.createElement("button");
+        out.className = "btn ghost"; out.type = "button"; out.textContent = "Logout";
+        out.addEventListener("click", logout);
+        authArea.appendChild(hi); authArea.appendChild(out);
+      } else {
+        var l = document.createElement("button");
+        l.className = "btn ghost"; l.type = "button"; l.textContent = "Login";
+        l.addEventListener("click", function () { openAuth("login"); });
+        var s = document.createElement("button");
+        s.className = "btn"; s.type = "button"; s.textContent = "Signup";
+        s.addEventListener("click", function () { openAuth("signup"); });
+        authArea.appendChild(l); authArea.appendChild(s);
+      }
+      /* booking form state */
+      $("#gate").hidden = !!user;
+      if (user && !$("#bName").value) $("#bName").value = user.name;
+    }
+
+    function showTab(which) {
+      var isLogin = which === "login";
+      $("#loginForm").hidden = !isLogin;
+      $("#signupForm").hidden = isLogin;
+      $("#tabLogin").setAttribute("aria-selected", String(isLogin));
+      $("#tabSignup").setAttribute("aria-selected", String(!isLogin));
+      $("#authTitle").textContent = isLogin ? "Wapas swagat hai" : "Naya account";
+      $("#loginError").textContent = ""; $("#signupError").textContent = "";
+    }
+    function openAuth(which) {
+      showTab(which);
+      if (typeof dialog.showModal === "function") dialog.showModal(); else dialog.setAttribute("open", "");
+      setTimeout(function () { (which === "login" ? $("#lEmail") : $("#sName")).focus(); }, 50);
+    }
+    function closeAuth() { if (dialog.close) dialog.close(); else dialog.removeAttribute("open"); }
+
+    $("#closeAuth").addEventListener("click", closeAuth);
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) closeAuth(); });
+    $("#tabLogin").addEventListener("click", function () { showTab("login"); });
+    $("#tabSignup").addEventListener("click", function () { showTab("signup"); });
+    $$("[data-goto]").forEach(function (b) { b.addEventListener("click", function () { showTab(b.dataset.goto); }); });
+
+    var emailOk = function (e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); };
+
+    $("#signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = $("#sName").value.trim();
+      var email = $("#sEmail").value.trim().toLowerCase();
+      var pass = $("#sPass").value;
+      var err = $("#signupError");
+      if (name.length < 2) { err.textContent = "Apna naam likho."; return; }
+      if (!emailOk(email)) { err.textContent = "Sahi email daalo, jaise naam@gmail.com"; return; }
+      if (pass.length < 6) { err.textContent = "Password kam se kam 6 akshar ka ho."; return; }
+      var all = users();
+      if (all[email]) { err.textContent = "Is email se account pehle se hai. Login karo."; return; }
+      hash(email + ":" + pass).then(function (h) {
+        all[email] = { name: name, hash: h };
+        save("patil_users", all);
+        save("patil_session", email);
+        $("#signupForm").reset(); closeAuth(); renderAuth();
+        toast("Account ban gaya. Swagat hai, " + name.split(" ")[0] + "!");
+      });
+    });
+
+    $("#loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = $("#lEmail").value.trim().toLowerCase();
+      var pass = $("#lPass").value;
+      var err = $("#loginError");
+      if (!emailOk(email) || !pass) { err.textContent = "Email aur password dono daalo."; return; }
+      var u = users()[email];
+      if (!u) { err.textContent = "Is email ka account nahi mila. Pehle signup karo."; return; }
+      hash(email + ":" + pass).then(function (h) {
+        if (h !== u.hash) { err.textContent = "Password galat hai. Dobara try karo."; return; }
+        save("patil_session", email);
+        $("#loginForm").reset(); closeAuth(); renderAuth();
+        toast("Login ho gaya. Namaste, " + u.name.split(" ")[0] + "!");
+      });
+    });
+
+    function logout() {
+      try { localStorage.removeItem("patil_session"); } catch (e) {}
+      $("#confirm").hidden = true;
+      renderAuth();
+      toast("Logout ho gaya. Phir milenge!");
+    }
+
+    /* ---------- BOOKING (login zaroori) ---------- */
+    var dateInput = $("#bDate");
+    var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    dateInput.min = today.toISOString().slice(0, 10);
+
+    $("#bookForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = $("#bookError"); err.textContent = "";
+      var user = currentUser();
+      if (!user) { openAuth("login"); return; }
+      var name = $("#bName").value.trim();
+      if (!name) { err.textContent = "Naam likho."; return; }
+      if (!dateInput.value) { err.textContent = "Tareekh chuno."; return; }
+      var when = new Date(dateInput.value + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+      var booking = { name: name, date: dateInput.value, time: $("#bTime").value, guests: $("#bGuests").value, by: user.email };
+      var list = load("patil_bookings", []); list.push(booking); save("patil_bookings", list);
+      var c = $("#confirm");
+      c.textContent = "Table pakki! " + name + ", " + booking.guests + " log, " + when + " ko " + booking.time + ".";
+      c.hidden = false;
+      toast("Booking ho gayi. Milte hain!");
+    });
+
+    $("#year").textContent = new Date().getFullYear();
+    renderAuth();
+  })();
+  </script>
 </body>
 </html>
